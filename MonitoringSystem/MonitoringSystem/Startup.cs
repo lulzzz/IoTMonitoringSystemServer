@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MonitoringSystem.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MonitoringSystem.Data;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Persistences.Repositories;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using AutoMapper;
 
 namespace MonitoringSystem
 {
@@ -32,6 +26,13 @@ namespace MonitoringSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IFanRepository, FanRepository>();
+            services.AddScoped<IHumidityRepository, HumidityRepository>();
+            services.AddScoped<IRackRepository, RackRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<ITemperatureRepository, TemperatureRepository>();
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -48,7 +49,7 @@ namespace MonitoringSystem
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // Add application services.
-            services.AddTransient<IEmailSender, IEmailSender>();
+            //services.AddTransient<IEmailSender, IEmailSender>();
             services.AddAutoMapper();
         }
 

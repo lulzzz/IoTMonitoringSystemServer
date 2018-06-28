@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MonitoringSystem.Models
+﻿namespace MonitoringSystem.Models
 {
     public class Humidity
     {
         public int HumidityId { get; set; }
         public int Value { get; set; }
+        public bool IsDeleted { get; set; }
+        public int StatusId { get; set; }
+        public Status Status { get; set; }
     }
 }

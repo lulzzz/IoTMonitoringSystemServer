@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MonitoringSystem.Models
 {
@@ -11,5 +8,8 @@ namespace MonitoringSystem.Models
         public DateTime DateTime { get; set; }
         public Temperature Temperature { get; set; }
         public Humidity Humidity { get; set; }
+        public bool IsDeleted { get; set; }
+        public Room Room { get; set; }
+        public Rack Rack { get; set; }
     }
 }
