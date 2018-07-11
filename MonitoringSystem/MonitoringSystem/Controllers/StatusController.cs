@@ -14,12 +14,15 @@ namespace MonitoringSystem.Controllers
         private IStatusRepository statusRepository;
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
+        private ISensorRepository sensorRepository;
 
-        public StatusController(IStatusRepository statusRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public StatusController(IStatusRepository statusRepository, IMapper mapper, IUnitOfWork unitOfWork,
+        ISensorRepository sensorRepository)
         {
             this.statusRepository = statusRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.sensorRepository = sensorRepository;
         }
         // GET: api/statuses/getall
         [HttpGet]
@@ -70,6 +73,9 @@ namespace MonitoringSystem.Controllers
             //map statusResource json into status model
             var status = mapper.Map<StatusResource, Status>(statusResource);
 
+            //add sensor for status
+            status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId);
+
             //add status into database
             statusRepository.AddStatus(status);
             await unitOfWork.Complete();
@@ -101,6 +107,10 @@ namespace MonitoringSystem.Controllers
             }
             //map statusResource json into status model
             mapper.Map<StatusResource, Status>(statusResource, status);
+
+            //add sensor for status
+            status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId);
+
             await unitOfWork.Complete();
 
             // converting status object to json result

@@ -8,13 +8,13 @@ namespace MonitoringSystem.Resources
         public int RoomId { get; set; }
         public string RoomCode { get; set; }
         public string RoomName { get; set; }
-        public ICollection<int> Statuses { get; set; }
+        public ICollection<int> Sensors { get; set; }
         public ICollection<int> Racks { get; set; }
         public ICollection<int> Fans { get; set; }
         public bool IsDeleted { get; set; }
         public RoomResource()
         {
-            Statuses = new Collection<int>();
+            Sensors = new Collection<int>();
             Racks = new Collection<int>();
             Fans = new Collection<int>();
         }

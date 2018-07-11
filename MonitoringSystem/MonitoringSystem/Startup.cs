@@ -31,6 +31,7 @@ namespace MonitoringSystem
             services.AddScoped<IHumidityRepository, HumidityRepository>();
             services.AddScoped<IRackRepository, RackRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<ISensorRepository, SensorRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddScoped<ITemperatureRepository, TemperatureRepository>();
 

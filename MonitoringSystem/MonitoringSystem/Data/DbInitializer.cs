@@ -27,6 +27,22 @@ namespace MonitoringSystem.Data
             }
             context.SaveChanges();
 
+            var sensors = new Sensor[]
+            {
+                new Sensor{IsDeleted = false, SensorCode="001", SensorName="Sensor 1", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="002",SensorName="Sensor 2", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="003", SensorName="Sensor 3", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
+                new Sensor{IsDeleted = false, SensorCode="004", SensorName="Sensor 4", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
+                new Sensor{IsDeleted = false, SensorCode="005", SensorName="Sensor 5", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
+                new Sensor{IsDeleted = false, SensorCode="006", SensorName="Sensor 6", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)}
+
+            };
+            foreach (var sensor in sensors)
+            {
+                context.Sensors.Add(sensor);
+            }
+            context.SaveChanges();
+
             var fans = new Fan[]
             {
                 new Fan{IsDeleted = false, FanCode="001", FanName="Fan 1",IsOn=false,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
@@ -41,12 +57,12 @@ namespace MonitoringSystem.Data
 
             var racks = new Rack[]
             {
-                new Rack{IsDeleted = false, RackCode="001",RackName="Rack 1",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Rack{IsDeleted = false, RackCode="002",RackName="Rack 2",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Rack{IsDeleted = false, RackCode="003",RackName="Rack 3",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
-                new Rack{IsDeleted = false, RackCode="004",RackName="Rack 4",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
-                new Rack{IsDeleted = false, RackCode="005",RackName="Rack 5",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
-                new Rack{IsDeleted = false, RackCode="006",RackName="Rack 6",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
+                new Rack{IsDeleted = false, RackCode="001",RackName="Rack 1",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Rack{IsDeleted = false, RackCode="002",RackName="Rack 2",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Rack{IsDeleted = false, RackCode="003",RackName="Rack 3",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Rack{IsDeleted = false, RackCode="004",RackName="Rack 4",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Rack{IsDeleted = false, RackCode="005",RackName="Rack 5",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Rack{IsDeleted = false, RackCode="006",RackName="Rack 6",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
             };
             foreach (var rack in racks)
             {
@@ -54,17 +70,18 @@ namespace MonitoringSystem.Data
             }
             context.SaveChanges();
 
+
             var statuses = new Status[]
             {
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=80}, Temperature = new Temperature{IsDeleted=false, Value=90 }, Room = context.Rooms.FirstOrDefault(r => r.RoomId ==1)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=76}, Temperature = new Temperature{IsDeleted=false, Value=56 }, Room = context.Rooms.FirstOrDefault(r => r.RoomId ==1)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=90}, Temperature = new Temperature{IsDeleted=false, Value=48 }, Room = context.Rooms.FirstOrDefault(r => r.RoomId ==2)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=89 }, Room = context.Rooms.FirstOrDefault(r => r.RoomId ==2)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=87}, Temperature = new Temperature{IsDeleted=false, Value=98 }, Rack = context.Racks.FirstOrDefault(r => r.RackId ==1)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=67}, Temperature = new Temperature{IsDeleted=false, Value=34 }, Rack = context.Racks.FirstOrDefault(r => r.RackId ==1)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=54 }, Rack = context.Racks.FirstOrDefault(r => r.RackId ==2)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=23}, Temperature = new Temperature{IsDeleted=false, Value=23 }, Rack = context.Racks.FirstOrDefault(r => r.RackId ==3)},
-                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=98}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Rack = context.Racks.FirstOrDefault(r => r.RackId ==3)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=80}, Temperature = new Temperature{IsDeleted=false, Value=90 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=76}, Temperature = new Temperature{IsDeleted=false, Value=56 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=90}, Temperature = new Temperature{IsDeleted=false, Value=48 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=89 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=87}, Temperature = new Temperature{IsDeleted=false, Value=98 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=67}, Temperature = new Temperature{IsDeleted=false, Value=34 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=54 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=23}, Temperature = new Temperature{IsDeleted=false, Value=23 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Status{IsDeleted = false, DateTime =DateTime.Now, Humidity = new Humidity{IsDeleted=false, Value=98}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
             };
             foreach (var status in statuses)
             {

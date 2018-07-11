@@ -9,7 +9,6 @@ namespace MonitoringSystem.Models
         public Temperature Temperature { get; set; }
         public Humidity Humidity { get; set; }
         public bool IsDeleted { get; set; }
-        public Room Room { get; set; }
-        public Rack Rack { get; set; }
+        public Sensor Sensor { get; set; }
     }
 }

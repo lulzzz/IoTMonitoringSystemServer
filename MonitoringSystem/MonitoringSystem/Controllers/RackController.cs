@@ -15,14 +15,16 @@ namespace MonitoringSystem.Controllers
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
         private IRoomRepository roomRepository;
+        private ISensorRepository sensorRepository;
 
         public RackController(IRackRepository rackRepository, IMapper mapper, IUnitOfWork unitOfWork,
-            IRoomRepository roomRepository)
+            IRoomRepository roomRepository, ISensorRepository sensorRepository)
         {
             this.rackRepository = rackRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.roomRepository = roomRepository;
+            this.sensorRepository = sensorRepository;
         }
         // GET: api/racks/getall
         [HttpGet]
@@ -75,6 +77,10 @@ namespace MonitoringSystem.Controllers
 
             //add room for rack
             rack.Room = await roomRepository.GetRoom(rackResource.RoomId, true);
+
+            //add sensor for rack
+            rack.Sensor = await sensorRepository.GetSensor(rackResource.SensorId, true);
+
 
             //add rack into database
             rackRepository.AddRack(rack);

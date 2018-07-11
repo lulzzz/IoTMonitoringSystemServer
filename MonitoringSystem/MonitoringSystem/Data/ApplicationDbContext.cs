@@ -22,6 +22,7 @@ namespace MonitoringSystem.Data
             builder.Entity<Fan>().ToTable("Fan");
             builder.Entity<Rack>().ToTable("Rack");
             builder.Entity<Room>().ToTable("Room");
+            builder.Entity<Sensor>().ToTable("Sensor");
             builder.Entity<Status>().ToTable("Status");
         }
 
@@ -31,5 +32,6 @@ namespace MonitoringSystem.Data
         public DbSet<Rack> Racks { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<Sensor> Sensors { get; set; }
     }
 }

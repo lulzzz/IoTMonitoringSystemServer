@@ -72,6 +72,16 @@ namespace MonitoringSystem.Controllers
 
             //add room into database
             roomRepository.AddRoom(room);
+
+            //update fans of room
+            await roomRepository.UpdateFans(room, roomResource);
+
+            //update racks of room
+            await roomRepository.UpdateRacks(room, roomResource);
+
+            //update sensors of room
+            await roomRepository.UpdateSensors(room, roomResource);
+
             await unitOfWork.Complete();
 
             //get room for converting to json result
@@ -99,8 +109,19 @@ namespace MonitoringSystem.Controllers
             {
                 return NotFound();
             }
+
             //map roomResource json into room model
             mapper.Map<RoomResource, Room>(roomResource, room);
+
+            //update fans of room
+            await roomRepository.UpdateFans(room, roomResource);
+
+            //update racks of room
+            await roomRepository.UpdateRacks(room, roomResource);
+
+            //update sensors of room
+            await roomRepository.UpdateSensors(room, roomResource);
+
             await unitOfWork.Complete();
 
             // converting room object to json result

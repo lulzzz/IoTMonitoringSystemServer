@@ -32,7 +32,7 @@ namespace MonitoringSystem.Persistences.Repositories
                 return await context.Racks.FindAsync(id);
             }
             return await context.Racks
-                .Include(r => r.Statuses)
+                .Include(r => r.Sensor)
                 .Include(r => r.Room)
                 .SingleOrDefaultAsync(r => r.RackId == id);
         }
@@ -43,7 +43,7 @@ namespace MonitoringSystem.Persistences.Repositories
             var query = context.Racks
                     .Where(r => r.IsDeleted == false)
                     .Include(r => r.Room)
-                    .Include(r => r.Statuses)
+                    .Include(r => r.Sensor)
                     .AsQueryable();
             //filter
 

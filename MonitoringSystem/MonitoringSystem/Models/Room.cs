@@ -11,13 +11,13 @@ namespace MonitoringSystem.Models
         public int RoomId { get; set; }
         public string RoomCode { get; set; }
         public string RoomName { get; set; }
-        public ICollection<Status> Statuses { get; set; }
+        public ICollection<Sensor> Sensors { get; set; }
         public ICollection<Rack> Racks { get; set; }
         public ICollection<Fan> Fans { get; set; }
         public bool IsDeleted { get; set; }
         public Room()
         {
-            Statuses = new Collection<Status>();
+            Sensors = new Collection<Sensor>();
             Racks = new Collection<Rack>();
             Fans = new Collection<Fan>();
         }

@@ -11,9 +11,7 @@ namespace MonitoringSystem.Resources
         public int? HumidityId { get; set; }
         public HumidityResource Humidity { get; set; }
         public bool IsDeleted { get; set; }
-        public int? RoomId { get; set; }
-        public RoomResource Room { get; set; }
-        public int? RackId { get; set; }
-        public RackResource Rack { get; set; }
+        public int? SensorId { get; set; }
+        public SensorResource Sensor { get; set; }
     }
 }
