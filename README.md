@@ -7,4 +7,6 @@ cd ClientApp
 
 npm start
 
-# Run backend API webserver: dotnet watch run
+# Run backend API webserver: 
+=>Create new Terminal
+dotnet watch run
