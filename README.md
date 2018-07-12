@@ -1,6 +1,7 @@
 # IoTMonitoringSystemServer
 
 # Before run app use: 
+cd ClientApp
 npm start
 
 dotnet restore
