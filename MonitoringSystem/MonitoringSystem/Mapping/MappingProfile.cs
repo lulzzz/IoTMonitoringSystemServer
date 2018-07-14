@@ -85,6 +85,8 @@ namespace MonitoringSystem.Mapping
                 .ForMember(sr => sr.Racks, opt => opt.MapFrom(s => s.Racks.Select(sf => sf.RackId)))
                 .ForMember(sr => sr.RoomId, opt => opt.MapFrom(s => s.Room.RoomId));
 
+            CreateMap<Plot, PlotResource>();
+
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
             //API Resource to domain            

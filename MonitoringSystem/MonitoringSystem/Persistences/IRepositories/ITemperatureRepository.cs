@@ -12,5 +12,6 @@ namespace MonitoringSystem.Persistences.IRepositories
         void AddTemperature(Temperature temperature);
         void RemoveTemperature(Temperature temperature);
         Task<QueryResult<Temperature>> GetTemperatures(Query queryObj);
+        Task<Plot> GetTemperaturesBySensorIdForPlot(int sensorId);
     }
 }

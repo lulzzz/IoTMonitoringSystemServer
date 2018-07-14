@@ -137,5 +137,18 @@ namespace MonitoringSystem.Controllers
 
             return Ok(id);
         }
+
+        [HttpGet]
+        [Route("getallbysensoridforplot/{id}")]
+        public async Task<IActionResult> GetAllBySensorIdForPlot(int id)
+        {
+
+            var plot = await temperatureRepository.GetTemperaturesBySensorIdForPlot(id);
+
+            var plotResource = mapper.Map<Plot, PlotResource>(plot);
+
+            return Ok(plotResource);
+
+        }
     }
 }
