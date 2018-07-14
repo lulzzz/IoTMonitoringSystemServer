@@ -1,28 +1,43 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Plot from 'react-plotly.js';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Plot from "react-plotly.js";
+import { actionCreators } from "../store/Temperatures";
+import { bindActionCreators } from "redux";
 
-const Home = props => (
-  <div>
-     <Plot
-        data={[{
-          x: ['2013-10-04 22:00:00', '2013-10-04 22:02:00', '2013-10-04 22:04:00', '2013-10-04 22:06:00',
-            '2013-10-04 22:08:00', '2013-10-04 22:10:00'
-          ],
-          y: [1, 3, 6, 2, 4, 5],
-          type: 'scatter'
-        },
-        {
-          x: ['2013-10-04 22:00:00', '2013-10-04 22:02:00', '2013-10-04 22:04:00', '2013-10-04 22:06:00',
-            '2013-10-04 22:08:00', '2013-10-04 22:10:00'
-          ],
-          y: [10, 13, 16, 10, 8, 6],
-          type: 'scatter'
-        }
-      ]}
-        layout={ {title: 'Nhiệt Độ Cảm Biến'} }
-      />
-  </div>
-);
+class Home extends Component {
+  componentWillMount() {
+    // This method runs when the component is first added to the page
+    const isLoaded = true;
 
-export default connect()(Home);
+    this.props.requestTemperatures(isLoaded);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // This method runs when incoming props (e.g., route params) change
+    const isLoaded = true;
+    this.props.requestTemperatures(isLoaded);
+  }
+  render() {
+    return (
+      <div>
+        {/* <p>
+      Current count: <strong>{props.tempurates}</strong>
+    </p> */}
+        <Plot
+          data={[
+            {
+              x: this.props.temperatures.x,
+              y: this.props.temperatures.y,
+              type: this.props.temperatures.type
+            }
+          ]}
+          layout={{ title: "Nhiệt Độ Cảm Biến" }}
+        />
+      </div>
+    );
+  }
+}
+export default connect(
+  state => state.temperatures,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(Home);
