@@ -12,10 +12,56 @@ namespace MonitoringSystem.Mapping
         {
             ////Domain to API Resource
             CreateMap<Temperature, TemperatureResource>()
-                .ForMember(tr => tr.StatusId, opt => opt.MapFrom(t => t.Status.StatusId));
+                .ForMember(tr => tr.StatusId, opt => opt.MapFrom(t => t.Status.StatusId))
+                .ForMember(tr => tr.Status, opt => opt.MapFrom(t => new StatusResource
+                {
+                    StatusId = t.Status.StatusId,
+                    DateTime = t.Status.DateTime,
+                    TemperatureId = t.Status.Temperature.TemperatureId,
+                    Temperature = new TemperatureResource
+                    {
+                        TemperatureId = t.Status.Temperature.TemperatureId,
+                        Value = t.Status.Temperature.Value,
+                        IsDeleted = t.Status.Temperature.IsDeleted,
+                        StatusId = t.Status.StatusId
+                    },
+                    HumidityId = t.Status.Humidity.HumidityId,
+                    Humidity = new HumidityResource
+                    {
+                        HumidityId = t.Status.Temperature.TemperatureId,
+                        Value = t.Status.Temperature.Value,
+                        IsDeleted = t.Status.Temperature.IsDeleted,
+                        StatusId = t.Status.StatusId
+                    },
+                    IsDeleted = t.Status.IsDeleted,
+                    SensorId = t.Status.Sensor.SensorId
+                }));
 
             CreateMap<Humidity, HumidityResource>()
-                .ForMember(hr => hr.StatusId, opt => opt.MapFrom(h => h.Status.StatusId));
+                .ForMember(hr => hr.StatusId, opt => opt.MapFrom(h => h.Status.StatusId))
+                .ForMember(hr => hr.Status, opt => opt.MapFrom(h => new StatusResource
+                {
+                    StatusId = h.Status.StatusId,
+                    DateTime = h.Status.DateTime,
+                    TemperatureId = h.Status.Temperature.TemperatureId,
+                    Temperature = new TemperatureResource
+                    {
+                        TemperatureId = h.Status.Temperature.TemperatureId,
+                        Value = h.Status.Temperature.Value,
+                        IsDeleted = h.Status.Temperature.IsDeleted,
+                        StatusId = h.Status.StatusId
+                    },
+                    HumidityId = h.Status.Humidity.HumidityId,
+                    Humidity = new HumidityResource
+                    {
+                        HumidityId = h.Status.Temperature.TemperatureId,
+                        Value = h.Status.Temperature.Value,
+                        IsDeleted = h.Status.Temperature.IsDeleted,
+                        StatusId = h.Status.StatusId
+                    },
+                    IsDeleted = h.Status.IsDeleted,
+                    SensorId = h.Status.Sensor.SensorId
+                }));
 
             CreateMap<Fan, FanResource>()
                 .ForMember(fr => fr.RoomId, opt => opt.MapFrom(f => f.Room.RoomId));

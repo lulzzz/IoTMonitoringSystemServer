@@ -30,6 +30,12 @@ namespace MonitoringSystem.Persistences.Repositories
             var result = new QueryResult<Humidity>();
             var query = context.Humidities
                     .Where(h => h.IsDeleted == false)
+                    .Include(h => h.Status)
+                        .ThenInclude(s => s.Sensor)
+                    .Include(h => h.Status)
+                        .ThenInclude(s => s.Temperature)
+                    .Include(h => h.Status)
+                        .ThenInclude(s => s.Humidity)
                     .AsQueryable();
             //filter
 
@@ -61,6 +67,12 @@ namespace MonitoringSystem.Persistences.Repositories
                 return await context.Humidities.FindAsync(id);
             }
             return await context.Humidities
+                .Include(h => h.Status)
+                    .ThenInclude(s => s.Sensor)
+                .Include(h => h.Status)
+                    .ThenInclude(s => s.Temperature)
+                .Include(h => h.Status)
+                    .ThenInclude(s => s.Humidity)
                 .SingleOrDefaultAsync(h => h.HumidityId == id);
         }
 

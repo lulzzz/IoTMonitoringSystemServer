@@ -33,6 +33,11 @@ namespace MonitoringSystem.Persistences.Repositories
             }
             return await context.Temperatures
                 .Include(t => t.Status)
+                    .ThenInclude(s => s.Sensor)
+                .Include(t => t.Status)
+                    .ThenInclude(s => s.Temperature)
+                .Include(t => t.Status)
+                    .ThenInclude(s => s.Humidity)
                 .SingleOrDefaultAsync(h => h.TemperatureId == id);
         }
 
@@ -42,6 +47,11 @@ namespace MonitoringSystem.Persistences.Repositories
             var query = context.Temperatures
                     .Where(h => h.IsDeleted == false)
                     .Include(t => t.Status)
+                        .ThenInclude(s => s.Sensor)
+                    .Include(t => t.Status)
+                        .ThenInclude(s => s.Temperature)
+                    .Include(t => t.Status)
+                        .ThenInclude(s => s.Humidity)
                     .AsQueryable();
             //filter
 
