@@ -51,6 +51,7 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Include(t => t.Status)
                         .ThenInclude(s => s.Sensor)
                     .Where(h => h.IsDeleted == false && h.Status.Sensor.SensorId == sensor.SensorId)
+                    .OrderBy(t => t.Status.DateTime)
                     .AsQueryable();
                 var plot = new Plot
                 {
