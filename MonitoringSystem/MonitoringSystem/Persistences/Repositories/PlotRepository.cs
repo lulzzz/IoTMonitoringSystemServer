@@ -31,10 +31,13 @@ namespace MonitoringSystem.Persistences.Repositories
                     .OrderBy(t => t.Status.DateTime)
                     .AsQueryable();
 
+            var sensor = await context.Sensors.FindAsync(sensorId);
+
             var plot = new Plot
             {
                 x = await query.Select(q => q.Status.DateTime).ToListAsync(),
-                y = await query.Select(q => q.Value).ToListAsync()
+                y = await query.Select(q => q.Value).ToListAsync(),
+                name = sensor.SensorName
             };
             return plot;
         }
@@ -57,7 +60,8 @@ namespace MonitoringSystem.Persistences.Repositories
                 var plot = new Plot
                 {
                     x = await temperature.Select(q => q.Status.DateTime).ToListAsync(),
-                    y = await temperature.Select(q => q.Value).ToListAsync()
+                    y = await temperature.Select(q => q.Value).ToListAsync(),
+                    name = sensor.SensorName
                 };
                 plots.Add(plot);
             }
