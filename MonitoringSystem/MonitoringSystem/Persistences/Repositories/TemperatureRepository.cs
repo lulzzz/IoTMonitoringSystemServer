@@ -78,6 +78,7 @@ namespace MonitoringSystem.Persistences.Repositories
 
         public void RemoveTemperature(Temperature temperature)
         {
+
             temperature.IsDeleted = true;
         }
     }
