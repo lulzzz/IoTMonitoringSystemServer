@@ -35,6 +35,7 @@ namespace MonitoringSystem.Persistences.Repositories
             return await context.Sensors
                 .Include(r => r.Room)
                 .Include(r => r.Racks)
+                .Include(r => r.Statuses)
                 .SingleOrDefaultAsync(r => r.SensorId == id);
         }
 
@@ -45,6 +46,7 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Where(r => r.IsDeleted == false)
                     .Include(r => r.Room)
                     .Include(r => r.Racks)
+                    .Include(r => r.Statuses)
                     .AsQueryable();
             //filter
 

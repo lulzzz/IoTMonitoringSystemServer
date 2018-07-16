@@ -80,25 +80,5 @@ namespace MonitoringSystem.Persistences.Repositories
         {
             temperature.IsDeleted = true;
         }
-
-        public async Task<Plot> GetTemperaturesBySensorIdForPlot(int sensorId)
-        {
-            var query = context.Temperatures
-                    .Include(t => t.Status)
-                        .ThenInclude(s => s.Sensor)
-                    .Include(t => t.Status)
-                        .ThenInclude(s => s.Temperature)
-                    .Include(t => t.Status)
-                        .ThenInclude(s => s.Humidity)
-                    .Where(h => h.IsDeleted == false && h.Status.Sensor.SensorId == sensorId)
-                    .AsQueryable();
-
-            var plot = new Plot
-            {
-                x = await query.Select(q => q.Status.DateTime).ToListAsync(),
-                y = await query.Select(q => q.Value).ToListAsync()
-            };
-            return plot;
-        }
     }
 }
