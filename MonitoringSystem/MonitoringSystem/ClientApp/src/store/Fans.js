@@ -13,13 +13,13 @@ export const actionCreators = {
 
     const url = `api/fans/getall`;
     const response = await fetch(url);
-    const fans = await response.json(); 
+    const fans = await response.json();
     dispatch({
       type: receiveFansType,
       isLoaded,
       fans
     });
-    console.log(this.fans)
+    console.log(this.fans);
     return;
   }
 };
@@ -36,7 +36,6 @@ export const reducer = (state, action) => {
   }
 
   if (action.type === receiveFansType) {
-    
     return {
       ...state,
       isLoaded: action.isLoaded,
