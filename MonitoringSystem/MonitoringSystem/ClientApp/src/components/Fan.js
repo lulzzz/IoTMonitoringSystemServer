@@ -12,17 +12,18 @@ class Fan extends Component {
 
   componentWillReceiveProps(nextProps) {
     // This method runs when incoming props (e.g., route params) change
+    console.log("componentWillReceiveProps");
     const isLoaded = true;
     this.props.requestFans(isLoaded);
   }
 
   render() {
-    var items = [];
-    if (this.props.fans.items != undefined) {
-      items = this.props.fans.items;
-    }
-    console.log(items);
-    return <div>{items.map(item => <p>{item.fanName}</p>)}</div>;
+    return (
+      <div>
+        {this.props.fans.items &&
+          this.props.fans.items.map(item => <p>{item.fanName}</p>)}
+      </div>
+    );
   }
 }
 export default connect(
