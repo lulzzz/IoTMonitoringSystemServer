@@ -25,8 +25,6 @@ namespace MonitoringSystem.Persistences.Repositories
         public async Task<Plot> GetAllTemperaturesBySensorIdForPlot(int sensorId)
         {
             var query = context.Temperatures
-                    .Include(t => t.Status)
-                        .ThenInclude(s => s.Sensor)
                     .Where(h => h.IsDeleted == false && h.Status.Sensor.SensorId == sensorId)
                     .OrderBy(t => t.Status.DateTime)
                     .AsQueryable();
@@ -52,8 +50,6 @@ namespace MonitoringSystem.Persistences.Repositories
             foreach (var sensor in query)
             {
                 var temperature = context.Temperatures
-                    .Include(t => t.Status)
-                        .ThenInclude(s => s.Sensor)
                     .Where(h => h.IsDeleted == false && h.Status.Sensor.SensorId == sensor.SensorId)
                     .OrderBy(t => t.Status.DateTime)
                     .AsQueryable();
