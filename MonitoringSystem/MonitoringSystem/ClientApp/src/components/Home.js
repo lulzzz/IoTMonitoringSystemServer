@@ -24,13 +24,9 @@ class Home extends Component {
       Current count: <strong>{props.tempurates}</strong>
     </p> */}
         <Plot
-          data={[
-            {
-              x: this.props.temperatures.x,
-              y: this.props.temperatures.y,
-              type: this.props.temperatures.type
-            }
-          ]}
+          data={
+            this.props.temperatures.items
+          }
           layout={{ title: "Nhiệt Độ Cảm Biến" }}
         />
       </div>

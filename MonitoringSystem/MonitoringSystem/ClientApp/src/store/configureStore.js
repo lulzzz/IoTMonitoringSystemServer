@@ -4,12 +4,14 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import * as Counter from "./Counter";
 import * as WeatherForecasts from "./WeatherForecasts";
 import * as Temperatures from "./Temperatures";
+import * as Fans from "./Fans";
 
 export default function configureStore(history, initialState) {
   const reducers = {
     counter: Counter.reducer,
     weatherForecasts: WeatherForecasts.reducer,
-    temperatures: Temperatures.reducer
+    temperatures: Temperatures.reducer,
+    fans: Fans.reducer
   };
 
   const middleware = [thunk, routerMiddleware(history)];

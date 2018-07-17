@@ -1,35 +1,70 @@
 ﻿import React from 'react';
-import { Link } from 'react-router-dom';
-import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import './NavMenu.css';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
+import logo from '../assets/img/logo_vntt.png';
 
-export default props => (
-  <Navbar inverse fixedTop fluid collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <Link to={'/'}>MonitoringSystem</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <LinkContainer to={'/'} exact>
-          <NavItem>
-            <Glyphicon glyph='home' /> Home
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/counter'}>
-          <NavItem>
-            <Glyphicon glyph='education' /> Counter
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/fetchdata'}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Fetch data
-          </NavItem>
-        </LinkContainer>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-);
+export default class NavMenu extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this
+            .toggle
+            .bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+    render() {
+        return (
+            <div>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">VNTT</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle}/>
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/dashboard/">Dashboard</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/fan/">Fan</NavLink>
+                            </NavItem>
+                            {/* <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    Dashboard
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        Option 1
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Option 2
+                                    </DropdownItem>
+                                    <DropdownItem divider/>
+                                    <DropdownItem>
+                                        Reset
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown> */}
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
+        );
+    }
+}

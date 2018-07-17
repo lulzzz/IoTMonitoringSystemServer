@@ -11,10 +11,9 @@ export const actionCreators = {
 
     dispatch({ type: requestTemperaturesType, isLoaded });
 
-    const url2 = `api/plots/temperature/getbysensor/1`;
+    const url2 = `api/plots/temperature/getall`;
     const response2 = await fetch(url2);
     const temperatures = await response2.json();
-    console.log(temperatures);
     dispatch({
       type: receiveTemperaturesType,
       isLoaded,
