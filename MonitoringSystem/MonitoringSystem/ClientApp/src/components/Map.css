@@ -1,0 +1,804 @@
+.container {
+    position: relative;
+    width: 50%;
+    margin-top: 30px;
+  }
+  /* Make the image responsive */
+  .container .img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .btn{
+  text-align: center;
+  border-radius:30%;
+  }
+  
+  .container .map{
+    max-width: height 100%; max-width:100%
+  }
+  /* Style the button and place it in the middle of the container/image */
+  /* row1 */
+  .container .btn#sensor1-1 {
+    position: absolute;
+    top: 11%;
+    left: 13%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-2 {
+    position: absolute;
+    top: 11%;
+    left: 20%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-3 {
+    position: absolute;
+    top: 11%;
+    left: 27%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  } 
+
+  .container  .btn#sensor1-4 {
+    position: absolute;
+    top: 11%;
+    left: 37.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-5 {
+    position: absolute;
+    top: 11%;
+    left: 44.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-6 {
+    position: absolute;
+    top: 11%;
+    left: 55%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-7 {
+    position: absolute;
+    top: 11%;
+    left: 64%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+
+  .container  .btn#sensor1-8 {
+    position: absolute;
+    top: 11%;
+    left: 76%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor1-9 {
+    position: absolute;
+    top: 11%;
+    left: 85%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+/* row2  */
+  .container  .btn#sensor2-1 {
+    position: absolute;
+    top: 21%;
+    left: 13%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor2-2 {
+    position: absolute;
+    top: 21%;
+    left: 24%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor2-3 {
+    position: absolute;
+    top: 21%;
+    left: 32%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor2-4 {
+    position: absolute;
+    top: 21%;
+    left: 46%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor2-5 {
+    position: absolute;
+    top: 21%;
+    left: 55%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor2-6 {
+    position: absolute;
+    top: 21%;
+    left: 65%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor2-7 {
+    position: absolute;
+    top: 21%;
+    left: 74%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor2-8 {
+    position: absolute;
+    top: 21%;
+    left: 86%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  /* row3  */
+  .container  .btn#sensor3-1 {
+    position: absolute;
+    top: 41%;
+    left: 25.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor3-2 {
+    position: absolute;
+    top: 41%;
+    left: 37.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor3-3 {
+    position: absolute;
+    top: 41%;
+    left: 44%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor3-4 {
+    position: absolute;
+    top: 41%;
+    left: 53%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor3-5 {
+    position: absolute;
+    top: 41%;
+    left: 65%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor3-6 {
+    position: absolute;
+    top: 41%;
+    left: 76%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor3-7 {
+    position: absolute;
+    top: 41%;
+    left: 85%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  /* row 4 */
+
+  .container  .btn#sensor4-1 {
+    position: absolute;
+    top: 51%;
+    left: 11.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor4-2 {
+    position: absolute;
+    top: 51%;
+    left: 25.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor4-3 {
+    position: absolute;
+    top: 51%;
+    left: 34%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor4-4 {
+    position: absolute;
+    top: 51%;
+    left: 44.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor4-5 {
+    position: absolute;
+    top: 51%;
+    left: 53%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+
+  .container  .btn#sensor4-6 {
+    position: absolute;
+    top: 51%;
+    left: 65%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor4-7 {
+    position: absolute;
+    top: 51%;
+    left: 74%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor4-8 {
+    position: absolute;
+    top: 51%;
+    left: 86%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  /* row 5 */
+
+  .container  .btn#sensor5-1 {
+    position: absolute;
+    top: 71%;
+    left: 12%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-2 {
+    position: absolute;
+    top: 71%;
+    left: 22%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor5-3 {
+    position: absolute;
+    top: 71%;
+    left: 30.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  
+  .container  .btn#sensor5-4 {
+    position: absolute;
+    top: 71%;
+    left: 37.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-5 {
+    position: absolute;
+    top: 71%;
+    left: 48%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-6 {
+    position: absolute;
+    top: 71%;
+    left: 57%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-7 {
+    position: absolute;
+    top: 71%;
+    left: 68.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-8 {
+    position: absolute;
+    top: 71%;
+    left: 75%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor5-9 {
+    position: absolute;
+    top: 71%;
+    left: 86%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  /* row 6 */
+
+  .container  .btn#sensor6-1 {
+    position: absolute;
+    top: 82%;
+    left: 10%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor6-2 {
+    position: absolute;
+    top: 82%;
+    left: 25.5%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor6-3 {
+    position: absolute;
+    top: 82%;
+    left: 38%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor6-4 {
+    position: absolute;
+    top: 82%;
+    left: 46%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor6-5 {
+    position: absolute;
+    top: 82%;
+    left: 67%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .container  .btn#sensor6-6 {
+    position: absolute;
+    top: 82%;
+    left: 79%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  .container  .btn#sensor6-7 {
+    position: absolute;
+    top: 82%;
+    left: 86%;
+    transform: translate(-60%, -60%);
+    -ms-transform: translate(-70%, -70%);
+    background-color: green;
+    color: white;
+    font-size: 10px;
+    padding: 0.5px 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+
+
+
+
+
+
+
+
+  .container .btn#btn-safe{
+    background-color: green;
+  }
+
+  .container .btn#btn-danger {
+    background-color: red;
+  }
+
+
+
+
+  .container .btn:hover {
+    background-color: black;
+  }
+
+
+
+
+  @media only screen and (max-width:100em){
+      body{font-size: 10px;}
+  }
