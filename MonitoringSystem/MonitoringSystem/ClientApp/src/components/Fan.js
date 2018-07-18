@@ -21,7 +21,9 @@ class Fan extends Component {
     return (
       <div>
         {this.props.fans.items &&
-          this.props.fans.items.map(item => <p>{item.fanName}</p>)}
+          this.props.fans.items.map(item => (
+            <p key={item.fanId}>{item.fanName}</p>
+          ))}
       </div>
     );
   }
