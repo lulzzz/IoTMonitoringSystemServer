@@ -76,7 +76,10 @@ namespace MonitoringSystem.Mapping
                 .ForMember(rr => rr.Fans, opt => opt.MapFrom(r => r.Fans.Select(rf => rf.FanId)));
 
             CreateMap<Status, StatusResource>()
+                .ForMember(sr => sr.TemperatureValue, opt => opt.MapFrom(s => s.Temperature.Value))
+                .ForMember(sr => sr.HumidityValue, opt => opt.MapFrom(s => s.Humidity.Value))
                 .ForMember(sr => sr.SensorId, opt => opt.MapFrom(s => s.Sensor.SensorId))
+                .ForMember(sr => sr.SensorCode, opt => opt.MapFrom(s => s.Sensor.SensorCode))
                 .ForMember(sr => sr.TemperatureId, opt => opt.MapFrom(s => s.Temperature.TemperatureId))
                 .ForMember(sr => sr.HumidityId, opt => opt.MapFrom(s => s.Humidity.HumidityId));
 
@@ -97,7 +100,8 @@ namespace MonitoringSystem.Mapping
                 .ForMember(m => m.HumidityId, opt => opt.Ignore());
 
             CreateMap<FanResource, Fan>()
-                .ForMember(m => m.FanId, opt => opt.Ignore());
+                .ForMember(m => m.FanId, opt => opt.Ignore())
+                .ForMember(m => m.Room, opt => opt.Ignore());
 
             CreateMap<RackResource, Rack>()
                 .ForMember(m => m.RackId, opt => opt.Ignore());
