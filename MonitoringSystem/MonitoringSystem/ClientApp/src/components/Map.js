@@ -25,25 +25,66 @@ class Map extends Component {
                         <button type="button" className="btn" id="sensor1-1" >
                             <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>S1.1</p>
                             <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Phu cute dep trai Vo doi!! </div>
+                                <div>Cam bien  thu nhat </div>
                             </ToolTip>
                         </button>
 
                         <button type="button" className="btn" id="sensor1-2" >
                             <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.2</p>
                             <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>noi dung muon hien thi</div>
+                                <div>Cam bien thu 2 </div>
                             </ToolTip>
                         </button>
-                        <button type="button" className="btn" id="sensor1-3">S1.3</button>
 
-                        <button type="button" className="btn" id="sensor1-4">S1.4</button>
-                        <button type="button" className="btn" id="sensor1-5" >S1.5</button>
-                        <button type="button" className="btn" id="sensor1-6">S1.6</button>
+                        <button type="button" className="btn" id="sensor1-3" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.3</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Cam bien thu 3</div>
+                            </ToolTip>
+                        </button>
 
-                        <button type="button" className="btn" id="sensor1-7">S1.7</button>
-                        <button type="button" className="btn" id="sensor1-8" >S1.8</button>
-                        <button type="button" className="btn" id="sensor1-9">S1.9</button>
+                        <button type="button" className="btn" id="sensor1-4" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.4</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>CAm bien thu 4</div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-5" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.5</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>cam bine thu 5</div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-6" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.6</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Cam bien thu 6</div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-7" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.2</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Cam bien thu 7</div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-8" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.8</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>cam bien thu 8</div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-9" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.9</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Cam bien thu 9</div>
+                            </ToolTip>
+                        </button>
+
                     </div>
                     {/* row 2  */}
                     <div className="row">
