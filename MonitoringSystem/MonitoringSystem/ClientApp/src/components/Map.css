@@ -3,26 +3,22 @@
     width: 50%;
     margin-top: 30px;
   }
-  /* Make the image responsive */
-  .container .img {
-    max-width: 100%;
-    height: auto;
-  }
-
   .btn{
   text-align: center;
   border-radius:30%;
   }
-  
   .container .map{
-    max-width: height 100%; max-width:100%
+    margin-left: auto;
+    margin-right: auto;
+    max-width: height 500%;
+     max-width:auto;
   }
   /* Style the button and place it in the middle of the container/image */
-  /* row1 */
+  /*sensor row1 */
   .container .btn#sensor1-1 {
     position: absolute;
     top: 11%;
-    left: 13%;
+    left: 26%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -37,7 +33,7 @@
   .container  .btn#sensor1-2 {
     position: absolute;
     top: 11%;
-    left: 20%;
+    left: 39%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -52,7 +48,7 @@
   .container  .btn#sensor1-3 {
     position: absolute;
     top: 11%;
-    left: 27%;
+    left: 52%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -62,12 +58,12 @@
     border: none;
     cursor: pointer;
     border-radius: 50%;
-  } 
+  }
 
   .container  .btn#sensor1-4 {
     position: absolute;
     top: 11%;
-    left: 37.5%;
+    left: 72%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -82,7 +78,7 @@
   .container  .btn#sensor1-5 {
     position: absolute;
     top: 11%;
-    left: 44.5%;
+    left: 85%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -97,7 +93,7 @@
   .container  .btn#sensor1-6 {
     position: absolute;
     top: 11%;
-    left: 55%;
+    left: 108%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -112,7 +108,7 @@
   .container  .btn#sensor1-7 {
     position: absolute;
     top: 11%;
-    left: 64%;
+    left: 124%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -129,7 +125,7 @@
   .container  .btn#sensor1-8 {
     position: absolute;
     top: 11%;
-    left: 76%;
+    left: 148%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;
@@ -144,7 +140,7 @@
   .container  .btn#sensor1-9 {
     position: absolute;
     top: 11%;
-    left: 85%;
+    left: 163%;
     transform: translate(-60%, -60%);
     -ms-transform: translate(-70%, -70%);
     background-color: green;

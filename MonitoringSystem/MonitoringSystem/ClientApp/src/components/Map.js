@@ -3,17 +3,38 @@ import { connect } from "react-redux";
 import '../components/Map.css';
 import map from '../assets/img/Map.png';
 import logo from '../assets/img/logo_vntt.png';
+import ToolTip from 'react-portal-tooltip'
 
 class Map extends Component {
+    state = {
+        isTooltipActive: false
+    }
+    showTooltip() {
+        this.setState({ isTooltipActive: true })
+    }
+    hideTooltip() {
+        this.setState({ isTooltipActive: false })
+    }
     render() {
         return (
             <div className="App">
                 <div className="container">
-                    <img className="map" src={map} style={{maxWidth:'100%', maxh:'auto'}} />
+                    <img className="map" src={map} style={{ maxWidth: '200%', maxHeight: 'auto' }} />
                     {/* row 1 */}
                     <div className="row">
-                        <button type="button" className="btn" id="sensor1-1">S1.1</button>
-                        <button type="button" className="btn" id="sensor1-2" >S1.2</button>
+                        <button type="button" className="btn" id="sensor1-1" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>S1.1</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Phu cute dep trai Vo doi!! </div>
+                            </ToolTip>
+                        </button>
+
+                        <button type="button" className="btn" id="sensor1-2" >
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.2</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>noi dung muon hien thi</div>
+                            </ToolTip>
+                        </button>
                         <button type="button" className="btn" id="sensor1-3">S1.3</button>
 
                         <button type="button" className="btn" id="sensor1-4">S1.4</button>
@@ -88,7 +109,14 @@ class Map extends Component {
                         <button type="button" className="btn" id="sensor6-5" >S6.5</button>
                         <button type="button" className="btn" id="sensor6-6">S6.6</button>
 
-                        <button className="btn" id="sensor6-7">S6.7</button>
+                       {/* <button className="btn" id="sensor6-7">S6.7</button> */}
+
+                       <button type="button" className="btn" id="sensor6-7">
+                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>S6.7</p>
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                                <div>Phu cute dep trai Vo doi!! </div>
+                            </ToolTip>
+                        </button>
                     </div>
 
                     {/* note  */}
@@ -97,8 +125,23 @@ class Map extends Component {
                     <button className="btn" >S6.7</button>
 
                 </div>
+
+                {/* <button type="button" className="btn">
+                    <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>.</p>
+                    <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                        <div>
+                            Phu cute dep trai Vo doi!!
+                    </div>
+                    </ToolTip>
+                </button> */}
+
             </div>
         );
     }
+
+
+
 }
+
+
 export default Map;
