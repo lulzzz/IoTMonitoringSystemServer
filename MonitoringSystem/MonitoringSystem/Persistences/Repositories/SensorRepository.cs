@@ -39,6 +39,19 @@ namespace MonitoringSystem.Persistences.Repositories
                 .SingleOrDefaultAsync(r => r.SensorId == id);
         }
 
+        public async Task<Sensor> GetSensorBySensorCode(string name, bool includeRelated = true)
+        {
+            if (!includeRelated)
+            {
+                return await context.Sensors.SingleOrDefaultAsync(r => r.SensorCode == name);
+            }
+            return await context.Sensors
+                .Include(r => r.Room)
+                .Include(r => r.Racks)
+                .Include(r => r.Statuses)
+                .SingleOrDefaultAsync(r => r.SensorCode == name);
+        }
+
         public async Task<QueryResult<Sensor>> GetSensors(Query queryObj)
         {
             var result = new QueryResult<Sensor>();

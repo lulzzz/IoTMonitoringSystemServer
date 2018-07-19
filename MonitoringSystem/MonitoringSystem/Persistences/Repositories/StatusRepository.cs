@@ -20,9 +20,19 @@ namespace MonitoringSystem.Persistences.Repositories
             this.context = context;
         }
 
+        public void AddHumidity(Status status, double? humidityValue)
+        {
+            status.Humidity = new Humidity { IsDeleted = false, Value = humidityValue.Value, Status = status };
+        }
+
         public void AddStatus(Status status)
         {
             context.Statuses.Add(status);
+        }
+
+        public void AddTemperature(Status status, double? temperatureValue)
+        {
+            status.Temperature = new Temperature { IsDeleted = false, Value = temperatureValue.Value, Status = status };
         }
 
         public async Task<Status> GetStatus(int? id, bool includeRelated = true)
