@@ -39,7 +39,7 @@ export default class NavMenu extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/dashboard/">Dashboard</NavLink>
+                                <NavLink href="/">Dashboard</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/fan/">Fan</NavLink>

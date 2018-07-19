@@ -19,7 +19,6 @@ export const actionCreators = {
       isLoaded,
       fans
     });
-    console.log(this.fans);
     return;
   }
 };
