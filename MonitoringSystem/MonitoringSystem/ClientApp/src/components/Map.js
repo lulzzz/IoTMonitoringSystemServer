@@ -1,19 +1,88 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import '../components/Map.css';
-import map from '../assets/img/Map.png';
+import map from '../assets/img/Map.png'
 import logo from '../assets/img/logo_vntt.png';
 import ToolTip from 'react-portal-tooltip'
 
 class Map extends Component {
     state = {
-        isTooltipActive: false
+        isTooltipActive: false,
+        isTooltipLoading: false,
+        position: 'right',
+        arrow: 'center',
+        alight: 'centerd',
+        arrowOptions: null,
+        arrowAlight: null,
+    }
+    componentDidMount() {
+        this.getArrowOptions()
+        this.getAlignOptions()
     }
     showTooltip() {
         this.setState({ isTooltipActive: true })
     }
     hideTooltip() {
         this.setState({ isTooltipActive: false })
+    }
+    handleOnChange = () => {
+        let arrow = this.refs.arrow.value === 'disable' ? null : this.refs.arrow.value
+        let align = this.refs.align.value || null;
+        this.setState({
+            position: this.refs.position.value,
+            arrow,
+            align
+        }, () => {
+            this.getArrowOptions()
+            this.getAlignOptions()
+        })
+    }
+    escape(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML
+    }
+    getBasicExample() {
+        return {
+            __html: this.escape(`<ToolTip active={true} parent="#parent" position="right" arrow="center">
+      ToolTip content here
+    </ToolTip>`)
+        }
+    }
+    getArrowOptions() {
+        let node = this.refs.position
+        let value = node ? node.value : 'right'
+        let arrowOptions = [
+            <option value="center" key="arrow-center">center</option>,
+            <option value={null} key="arrow-null">disable</option>
+        ]
+        if (value === 'top' || value === 'bottom') {
+            arrowOptions = arrowOptions.concat([
+                <option value="right" key="arrow-right">right</option>,
+                <option value="left" key="arrow-left">left</option>
+            ])
+        }
+        else {
+            arrowOptions = arrowOptions.concat([
+                <option value="top" key="arrow-top">top</option>,
+                <option value="bottom" key="arrow-bottom">bottom</option>
+            ])
+        }
+
+        this.setState({ arrowOptions })
+    }
+    getAlignOptions() {
+        let node = this.refs.position
+        let value = node ? node.value : 'right'
+        let alignOptions = []
+
+        if (value === 'top' || value === 'bottom') {
+            alignOptions = alignOptions.concat([
+                <option value="center" key="align-center">center(default)</option>,
+                <option value="right" key="align-right">right</option>,
+                <option value="left" key="align-left">left</option>
+            ])
+        }
+
+        this.setState({ alignOptions })
     }
     render() {
         return (
@@ -22,68 +91,22 @@ class Map extends Component {
                     <img className="map" src={map} style={{ maxWidth: '200%', maxHeight: 'auto' }} />
                     {/* row 1 */}
                     <div className="row">
-                        <button type="button" className="btn" id="sensor1-1" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>S1.1</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
+                        <button type="button" className="btn" id="sensor1-1" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)} > S1.1
+                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#sensor1-1">
                                 <div>Cam bien  thu nhat </div>
                             </ToolTip>
                         </button>
 
-                        <button type="button" className="btn" id="sensor1-2" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.2</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Cam bien thu 2 </div>
-                            </ToolTip>
-                        </button>
+                        <button type="button" className="btn" id="sensor1-2">S1.2</button>
+                        <button type="button" className="btn" id="sensor1-3" >S1.3</button>
+                        <button type="button" className="btn" id="sensor1-4">S1.4</button>
 
-                        <button type="button" className="btn" id="sensor1-3" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.3</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Cam bien thu 3</div>
-                            </ToolTip>
-                        </button>
+                        <button type="button" className="btn" id="sensor1-5">S1.5</button>
+                        <button type="button" className="btn" id="sensor1-6" >S1.6</button>
+                        <button type="button" className="btn" id="sensor1-7">S1.7</button>
 
-                        <button type="button" className="btn" id="sensor1-4" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.4</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>CAm bien thu 4</div>
-                            </ToolTip>
-                        </button>
-
-                        <button type="button" className="btn" id="sensor1-5" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.5</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>cam bine thu 5</div>
-                            </ToolTip>
-                        </button>
-
-                        <button type="button" className="btn" id="sensor1-6" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.6</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Cam bien thu 6</div>
-                            </ToolTip>
-                        </button>
-
-                        <button type="button" className="btn" id="sensor1-7" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.2</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Cam bien thu 7</div>
-                            </ToolTip>
-                        </button>
-
-                        <button type="button" className="btn" id="sensor1-8" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.8</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>cam bien thu 8</div>
-                            </ToolTip>
-                        </button>
-
-                        <button type="button" className="btn" id="sensor1-9" >
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.props.hideTooltip}>S1.9</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Cam bien thu 9</div>
-                            </ToolTip>
-                        </button>
+                        <button type="button" className="btn" id="sensor1-8">S1.8</button>
+                        <button type="button" className="btn" id="sensor1-9" >S1.9</button>
 
                     </div>
                     {/* row 2  */}
@@ -150,14 +173,9 @@ class Map extends Component {
                         <button type="button" className="btn" id="sensor6-5" >S6.5</button>
                         <button type="button" className="btn" id="sensor6-6">S6.6</button>
 
-                       {/* <button className="btn" id="sensor6-7">S6.7</button> */}
+                        <button className="btn" id="sensor6-7">S6.7</button>
 
-                       <button type="button" className="btn" id="sensor6-7">
-                            <p id="text" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>S6.7</p>
-                            <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent="#text">
-                                <div>Phu cute dep trai Vo doi!! </div>
-                            </ToolTip>
-                        </button>
+
                     </div>
 
                     {/* note  */}
@@ -178,6 +196,11 @@ class Map extends Component {
 
             </div>
         );
+
+
+
+
+        
     }
 
 
