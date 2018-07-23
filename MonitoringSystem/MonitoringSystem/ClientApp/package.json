@@ -25,7 +25,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
-    "static-eval": "^2.0.0"
+    "static-eval": "^2.0.0",
+    "react-dev-utils": "^5.0.1"
   },
   "scripts": {
     "start": "rimraf ./build && react-scripts start",
