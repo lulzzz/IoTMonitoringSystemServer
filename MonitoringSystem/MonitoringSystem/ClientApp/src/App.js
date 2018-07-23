@@ -2,7 +2,7 @@
 import { Route } from 'react-router';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
-import Fan from './components/Fan';
+import Fans from './components/Fans';
 import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 
@@ -10,7 +10,7 @@ export default () => (
   <Layout>
     {/* <Route exact path='/' component={Home} /> */}
     <Route exact path='/' component={Dashboard} />
-    <Route path='/fan' component={Fan} />
+    <Route path='/fans' component={Fans} />
     <Route path='/counter' component={Counter} />
     <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
   </Layout>
