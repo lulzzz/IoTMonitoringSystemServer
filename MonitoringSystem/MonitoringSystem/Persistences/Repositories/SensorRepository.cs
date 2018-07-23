@@ -126,5 +126,26 @@ namespace MonitoringSystem.Persistences.Repositories
                 }
             }
         }
+
+        public void AddSensorLog(Sensor sensor)
+        {
+            sensor.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "sensor name: " + sensor.SensorName + ", sensor code: " + sensor.SensorCode +
+              " was added into " + sensor.Room.RoomName + "."
+            });
+        }
+
+        public void UpdateSensorLog(Sensor oldSensor, Sensor sensor)
+        {
+            sensor.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "sensor name change from: " + oldSensor.SensorName + " to " + sensor.SensorName +
+                ", sensor code change from: " + oldSensor.SensorCode + " to " + sensor.SensorCode +
+                ", room change from " + oldSensor.Room.RoomName + " to " + sensor.Room.RoomName + "."
+            });
+        }
     }
 }

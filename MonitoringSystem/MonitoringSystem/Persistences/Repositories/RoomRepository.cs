@@ -151,5 +151,24 @@ namespace MonitoringSystem.Persistences.Repositories
                 }
             }
         }
+
+        public void AddRoomLog(Room room)
+        {
+            room.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "room name: " + room.RoomName + ", room code: " + room.RoomCode + "."
+            });
+        }
+
+        public void UpdateRoomLog(Room oldRoom, Room room)
+        {
+            room.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "room name change from: " + oldRoom.RoomName + " to " + room.RoomName +
+                ", room code change from: " + oldRoom.RoomCode + " to " + room.RoomCode + "."
+            });
+        }
     }
 }

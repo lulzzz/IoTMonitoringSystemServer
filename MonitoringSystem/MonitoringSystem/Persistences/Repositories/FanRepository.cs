@@ -70,5 +70,27 @@ namespace MonitoringSystem.Persistences.Repositories
         {
             fan.IsDeleted = false;
         }
+
+        public void AddFanLog(Fan fan)
+        {
+            fan.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "fan name: " + fan.FanName + ", fan code: " + fan.FanCode +
+                ", capacity: " + fan.Capacity + " was added into " + fan.Room.RoomName + "."
+            });
+        }
+
+        public void UpdateFanLog(Fan oldFan, Fan fan)
+        {
+            fan.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "fan name change from: " + oldFan.FanName + " to " + fan.FanName +
+                ", fan code change from: " + oldFan.FanCode + " to " + fan.FanCode +
+                ", capacity change from: " + oldFan.Capacity + " to " + fan.Capacity +
+                ", room change from " + oldFan.Room.RoomName + " to " + fan.Room.RoomName + "."
+            });
+        }
     }
 }

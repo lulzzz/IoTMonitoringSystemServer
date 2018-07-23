@@ -72,5 +72,26 @@ namespace MonitoringSystem.Persistences.Repositories
         {
             status.IsDeleted = true;
         }
+
+        public void AddStatusLog(Status status)
+        {
+            status.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "status have temperature's value is: " + status.Temperature.Value + ", status have humidity's value is: " + status.Humidity.Value +
+                " was added into sensor " + status.Sensor.SensorName + "."
+            });
+        }
+
+        public void UpdateStatusLog(Status oldStatus, Status status)
+        {
+            status.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "status have temperature's value change from " + oldStatus.Temperature.Value + " to " + status.Temperature.Value +
+                 ", status have humidity's value change from " + oldStatus.Humidity.Value + " to " + status.Humidity.Value +
+                " was added into sensor change from " + oldStatus.Sensor.SensorName + " to " + status.Sensor.SensorName + "."
+            });
+        }
     }
 }

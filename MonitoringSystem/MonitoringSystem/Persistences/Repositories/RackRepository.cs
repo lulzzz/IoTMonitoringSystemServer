@@ -73,5 +73,26 @@ namespace MonitoringSystem.Persistences.Repositories
         {
             rack.IsDeleted = true;
         }
+
+        public void AddRackLog(Rack rack)
+        {
+            rack.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "rack name: " + rack.RackName + ", rack code: " + rack.RackCode +
+                 " was added into " + rack.Room.RoomName + "."
+            });
+        }
+
+        public void UpdateRackLog(Rack oldRack, Rack rack)
+        {
+            rack.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "rack name change from: " + oldRack.RackName + " to " + rack.RackName +
+                ", rack code change from: " + oldRack.RackCode + " to " + rack.RackCode +
+                ", room change from " + oldRack.Room.RoomName + " to " + rack.Room.RoomName + "."
+            });
+        }
     }
 }
