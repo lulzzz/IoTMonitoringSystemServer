@@ -12,5 +12,7 @@ namespace MonitoringSystem.Persistences.IRepositories
         void AddRack(Rack rack);
         void RemoveRack(Rack rack);
         Task<QueryResult<Rack>> GetRacks(Query queryObj);
+        void AddRackLog(Rack rack);
+        void UpdateRackLog(Rack oldRack, Rack rack);
     }
 }

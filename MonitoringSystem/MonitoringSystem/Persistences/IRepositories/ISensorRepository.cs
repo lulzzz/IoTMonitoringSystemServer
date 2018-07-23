@@ -15,6 +15,8 @@ namespace MonitoringSystem.Persistences.IRepositories
         Task<QueryResult<Sensor>> GetSensors(Query queryObj);
         Task UpdateRacks(Sensor sensor, SensorResource sensorResource);
         Task UpdateStatuses(Sensor sensor, SensorResource sensorResource);
+        void AddSensorLog(Sensor sensor);
+        void UpdateSensorLog(Sensor oldSensor, Sensor sensor);
 
     }
 }

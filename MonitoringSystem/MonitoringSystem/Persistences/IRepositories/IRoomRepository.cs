@@ -16,5 +16,7 @@ namespace MonitoringSystem.Persistences.IRepositories
         Task UpdateSensors(Room room, RoomResource roomResource);
         Task UpdateRacks(Room room, RoomResource roomResource);
         Task UpdateFans(Room room, RoomResource roomResource);
+        void AddRoomLog(Room room);
+        void UpdateRoomLog(Room oldRoom, Room room);
     }
 }

@@ -9,5 +9,7 @@ namespace MonitoringSystem.Persistences.IRepositories
         void AddFan(Fan fan);
         void RemoveFan(Fan fan);
         Task<QueryResult<Fan>> GetFans(Query queryObj);
+        void AddFanLog(Fan fan);
+        void UpdateFanLog(Fan oldFan, Fan fan);
     }
 }

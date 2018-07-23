@@ -9,5 +9,7 @@ namespace MonitoringSystem.Persistences.IRepositories
         void AddStatus(Status status);
         void RemoveStatus(Status status);
         Task<QueryResult<Status>> GetStatuses(Query queryObj);
+        void AddStatusLog(Status status);
+        void UpdateStatusLog(Status oldStatus, Status status);
     }
 }
