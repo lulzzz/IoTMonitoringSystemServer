@@ -94,6 +94,10 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=13 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
 
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:10:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:12:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
@@ -116,7 +120,12 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=54}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
-                
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+
+
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:10:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:12:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:14:00"), Humidity = new Humidity{IsDeleted=false, Value=53}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
@@ -138,7 +147,11 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=53}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=14 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
-            
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=46}, Temperature = new Temperature{IsDeleted=false, Value=13 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=48}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},    
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:10:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:12:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:14:00"), Humidity = new Humidity{IsDeleted=false, Value=45}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
@@ -160,6 +173,11 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=14 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=15 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=14 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=15 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==4)},
+
 
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:10:00"), Humidity = new Humidity{IsDeleted=false, Value=55}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:12:00"), Humidity = new Humidity{IsDeleted=false, Value=54}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
@@ -182,6 +200,11 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=44}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=46}, Temperature = new Temperature{IsDeleted=false, Value=10 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=46}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=47}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==5)},
+
 
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:10:00"), Humidity = new Humidity{IsDeleted=false, Value=57}, Temperature = new Temperature{IsDeleted=false, Value=14 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:12:00"), Humidity = new Humidity{IsDeleted=false, Value=58}, Temperature = new Temperature{IsDeleted=false, Value=14 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
@@ -204,6 +227,13 @@ namespace MonitoringSystem.Data
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=13 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
                 new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-7 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=52}, Temperature = new Temperature{IsDeleted=false, Value=11 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:46:00"), Humidity = new Humidity{IsDeleted=false, Value=50}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:48:00"), Humidity = new Humidity{IsDeleted=false, Value=51}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-8 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Status{IsDeleted = false, DateTime =DateTime.Parse("2018-7-9 23:50:00"), Humidity = new Humidity{IsDeleted=false, Value=49}, Temperature = new Temperature{IsDeleted=false, Value=12 }, Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+
+
+
             };
             foreach (var status in statuses)
             {
