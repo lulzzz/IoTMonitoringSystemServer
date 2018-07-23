@@ -6,12 +6,15 @@ import * as WeatherForecasts from "./WeatherForecasts";
 import * as Temperatures from "./Temperatures";
 import * as Fans from "./Fans";
 
+import fansReducer from '../reducers/FansReducers'
+
 export default function configureStore(history, initialState) {
   const reducers = {
     counter: Counter.reducer,
     weatherForecasts: WeatherForecasts.reducer,
     temperatures: Temperatures.reducer,
-    fans: Fans.reducer
+    fans: Fans.reducer,
+    fansReducer
   };
 
   const middleware = [thunk, routerMiddleware(history)];

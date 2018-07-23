@@ -6,13 +6,16 @@ import {bindActionCreators} from "redux";
 
 class Dashboard extends Component {
     componentWillMount() {
+        // This method runs when the component is first added to the page
         const isLoaded = true;
+
         this
             .props
             .requestTemperatures(isLoaded);
     }
 
     componentWillReceiveProps(nextProps) {
+        // This method runs when incoming props (e.g., route params) change
         const isLoaded = true;
         this
             .props
@@ -26,15 +29,8 @@ class Dashboard extends Component {
                     layout={{
                     height: 500,
                     width: 1000,
-                    title: "Nhiệt Độ Cảm Biến",
-                    yaxis: {
-                        title: 'Nhiệt độ'
-                    },
-                    xaxis: {
-                        title: 'Thời gian'
-                    }
+                    title: "Nhiệt Độ Cảm Biến"
                 }}/>
-
             </div>
         );
     }

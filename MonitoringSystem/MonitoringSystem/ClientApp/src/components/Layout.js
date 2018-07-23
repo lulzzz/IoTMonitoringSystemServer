@@ -7,12 +7,10 @@ export default props => (
         <div>
             <NavMenu/>
         </div>
-        <div className="body">
-            <Container>
-                {props.children}
-            </Container>
-        </div>
 
+        <Container>
+            {props.children}
+        </Container>
     </div>
 
 );

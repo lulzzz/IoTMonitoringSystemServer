@@ -10,7 +10,6 @@ namespace MonitoringSystem.Persistences.IRepositories
     public interface ISensorRepository
     {
         Task<Sensor> GetSensor(int? id, bool includeRelated = true);
-        Task<Sensor> GetSensorBySensorCode(string name, bool includeRelated = true);
         void AddSensor(Sensor sensor);
         void RemoveSensor(Sensor sensor);
         Task<QueryResult<Sensor>> GetSensors(Query queryObj);

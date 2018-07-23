@@ -1,7 +1,7 @@
-import { bindActionCreators } from "redux";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { actionCreators } from "../store/Fans";
+import { bindActionCreators } from "redux";
 import {
   Card,
   Button,
@@ -11,17 +11,21 @@ import {
   Col,
   CardBody
 } from "reactstrap";
+
 class Fan extends Component {
   componentWillMount() {
-    const isLoaded = true;
+    const isLoaded = false;
     this.props.requestFans(isLoaded);
+  }
+  componentDidMount(){
+
   }
   componentWillReceiveProps() {
     const isLoaded = true;
     this.props.requestFans(isLoaded);
   }
+
   render() {
-    const isLoaded = true;
     return (
       <div>
         <Row>
@@ -42,9 +46,7 @@ class Fan extends Component {
                         <input
                           ref="switch"
                           checked={fan.isOn}
-                          onClick={() => this._handleChange(fan)}
-                          //onClick={this._handleChange}
-                          //onChange={this.props.updateFans(isLoaded, fan)}
+                          onChange={() => this._handleChange(fan)}
                           className="switch"
                           type="checkbox"
                         />
@@ -69,7 +71,6 @@ class Fan extends Component {
   }
 
   _handleChange(fan) {
-    console.log("duy");
     console.log(fan);
     fan.isOn = !fan.isOn;
     const isLoaded = false;
