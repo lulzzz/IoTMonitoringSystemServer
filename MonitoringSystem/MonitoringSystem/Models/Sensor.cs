@@ -15,10 +15,12 @@ namespace MonitoringSystem.Models
         public ICollection<Rack> Racks { get; set; }
         public Room Room { get; set; }
         public bool IsDeleted { get; set; }
+        public ICollection<Log> Logs { get; set; }
         public Sensor()
         {
             Statuses = new Collection<Status>();
             Racks = new Collection<Rack>();
+            Logs = new Collection<Log>();
         }
     }
 }

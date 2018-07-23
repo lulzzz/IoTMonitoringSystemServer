@@ -11,9 +11,11 @@ namespace MonitoringSystem.Models
         public Sensor Sensor { get; set; }
         public Room Room { get; set; }
         public bool IsDeleted { get; set; }
+        public ICollection<Log> Logs { get; set; }
         public Rack()
         {
-
+            IsDeleted = false;
+            Logs = new Collection<Log>();
         }
     }
 }

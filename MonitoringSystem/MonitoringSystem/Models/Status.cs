@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace MonitoringSystem.Models
 {
@@ -10,5 +12,11 @@ namespace MonitoringSystem.Models
         public Humidity Humidity { get; set; }
         public bool IsDeleted { get; set; }
         public Sensor Sensor { get; set; }
+        public ICollection<Log> Logs { get; set; }
+        public Status()
+        {
+            IsDeleted = false;
+            Logs = new Collection<Log>();
+        }
     }
 }

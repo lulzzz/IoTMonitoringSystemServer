@@ -1,4 +1,7 @@
-﻿namespace MonitoringSystem.Models
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace MonitoringSystem.Models
 {
     public class Fan
     {
@@ -9,5 +12,11 @@
         public int Capacity { get; set; }
         public bool IsDeleted { get; set; }
         public Room Room { get; set; }
+        public ICollection<Log> Logs { get; set; }
+        public Fan()
+        {
+            IsDeleted = false;
+            Logs = new Collection<Log>();
+        }
     }
 }
