@@ -76,6 +76,9 @@ namespace MonitoringSystem.Controllers
             //add room for fan
             fan.Room = await roomRepository.GetRoom(fanResource.RoomId, true);
 
+            //add log
+            fanRepository.AddFanLog(fan);
+
             //add fan into database
             fanRepository.AddFan(fan);
             await unitOfWork.Complete();
@@ -100,6 +103,9 @@ namespace MonitoringSystem.Controllers
 
             var fan = await fanRepository.GetFan(id);
 
+            //old fan use for add log
+            var oldFan = fan;
+
             //check if fan with the id dont exist in the database
             if (fan == null)
             {
@@ -110,6 +116,9 @@ namespace MonitoringSystem.Controllers
 
             //edit room for fan
             fan.Room = await roomRepository.GetRoom(fanResource.RoomId, true);
+
+            //add log
+            fanRepository.UpdateFanLog(oldFan, fan);
 
             await unitOfWork.Complete();
 

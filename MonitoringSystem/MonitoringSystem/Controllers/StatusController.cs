@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using System;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
@@ -62,7 +63,7 @@ namespace MonitoringSystem.Controllers
         // POST: api/statuses/add
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Createstatus([FromBody] StatusResource statusResource)
+        public async Task<IActionResult> CreateStatus([FromBody] StatusResource statusResource)
         {
             //check model is valid?
             if (!ModelState.IsValid)
@@ -76,8 +77,30 @@ namespace MonitoringSystem.Controllers
             //add sensor for status
             status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId);
 
+            //if sensor id is undefined in son which post to server
+            if (!String.IsNullOrEmpty(statusResource.SensorCode))
+            {
+                status.Sensor = await sensorRepository.GetSensorBySensorCode(statusResource.SensorCode);
+            }
+
+            //case sensor is not defined
+            if (status.Sensor == null)
+            {
+                return BadRequest("cannot find any sensor with this sensorId or sensorName");
+            }
+
             //add status into database
             statusRepository.AddStatus(status);
+
+            //add temperature
+            statusRepository.AddTemperature(status, statusResource.TemperatureValue);
+
+            //add humidity
+            statusRepository.AddHumidity(status, statusResource.HumidityValue);
+
+            //add log
+            statusRepository.AddStatusLog(status);
+
             await unitOfWork.Complete();
 
             //get status for converting to json result
@@ -100,6 +123,9 @@ namespace MonitoringSystem.Controllers
 
             var status = await statusRepository.GetStatus(id);
 
+            //old status for log
+            var oldStatus = status;
+
             //check if status with the id dont exist in the database
             if (status == null)
             {
@@ -110,6 +136,27 @@ namespace MonitoringSystem.Controllers
 
             //add sensor for status
             status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId);
+
+            //if sensor id is undefined in son which post to server
+            if (!String.IsNullOrEmpty(statusResource.SensorCode))
+            {
+                status.Sensor = await sensorRepository.GetSensorBySensorCode(statusResource.SensorCode);
+            }
+
+            //case sensor is not defined
+            if (status.Sensor == null)
+            {
+                return BadRequest("cannot find any sensor with this sensorId or sensorName");
+            }
+
+            //add temperature
+            statusRepository.AddTemperature(status, statusResource.TemperatureValue);
+
+            //add humidity
+            statusRepository.AddHumidity(status, statusResource.HumidityValue);
+
+            //add log
+            statusRepository.UpdateStatusLog(oldStatus, status);
 
             await unitOfWork.Complete();
 

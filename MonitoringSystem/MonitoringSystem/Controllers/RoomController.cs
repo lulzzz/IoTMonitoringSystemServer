@@ -82,6 +82,9 @@ namespace MonitoringSystem.Controllers
             //update sensors of room
             await roomRepository.UpdateSensors(room, roomResource);
 
+            //add log
+            roomRepository.AddRoomLog(room);
+
             await unitOfWork.Complete();
 
             //get room for converting to json result
@@ -104,6 +107,9 @@ namespace MonitoringSystem.Controllers
 
             var room = await roomRepository.GetRoom(id);
 
+            //old room for log
+            var oldRoom = room;
+
             //check if room with the id dont exist in the database
             if (room == null)
             {
@@ -121,6 +127,8 @@ namespace MonitoringSystem.Controllers
 
             //update sensors of room
             await roomRepository.UpdateSensors(room, roomResource);
+
+            roomRepository.UpdateRoomLog(oldRoom, room);
 
             await unitOfWork.Complete();
 

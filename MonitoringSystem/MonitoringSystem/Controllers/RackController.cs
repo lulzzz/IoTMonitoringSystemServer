@@ -81,6 +81,8 @@ namespace MonitoringSystem.Controllers
             //add sensor for rack
             rack.Sensor = await sensorRepository.GetSensor(rackResource.SensorId, true);
 
+            //add log
+            rackRepository.AddRackLog(rack);
 
             //add rack into database
             rackRepository.AddRack(rack);
@@ -106,6 +108,9 @@ namespace MonitoringSystem.Controllers
 
             var rack = await rackRepository.GetRack(id);
 
+            //old rack for log
+            var oldRack = rack;
+
             //check if rack with the id dont exist in the database
             if (rack == null)
             {
@@ -116,6 +121,9 @@ namespace MonitoringSystem.Controllers
 
             //edit room for rack
             rack.Room = await roomRepository.GetRoom(rackResource.RoomId, true);
+
+            //add log
+            rackRepository.UpdateRackLog(oldRack, rack);
 
             await unitOfWork.Complete();
 

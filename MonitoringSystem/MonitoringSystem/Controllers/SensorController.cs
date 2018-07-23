@@ -79,6 +79,9 @@ namespace MonitoringSystem.Controllers
             //update statuses of sensor
             await sensorRepository.UpdateStatuses(sensor, sensorResource);
 
+            //add log
+            sensorRepository.AddSensorLog(sensor);
+
             await unitOfWork.Complete();
 
             //get sensor for converting to json result
@@ -101,6 +104,9 @@ namespace MonitoringSystem.Controllers
 
             var sensor = await sensorRepository.GetSensor(id);
 
+            //old sensor fpr log
+            var oldSensor = sensor;
+
             //check if sensor with the id dont exist in the database
             if (sensor == null)
             {
@@ -115,6 +121,9 @@ namespace MonitoringSystem.Controllers
 
             //update statuses of sensor
             await sensorRepository.UpdateStatuses(sensor, sensorResource);
+
+            //add log
+            sensorRepository.UpdateSensorLog(oldSensor, sensor);
 
             await unitOfWork.Complete();
 
