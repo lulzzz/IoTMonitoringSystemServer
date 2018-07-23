@@ -156,7 +156,7 @@ border-radius:30%;
 .container  .btn#sensor2-1 {
   position: absolute;
   top: 21%;
-  left: 13%;
+  left: 25%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -171,7 +171,7 @@ border-radius:30%;
 .container  .btn#sensor2-2 {
   position: absolute;
   top: 21%;
-  left: 24%;
+  left:49%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -187,7 +187,7 @@ border-radius:30%;
 .container  .btn#sensor2-3 {
   position: absolute;
   top: 21%;
-  left: 32%;
+  left: 65%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -203,7 +203,7 @@ border-radius:30%;
 .container  .btn#sensor2-4 {
   position: absolute;
   top: 21%;
-  left: 46%;
+  left: 88%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -218,7 +218,7 @@ border-radius:30%;
 .container  .btn#sensor2-5 {
   position: absolute;
   top: 21%;
-  left: 55%;
+  left: 105%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -234,7 +234,7 @@ border-radius:30%;
 .container  .btn#sensor2-6 {
   position: absolute;
   top: 21%;
-  left: 65%;
+  left: 128%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -249,7 +249,7 @@ border-radius:30%;
 .container  .btn#sensor2-7 {
   position: absolute;
   top: 21%;
-  left: 74%;
+  left: 143%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -264,7 +264,7 @@ border-radius:30%;
 .container  .btn#sensor2-8 {
   position: absolute;
   top: 21%;
-  left: 86%;
+  left: 163%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -281,7 +281,7 @@ border-radius:30%;
 .container  .btn#sensor3-1 {
   position: absolute;
   top: 41%;
-  left: 25.5%;
+  left: 48%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -297,7 +297,7 @@ border-radius:30%;
 .container  .btn#sensor3-2 {
   position: absolute;
   top: 41%;
-  left: 37.5%;
+  left: 72%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -312,7 +312,7 @@ border-radius:30%;
 .container  .btn#sensor3-3 {
   position: absolute;
   top: 41%;
-  left: 44%;
+  left: 85%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -328,7 +328,7 @@ border-radius:30%;
 .container  .btn#sensor3-4 {
   position: absolute;
   top: 41%;
-  left: 53%;
+  left: 100%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -343,7 +343,7 @@ border-radius:30%;
 .container  .btn#sensor3-5 {
   position: absolute;
   top: 41%;
-  left: 65%;
+  left: 125%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -359,7 +359,7 @@ border-radius:30%;
 .container  .btn#sensor3-6 {
   position: absolute;
   top: 41%;
-  left: 76%;
+  left: 145%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -374,7 +374,7 @@ border-radius:30%;
 .container  .btn#sensor3-7 {
   position: absolute;
   top: 41%;
-  left: 85%;
+  left: 160%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -391,7 +391,7 @@ border-radius:30%;
 .container  .btn#sensor4-1 {
   position: absolute;
   top: 51%;
-  left: 11.5%;
+  left: 22%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -406,7 +406,7 @@ border-radius:30%;
 .container  .btn#sensor4-2 {
   position: absolute;
   top: 51%;
-  left: 25.5%;
+  left: 50%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -422,7 +422,7 @@ border-radius:30%;
 .container  .btn#sensor4-3 {
   position: absolute;
   top: 51%;
-  left: 34%;
+  left: 64%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -437,7 +437,7 @@ border-radius:30%;
 .container  .btn#sensor4-4 {
   position: absolute;
   top: 51%;
-  left: 44.5%;
+  left: 88%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -453,7 +453,7 @@ border-radius:30%;
 .container  .btn#sensor4-5 {
   position: absolute;
   top: 51%;
-  left: 53%;
+  left: 100%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -470,7 +470,7 @@ border-radius:30%;
 .container  .btn#sensor4-6 {
   position: absolute;
   top: 51%;
-  left: 65%;
+  left: 128%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -485,7 +485,7 @@ border-radius:30%;
 .container  .btn#sensor4-7 {
   position: absolute;
   top: 51%;
-  left: 74%;
+  left: 144%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -501,7 +501,7 @@ border-radius:30%;
 .container  .btn#sensor4-8 {
   position: absolute;
   top: 51%;
-  left: 86%;
+  left: 163%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -518,7 +518,7 @@ border-radius:30%;
 .container  .btn#sensor5-1 {
   position: absolute;
   top: 71%;
-  left: 12%;
+  left: 22%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -534,7 +534,7 @@ border-radius:30%;
 .container  .btn#sensor5-2 {
   position: absolute;
   top: 71%;
-  left: 22%;
+  left: 39%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -549,7 +549,7 @@ border-radius:30%;
 .container  .btn#sensor5-3 {
   position: absolute;
   top: 71%;
-  left: 30.5%;
+  left: 52%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -565,7 +565,7 @@ border-radius:30%;
 .container  .btn#sensor5-4 {
   position: absolute;
   top: 71%;
-  left: 37.5%;
+  left: 68%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -581,7 +581,7 @@ border-radius:30%;
 .container  .btn#sensor5-5 {
   position: absolute;
   top: 71%;
-  left: 48%;
+  left: 95%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -597,7 +597,7 @@ border-radius:30%;
 .container  .btn#sensor5-6 {
   position: absolute;
   top: 71%;
-  left: 57%;
+  left: 110%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -613,7 +613,7 @@ border-radius:30%;
 .container  .btn#sensor5-7 {
   position: absolute;
   top: 71%;
-  left: 68.5%;
+  left: 130%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -629,7 +629,7 @@ border-radius:30%;
 .container  .btn#sensor5-8 {
   position: absolute;
   top: 71%;
-  left: 75%;
+  left: 145%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -645,7 +645,7 @@ border-radius:30%;
 .container  .btn#sensor5-9 {
   position: absolute;
   top: 71%;
-  left: 86%;
+  left: 163%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -663,7 +663,7 @@ border-radius:30%;
 .container  .btn#sensor6-1 {
   position: absolute;
   top: 82%;
-  left: 10%;
+  left: 19%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -678,7 +678,7 @@ border-radius:30%;
 .container  .btn#sensor6-2 {
   position: absolute;
   top: 82%;
-  left: 25.5%;
+  left: 49%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -694,7 +694,7 @@ border-radius:30%;
 .container  .btn#sensor6-3 {
   position: absolute;
   top: 82%;
-  left: 38%;
+  left: 75%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -710,7 +710,7 @@ border-radius:30%;
 .container  .btn#sensor6-4 {
   position: absolute;
   top: 82%;
-  left: 46%;
+  left: 88%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -725,7 +725,7 @@ border-radius:30%;
 .container  .btn#sensor6-5 {
   position: absolute;
   top: 82%;
-  left: 67%;
+  left: 128%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -740,7 +740,7 @@ border-radius:30%;
 .container  .btn#sensor6-6 {
   position: absolute;
   top: 82%;
-  left: 79%;
+  left: 150%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -756,7 +756,7 @@ border-radius:30%;
 .container  .btn#sensor6-7 {
   position: absolute;
   top: 82%;
-  left: 86%;
+  left: 163%;
   transform: translate(-60%, -60%);
   -ms-transform: translate(-70%, -70%);
   background-color: green;
@@ -766,6 +766,18 @@ border-radius:30%;
   border: none;
   cursor: pointer;
   border-radius: 50%;
+}
+
+
+.container .btn#sensor-safe{
+  background-color: green;
+
+}
+
+
+.container .btn#sensor-danger{
+  background-color: red;
+  
 }
 
 
