@@ -24,6 +24,7 @@ namespace MonitoringSystem.Data
             builder.Entity<Room>().ToTable("Room");
             builder.Entity<Sensor>().ToTable("Sensor");
             builder.Entity<Status>().ToTable("Status");
+            builder.Entity<Log>().ToTable("Log");
         }
 
         public DbSet<Temperature> Temperatures { get; set; }
@@ -33,5 +34,6 @@ namespace MonitoringSystem.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Sensor> Sensors { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }
