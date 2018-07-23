@@ -87,6 +87,8 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<Plot, PlotResource>();
 
+            CreateMap<Log, LogResource>();
+
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
             //API Resource to domain            
@@ -110,6 +112,9 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<SensorResource, Sensor>()
                 .ForMember(m => m.SensorId, opt => opt.Ignore());
+
+            CreateMap<LogResource, Log>()
+                .ForMember(m => m.LogId, opt => opt.Ignore());
         }
     }
 }
