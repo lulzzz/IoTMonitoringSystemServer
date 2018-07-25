@@ -14,6 +14,7 @@ namespace MonitoringSystem.Resources
         public string SensorName { get; set; }
         public ICollection<int> Statuses { get; set; }
         public ICollection<int> Racks { get; set; }
+        public ICollection<string> RackNames { get; set; }
         public int? RoomId { get; set; }
         public RoomResource Room { get; set; }
         public bool IsDeleted { get; set; }
@@ -23,6 +24,7 @@ namespace MonitoringSystem.Resources
             Statuses = new Collection<int>();
             Racks = new Collection<int>();
             IsDeleted = false;
+            RackNames = new Collection<string>();
         }
     }
 }

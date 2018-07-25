@@ -84,6 +84,7 @@ namespace MonitoringSystem.Mapping
             CreateMap<Sensor, SensorResource>()
                 .ForMember(sr => sr.Statuses, opt => opt.MapFrom(s => s.Statuses.Select(sf => sf.StatusId)))
                 .ForMember(sr => sr.Racks, opt => opt.MapFrom(s => s.Racks.Select(sf => sf.RackId)))
+                .ForMember(sr => sr.RackNames, opt => opt.MapFrom(s => s.Racks.Select(sf => sf.RackName)))
                 .ForMember(sr => sr.RoomId, opt => opt.MapFrom(s => s.Room.RoomId))
                 .ForMember(sr => sr.LatestStatus, opt => opt.MapFrom(s => new LatestStatusResource
                 {

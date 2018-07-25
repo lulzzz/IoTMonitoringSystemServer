@@ -1,3 +1,7 @@
+.body {
+  padding: 2em 0;
+}
+
 .navbar {
-    background: rgb(67, 224, 172) !important;
+  background: rgb(67, 224, 172) !important;
 }

@@ -51,7 +51,7 @@ namespace MonitoringSystem.Extensions
 
                 if (queryObj.PageSize <= 0)
                 {
-                    queryObj.PageSize = 10;
+                    queryObj.PageSize = 5;
                 }
                 return query.Skip((queryObj.Page.Value - 1) * queryObj.PageSize).Take(queryObj.PageSize);
             }
