@@ -1,3 +1,4 @@
+using MonitoringSystem.Resources.SubResources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace MonitoringSystem.Resources
         public int? RoomId { get; set; }
         public RoomResource Room { get; set; }
         public bool IsDeleted { get; set; }
+        public LatestStatusResource LatestStatus { get; set; }
         public SensorResource()
         {
             Statuses = new Collection<int>();

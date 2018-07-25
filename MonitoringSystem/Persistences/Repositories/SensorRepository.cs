@@ -36,6 +36,9 @@ namespace MonitoringSystem.Persistences.Repositories
                 .Include(r => r.Room)
                 .Include(r => r.Racks)
                 .Include(r => r.Statuses)
+                    .ThenInclude(s => s.Temperature)
+                .Include(r => r.Statuses)
+                    .ThenInclude(s => s.Humidity)
                 .SingleOrDefaultAsync(r => r.SensorId == id);
         }
 
@@ -49,6 +52,9 @@ namespace MonitoringSystem.Persistences.Repositories
                 .Include(r => r.Room)
                 .Include(r => r.Racks)
                 .Include(r => r.Statuses)
+                    .ThenInclude(s => s.Temperature)
+                .Include(r => r.Statuses)
+                    .ThenInclude(s => s.Humidity)
                 .SingleOrDefaultAsync(r => r.SensorCode == name);
         }
         public async Task<QueryResult<Sensor>> GetSensors(Query queryObj)
@@ -59,6 +65,9 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Include(r => r.Room)
                     .Include(r => r.Racks)
                     .Include(r => r.Statuses)
+                        .ThenInclude(s => s.Temperature)
+                    .Include(r => r.Statuses)
+                        .ThenInclude(s => s.Humidity)
                     .AsQueryable();
             //filter
 

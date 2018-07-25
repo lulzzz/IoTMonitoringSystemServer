@@ -3,6 +3,7 @@ using AutoMapper;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using MonitoringSystem.Resources.SubResources;
 
 namespace MonitoringSystem.Mapping
 {
@@ -83,7 +84,16 @@ namespace MonitoringSystem.Mapping
             CreateMap<Sensor, SensorResource>()
                 .ForMember(sr => sr.Statuses, opt => opt.MapFrom(s => s.Statuses.Select(sf => sf.StatusId)))
                 .ForMember(sr => sr.Racks, opt => opt.MapFrom(s => s.Racks.Select(sf => sf.RackId)))
-                .ForMember(sr => sr.RoomId, opt => opt.MapFrom(s => s.Room.RoomId));
+                .ForMember(sr => sr.RoomId, opt => opt.MapFrom(s => s.Room.RoomId))
+                .ForMember(sr => sr.LatestStatus, opt => opt.MapFrom(s => new LatestStatusResource
+                {
+                    text = s.SensorCode,
+                    sensor = s.SensorName,
+                    temperature = s.Statuses.OrderByDescending(t => t.DateTime)
+                                .FirstOrDefault().Temperature.Value,
+                    humidity = s.Statuses.OrderByDescending(t => t.DateTime)
+                                .FirstOrDefault().Humidity.Value,
+                }));
 
             CreateMap<Plot, PlotResource>();
 
@@ -93,28 +103,28 @@ namespace MonitoringSystem.Mapping
 
             //API Resource to domain            
             CreateMap<TemperatureResource, Temperature>()
-                .ForMember(m => m.TemperatureId, opt => opt.Ignore());
+                    .ForMember(m => m.TemperatureId, opt => opt.Ignore());
 
             CreateMap<HumidityResource, Humidity>()
-                .ForMember(m => m.HumidityId, opt => opt.Ignore());
+                    .ForMember(m => m.HumidityId, opt => opt.Ignore());
 
             CreateMap<FanResource, Fan>()
-                .ForMember(m => m.FanId, opt => opt.Ignore());
+                    .ForMember(m => m.FanId, opt => opt.Ignore());
 
             CreateMap<RackResource, Rack>()
-                .ForMember(m => m.RackId, opt => opt.Ignore());
+                    .ForMember(m => m.RackId, opt => opt.Ignore());
 
             CreateMap<RoomResource, Room>()
-                .ForMember(m => m.RoomId, opt => opt.Ignore());
+                    .ForMember(m => m.RoomId, opt => opt.Ignore());
 
             CreateMap<StatusResource, Status>()
-                .ForMember(m => m.StatusId, opt => opt.Ignore());
+                    .ForMember(m => m.StatusId, opt => opt.Ignore());
 
             CreateMap<SensorResource, Sensor>()
-                .ForMember(m => m.SensorId, opt => opt.Ignore());
+                    .ForMember(m => m.SensorId, opt => opt.Ignore());
 
             CreateMap<LogResource, Log>()
-                .ForMember(m => m.LogId, opt => opt.Ignore());
+                    .ForMember(m => m.LogId, opt => opt.Ignore());
         }
     }
 }

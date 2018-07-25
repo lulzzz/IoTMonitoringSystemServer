@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using MonitoringSystem.Resources.SubResources;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers

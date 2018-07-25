@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MonitoringSystem.Models
+namespace MonitoringSystem.Resources.SubResources
 {
     public class PlotResource
     {
