@@ -50,60 +50,43 @@ class Admin extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col>
-            <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify" /> SENSOR
-              </CardHeader>
-              <CardBody>
-                {this.props.sensors.items && renderSensorsTable(this.props)}
-                <nav>
-                  <Pagination>
-                    <PaginationItem>
-                      <PaginationLink previous tag="button">
-                        Prev
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink tag="button">2</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink tag="button">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink tag="button">4</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink next tag="button">
-                        Next
-                      </PaginationLink>
-                    </PaginationItem>
-                  </Pagination>
-                </nav>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
           <BootstrapTable
             data={this.props.sensors.items}
             striped
             hover
             condensed
             pagination={true}
+            insertRow={true}
             options={options}
           >
-            <TableHeaderColumn dataField="sensorCode" isKey>
+            <TableHeaderColumn
+              dataField="sensorCode"
+              filter={{
+                type: "TextFilter",
+                delay: 1000
+              }}
+              isKey
+            >
               Sensor Code
             </TableHeaderColumn>
-            <TableHeaderColumn dataField="sensorName">
+
+            <TableHeaderColumn
+              dataField="sensorName"
+              filter={{
+                type: "TextFilter",
+                delay: 1000
+              }}
+            >
               Sensor Name
             </TableHeaderColumn>
-            <TableHeaderColumn dataField="room" dataFormat={showRoomName}>
+
+            <TableHeaderColumn
+              dataField="roomName"
+              filter={{
+                type: "TextFilter",
+                delay: 1000
+              }}
+            >
               Room Name
             </TableHeaderColumn>
           </BootstrapTable>
@@ -111,35 +94,6 @@ class Admin extends Component {
       </div>
     );
   }
-}
-
-function showRoomName(cell, row) {
-  return cell.roomName;
-}
-
-function renderSensorsTable(props) {
-  return (
-    <Table hover bordered striped responsive size="sm">
-      <thead>
-        <tr>
-          <th>SensorCode</th>
-          <th>SensorName</th>
-          <th>Room</th>
-          <th>Rack</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.sensors.items.map(sensor => (
-          <tr key={sensor.sensorId}>
-            <td>{sensor.sensorCode}</td>
-            <td>{sensor.sensorName}</td>
-            <td>{sensor.room.roomName}</td>
-            <td>{sensor.rackNames.map(name => <p>{name}</p>)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-  );
 }
 
 export default connect(

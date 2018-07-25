@@ -17,6 +17,7 @@ namespace MonitoringSystem.Resources
         public ICollection<string> RackNames { get; set; }
         public int? RoomId { get; set; }
         public RoomResource Room { get; set; }
+        public string RoomName { get; set; }
         public bool IsDeleted { get; set; }
         public LatestStatusResource LatestStatus { get; set; }
         public SensorResource()
