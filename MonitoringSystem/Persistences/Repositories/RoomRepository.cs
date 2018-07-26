@@ -170,5 +170,14 @@ namespace MonitoringSystem.Persistences.Repositories
                 ", room code change from: " + oldRoom.RoomCode + " to " + room.RoomCode + "."
             });
         }
+
+        public async Task<Room> GetRoomByRoomName(string roomName)
+        {
+            return await context.Rooms
+                .Include(r => r.Sensors)
+                .Include(r => r.Racks)
+                .Include(r => r.Fans)
+                .SingleOrDefaultAsync(h => h.RoomName == roomName);
+        }
     }
 }

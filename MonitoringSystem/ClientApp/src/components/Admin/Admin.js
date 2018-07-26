@@ -31,6 +31,7 @@ class Admin extends Component {
   }
 
   render() {
+    const duy = this.props;
     const options = {
       page: 1, // which page you want to show as default
       sizePerPage: 5, // which size per page you want to locate as default
@@ -42,9 +43,15 @@ class Admin extends Component {
       lastPage: "Last", // Last page button text
       paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
       paginationPosition: "bottom", // default is bottom, top and both is all available
-      hideSizePerPage: true // You can hide the dropdown for sizePerPage
+      hideSizePerPage: true, // You can hide the dropdown for sizePerPage
+      onAddRow: this.onAddRow,
+      onDeleteRow: this.onDeleteRow,
+      onCellEdit: this.onCellEdit
       // alwaysShowAllBtns: true // Always show next and previous button
       // withFirstAndLast: false > Hide the going to First and Last page button
+    };
+    const cellEditProp = {
+      mode: "click"
     };
 
     return (
@@ -56,16 +63,27 @@ class Admin extends Component {
             hover
             condensed
             pagination={true}
-            insertRow={true}
+            insertRow
+            deleteRow
+            selectRow={{ mode: "radio" }}
+            remote={true}
+            cellEdit={cellEditProp}
             options={options}
           >
+            <TableHeaderColumn
+              dataField="sensorId"
+              hidden={true}
+              hiddenOnInsert
+              isKey
+            >
+              Sensor Id
+            </TableHeaderColumn>
             <TableHeaderColumn
               dataField="sensorCode"
               filter={{
                 type: "TextFilter",
                 delay: 1000
               }}
-              isKey
             >
               Sensor Code
             </TableHeaderColumn>
@@ -94,6 +112,23 @@ class Admin extends Component {
       </div>
     );
   }
+
+  onAddRow = row => {
+    this.props.addSensors(row);
+  };
+  onDeleteRow = row => {
+    this.props.deleteSensors(row[0]);
+  };
+  onCellEdit = (row, fieldName, value) => {
+    this.props.updateSensors(row, fieldName, value);
+  };
+
+  // handleSave(data) {
+  //   this.props.addSensors(data);
+  // }
+  // handleDelete(data) {
+  //   this.props.deleteSensors(data[0]);
+  // }
 }
 
 export default connect(

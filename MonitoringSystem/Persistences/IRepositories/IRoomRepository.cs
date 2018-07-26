@@ -18,5 +18,6 @@ namespace MonitoringSystem.Persistences.IRepositories
         Task UpdateFans(Room room, RoomResource roomResource);
         void AddRoomLog(Room room);
         void UpdateRoomLog(Room oldRoom, Room room);
+        Task<Room> GetRoomByRoomName(string roomName);
     }
 }

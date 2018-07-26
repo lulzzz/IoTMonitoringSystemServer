@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using System;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
@@ -14,12 +15,14 @@ namespace MonitoringSystem.Controllers
         private ISensorRepository sensorRepository;
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
+        private IRoomRepository roomRepository;
 
-        public SensorController(ISensorRepository sensorRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public SensorController(ISensorRepository sensorRepository, IMapper mapper, IUnitOfWork unitOfWork, IRoomRepository roomRepository)
         {
             this.sensorRepository = sensorRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.roomRepository = roomRepository;
         }
         // GET: api/sensors/getall
         [HttpGet]
@@ -73,6 +76,15 @@ namespace MonitoringSystem.Controllers
             //add sensor into database
             sensorRepository.AddSensor(sensor);
 
+            //add room to sensor
+            sensor.Room = await roomRepository.GetRoom(sensorResource.RoomId);
+
+            //if sensor id is undefined in json which post to server
+            if (!String.IsNullOrEmpty(sensorResource.RoomName))
+            {
+                sensor.Room = await roomRepository.GetRoomByRoomName(sensorResource.RoomName);
+            }
+
             //update racks of sensor
             await sensorRepository.UpdateRacks(sensor, sensorResource);
 
@@ -115,6 +127,15 @@ namespace MonitoringSystem.Controllers
 
             //map sensorResource json into sensor model
             mapper.Map<SensorResource, Sensor>(sensorResource, sensor);
+
+            //add room to sensor
+            sensor.Room = await roomRepository.GetRoom(sensorResource.RoomId);
+
+            //if sensor id is undefined in json which post to server
+            if (!String.IsNullOrEmpty(sensorResource.RoomName))
+            {
+                sensor.Room = await roomRepository.GetRoomByRoomName(sensorResource.RoomName);
+            }
 
             //update racks of sensor
             await sensorRepository.UpdateRacks(sensor, sensorResource);
