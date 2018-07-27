@@ -1,7 +1,7 @@
 const requestSensorsType = "REQUEST_SENSORS";
 const receiveSensorsType = "RECEIVE_SENSORS";
 const addSensorsType = "ADD_SENSORS";
-const initialState = { sensors: [], rooms: [], isLoading: false };
+const initialState = { sensors: [], isLoading: false };
 
 export const actionCreators = {
   requestSensors: isLoaded => async (dispatch, getState) => {
@@ -13,19 +13,11 @@ export const actionCreators = {
 
     dispatch({ type: requestSensorsType, isLoaded });
 
-    const sensors = await await fetch(`api/sensors/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
+    const url = `api/sensors/getall`;
+    const response = await fetch(url);
+    const sensors = await response.json();
 
-    const rooms = await fetch(`api/rooms/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
-
-    dispatch({ type: receiveSensorsType, sensors, isLoaded, rooms });
+    dispatch({ type: receiveSensorsType, sensors, isLoaded });
   },
 
   addSensors: data => async (dispatch, getState) => {
@@ -45,19 +37,11 @@ export const actionCreators = {
       body: JSON.stringify(data)
     });
 
-    const sensors = await await fetch(`api/sensors/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
+    const url = `api/sensors/getall`;
+    const response = await fetch(url);
+    const sensors = await response.json();
 
-    const rooms = await fetch(`api/rooms/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
-
-    dispatch({ type: receiveSensorsType, sensors, rooms });
+    dispatch({ type: receiveSensorsType, sensors });
   },
 
   updateSensors: (data, fieldName, value) => async (dispatch, getState) => {
@@ -66,7 +50,7 @@ export const actionCreators = {
     data[fieldName] = value;
 
     data = {
-      roomId: data.roomId,
+      roomName: data.roomName,
       sensorCode: data.sensorCode,
       sensorName: data.sensorName
     };
@@ -80,20 +64,13 @@ export const actionCreators = {
       },
       body: JSON.stringify(data)
     });
+    console.log(res);
 
-    const sensors = await await fetch(`api/sensors/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
+    const url = `api/sensors/getall`;
+    const response = await fetch(url);
+    const sensors = await response.json();
 
-    const rooms = await fetch(`api/rooms/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
-
-    dispatch({ type: receiveSensorsType, sensors, rooms });
+    dispatch({ type: receiveSensorsType, sensors });
   },
 
   deleteSensors: sensorId => async (dispatch, getState) => {
@@ -105,19 +82,11 @@ export const actionCreators = {
       }
     });
 
-    const sensors = await await fetch(`api/sensors/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
+    const url = `api/sensors/getall`;
+    const response = await fetch(url);
+    const sensors = await response.json();
 
-    const rooms = await fetch(`api/rooms/getall`, {
-      method: "GET"
-    }).then(function(response) {
-      return response.json();
-    });
-
-    dispatch({ type: receiveSensorsType, sensors, rooms });
+    dispatch({ type: receiveSensorsType, sensors });
   }
 };
 
@@ -137,8 +106,7 @@ export const reducer = (state, action) => {
       ...state,
       sensors: action.sensors,
       isLoading: false,
-      isLoaded: action.isLoaded,
-      rooms: action.rooms
+      isLoaded: action.isLoaded
     };
   }
 
