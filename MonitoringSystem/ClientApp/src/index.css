@@ -2,6 +2,10 @@
   padding: 2em 0;
 }
 
+.table {
+  margin-bottom: 4em;
+}
+
 .navbar {
   background: rgb(67, 224, 172) !important;
 }
