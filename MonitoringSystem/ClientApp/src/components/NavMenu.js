@@ -6,13 +6,9 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    NavLink
 } from 'reactstrap';
-import logo from '../assets/img/logo_vntt.png';
+import Logo from '../assets/img/logo_vntt.png'
 
 export default class NavMenu extends React.Component {
     constructor(props) {
@@ -34,7 +30,7 @@ export default class NavMenu extends React.Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">VNTT</NavbarBrand>
+                    <NavbarBrand href="/"><img src={Logo}/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -44,23 +40,9 @@ export default class NavMenu extends React.Component {
                             <NavItem>
                                 <NavLink href="/fans/">Fan</NavLink>
                             </NavItem>
-                            {/* <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Dashboard
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider/>
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown> */}
+                            <NavItem>
+                                <NavLink href="/temperatures/">Fan</NavLink>
+                            </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>

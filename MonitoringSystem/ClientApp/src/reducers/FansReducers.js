@@ -14,14 +14,13 @@ function fans(state = {
     isFetching: false,
     items: []
 }, action) {
-    console.log(action)
+    // console.log(action)
     switch (action.type) {
         case updateFanStatusType:
             return Object.assign({}, state)
         case requestFansType:
             return Object.assign({}, state, {isFetching: true})
         case receiveFansType:
-            console.log('receive2')
             return Object.assign({}, state, {
                 isFetching: false,
                 items: action.fans,
@@ -30,18 +29,18 @@ function fans(state = {
         default:
             return state
     }
-    console.log(state)
 }
 
 function fanList(state = {}, action) {
-
+    // console.log(action)
     switch (action.type) {
         case updateFanStatusType:
         case receiveFansType:
         case requestFansType:
-            return Object.assign({}, state, {
-                [action]: fans(state, action)
-            })
+            return {
+                ...state,
+                fans: fans(state, action)
+            }
         default:
             return state
     }

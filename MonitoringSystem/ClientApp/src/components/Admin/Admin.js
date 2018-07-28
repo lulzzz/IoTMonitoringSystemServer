@@ -31,6 +31,7 @@ class Admin extends Component {
   }
 
   render() {
+    const duy = this.props;
     const options = {
       page: 1, // which page you want to show as default
       sizePerPage: 5, // which size per page you want to locate as default
@@ -42,10 +43,12 @@ class Admin extends Component {
       lastPage: "Last", // Last page button text
       paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
       paginationPosition: "bottom", // default is bottom, top and both is all available
-      hideSizePerPage: true,
+      hideSizePerPage: true, // You can hide the dropdown for sizePerPage
       onAddRow: this.onAddRow,
       onDeleteRow: this.onDeleteRow,
       onCellEdit: this.onCellEdit
+      // alwaysShowAllBtns: true // Always show next and previous button
+      // withFirstAndLast: false > Hide the going to First and Last page button
     };
     const cellEditProp = {
       mode: "click"
@@ -63,7 +66,7 @@ class Admin extends Component {
             insertRow
             deleteRow
             selectRow={{ mode: "radio" }}
-            //remote={true}
+            remote={true}
             cellEdit={cellEditProp}
             options={options}
           >
@@ -96,19 +99,10 @@ class Admin extends Component {
             </TableHeaderColumn>
 
             <TableHeaderColumn
-              dataField="roomId"
+              dataField="roomName"
               filter={{
                 type: "TextFilter",
                 delay: 1000
-              }}
-              dataFormat={this.showSensorName}
-              editable={{
-                type: "select",
-                options: {
-                  values: this.props.rooms.items,
-                  textKey: "roomName",
-                  valueKey: "roomId"
-                }
               }}
             >
               Room Name
@@ -117,10 +111,6 @@ class Admin extends Component {
         </Row>
       </div>
     );
-  }
-
-  showSensorName(cell, row) {
-    return row.roomName;
   }
 
   onAddRow = row => {

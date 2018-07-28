@@ -12,13 +12,13 @@ import {
 
 export default class Fans extends Component {
     render() {
-        console.log(this.props.fansRes)
+        console.log(this.props.fans)
         return (
             <div>
                 <Row>
                     {this
                         .props
-                        .fansRes
+                        .fans
                         .map(fan => (
                             <Col sm="3" key={fan.fanId}>
                                 <Card body className="text-center">

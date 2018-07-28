@@ -6,7 +6,7 @@ export const updateFanStatusType = "UPDATE_FAN_STATUS";
 
 export function updateFanStatus(fan) {
     const url = `api/fans/update/` + fan.fanId;
-    console.log('url')
+    // console.log('url')
     // const response = await fetch(url, {
     //     method: "PUT",
     //     headers: {
@@ -52,8 +52,8 @@ function fetchFans() {
 
 function shouldFetchFans(state) {
     const fans = state.fanList
-    console.log('should')
-    console.log(state)
+    // console.log('should')
+    // console.log(state)
     if (!fans) {
         return true
     } else if (fans.isFetching) {
