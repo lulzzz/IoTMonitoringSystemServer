@@ -69,6 +69,7 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<Rack, RackResource>()
                 .ForMember(rr => rr.RoomId, opt => opt.MapFrom(r => r.Room.RoomId))
+                .ForMember(rr => rr.RoomName, opt => opt.MapFrom(r => r.Room.RoomName))
                 .ForMember(rr => rr.SensorId, opt => opt.MapFrom(r => r.Sensor.SensorId));
 
             CreateMap<Room, RoomResource>()
