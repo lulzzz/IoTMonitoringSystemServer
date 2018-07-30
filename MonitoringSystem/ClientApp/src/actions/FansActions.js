@@ -1,73 +1,72 @@
-import fetch from 'cross-fetch'
+import fetch from "cross-fetch";
 
 export const requestFansType = "REQUEST_FANS";
 export const receiveFansType = "RECEIVE_FANS";
 export const updateFanStatusType = "UPDATE_FAN_STATUS";
-export const invalidateUpdateFanType = "INVALIDATE_UPDATE_FAN"
+export const invalidateUpdateFanType = "INVALIDATE_UPDATE_FAN";
 
-import {
-    FETCH_PRODUCTS_BEGIN,
-    FETCH_PRODUCTS_SUCCESS,
-    FETCH_PRODUCTS_FAILURE
-  } from './productActions';
+// import {
+//     FETCH_PRODUCTS_BEGIN,
+//     FETCH_PRODUCTS_SUCCESS,
+//     FETCH_PRODUCTS_FAILURE
+//   } from './productActions';
 
 export async function updateFanStatus(fan, fans) {
-    console.log('updateAction')
+  console.log("updateAction");
 
-    const url = 'api/fans/update/' + fan.fanId;
-    const response =await  fetch(url, {
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(fan)
-    });
+  const url = "api/fans/update/" + fan.fanId;
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(fan)
+  });
 
-    fetchFans()
-    return ;
-
+  fetchFans();
+  return;
 }
 
 export function invalidateUpdateFan(fan, fans) {
-    console.log('alo')
-    return {type: invalidateUpdateFanType, fans}
+  console.log("alo");
+  return { type: invalidateUpdateFanType, fans };
 }
 
 function requestFans() {
-    return {type: requestFansType}
+  return { type: requestFansType };
 }
 
 function receiveFans(json) {
-    return {
-        type: receiveFansType,
-        fans: json.items,
-        receivedAt: Date.now()
-    }
+  return {
+    type: receiveFansType,
+    fans: json.items,
+    receivedAt: Date.now()
+  };
 }
 
 function fetchFans() {
-    console.log("ff")
-    return dispatch => {
-        dispatch(requestFans())
-        return fetch(`/api/fans/getall`)
-            .then(response => response.json())
-            .then(json => dispatch(receiveFans(json)))
-    }
+  console.log("ff");
+  return dispatch => {
+    dispatch(requestFans());
+    return fetch(`/api/fans/getall`)
+      .then(response => response.json())
+      .then(json => dispatch(receiveFans(json)));
+  };
 }
 
 function shouldFetchFans(state) {
-    const fans = state.fansReducer.fanList
-    // console.log('should') console.log(state)
-    console.log(state)
-    if (fans != undefined) {
-        return true
-    } else if (fans.isFetching) {
-        return false
-    } else {       
-        console.log('sss')
-        return fans.didInvalidate
-    }
+  const fans = state.fansReducer.fanList;
+  // console.log('should') console.log(state)
+  console.log(state);
+  if (fans != undefined) {
+    return true;
+  } else if (fans.isFetching) {
+    return false;
+  } else {
+    console.log("sss");
+    return fans.didInvalidate;
+  }
 }
 
 // export function updateFans (state, fan) {     if (isLoaded ===
@@ -83,9 +82,9 @@ function shouldFetchFans(state) {
 // isLoading: false, fans});     return; }
 
 export function fetchFansIfNeeded() {
-    return (dispatch, getState) => {
-        if (shouldFetchFans(getState())) {
-            return dispatch(fetchFans())
-        }
+  return (dispatch, getState) => {
+    if (shouldFetchFans(getState())) {
+      return dispatch(fetchFans());
     }
+  };
 }

@@ -6,7 +6,6 @@
 // import logo from '../assets/img/logo_vntt.png';
 // import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-
 // class Map extends React.Component {
 //     constructor(props) {
 //         super(props);
@@ -44,13 +43,8 @@
 //                             </Popover>
 //                         </div>
 
-
 //                         <Button button type="button" className="btn" id="sensor1-1" onClick={this.toggle}>S1.1 </Button>
 //                         <Button button type="button" className="btn" id="sensor1-2" onClick={this.toggle}>S1.2 </Button>
-
-
-
-
 
 //                         <button type="button" className="btn" id="sensor1-3" >S1.3</button>
 //                         <button type="button" className="btn" id="sensor1-4">S1.4</button>
@@ -129,7 +123,6 @@
 
 //                         <button className="btn" id="sensor6-7">S6.7</button>
 
-
 //                     </div>
 
 //                     {/* note  */}
@@ -139,7 +132,6 @@
 
 //                 </div>
 
-
 //             </span >
 //         );
 
@@ -148,22 +140,16 @@
 
 // export default Map;
 
-
-
-
-
-
-
-
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import '../components/Map.css';
-import map from '../assets/img/Map.png'
-import logo from '../assets/img/logo_vntt.png';
-import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import "../components/Map.css";
+import map from "../assets/img/Map.png";
+import logo from "../assets/img/logo_vntt.png";
+import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import props from "./Layout";
+import { actionCreators } from "../store/Map";
 class PopoverItem extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -182,112 +168,68 @@ class PopoverItem extends React.Component {
   render() {
     return (
       <div>
-        <Button className="btn" color="success" id={'sensor1-' + this.props.id} onClick={this.toggle}>
-            {this.props.item.text}
-          </Button>
-          <Popover placement={this.props.item.placement} isOpen={this.state.popoverOpen}
-            target={'sensor1-' + this.props.id} toggle={this.toggle}>
-            <PopoverHeader>{this.props.item.sensor}</PopoverHeader>
-            <PopoverBody>
-              <div>{'Temperature: ' + this.props.item.temperature}</div>
-              <div>{'Humidity: ' + this.props.item.humidity}</div>
-            </PopoverBody>
-          </Popover>
- 
+        <Button
+          className="btn"
+          color="success"
+          id={"sensor1-" + this.props.id}
+          onClick={this.toggle}
+        >
+          {this.props.item.text}
+        </Button>
+        <Popover
+          placement={this.props.item.placement}
+          isOpen={this.state.popoverOpen}
+          target={"sensor1-" + this.props.id}
+          toggle={this.toggle}
+        >
+          <PopoverHeader>{this.props.item.sensor}</PopoverHeader>
+          <PopoverBody>
+            <div>{"Temperature: " + this.props.item.temperature}</div>
+            <div>{"Humidity: " + this.props.item.humidity}</div>
+          </PopoverBody>
+        </Popover>
       </div>
 
       //               {/* row 1 */}
-
     );
   }
 }
 
 class PopoverExampleMulti extends React.Component {
-  constructor(props) {
-    super(props);
+  componentWillMount() {
+    // This method runs when the component is first added to the page
+    const isLoaded = false;
+    this.props.requestMaps(isLoaded);
+  }
 
-
-    this.state = {
-      popovers: [
-        {
-          placement: 'top',
-          text: 'Phu1',
-          sensor: 'Duy',
-          temperature: '40°C',
-          humidity: '10%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu1',
-          sensor: 'Pu',
-          temperature: '39°C',
-          humidity: '11%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu2',
-          sensor: 'Hoa',
-          temperature: '50°C',
-          humidity: '13%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu4',
-          sensor: 'Phu3',
-          temperature: '35°C',
-          humidity: '10%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu1',
-          sensor: 'Phu4',
-          temperature: '40°C',
-          humidity: '10%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu5',
-          sensor: 'Pu',
-          temperature: '39°C',
-          humidity: '11%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu6',
-          sensor: 'Hoa',
-          temperature: '50°C',
-          humidity: '13%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu7',
-          sensor: 'Pu',
-          temperature: '39°C',
-          humidity: '11%'
-        },
-        {
-          placement: 'top',
-          text: 'Phu8',
-          sensor: 'Hoa',
-          temperature: '50°C',
-          humidity: '13%'
-        }
-      ]
-    };
+  componentWillReceiveProps(nextProps) {
+    // This method runs when incoming props (e.g., route params) change
+    const isLoaded = false;
+    this.props.requestMaps(isLoaded);
   }
 
   render() {
+    // console.log("render");
+    // console.log(this.props.popovers);
     return (
       <span>
         <div className="container">
-          <img className="map" src={map} style={{ maxWidth: '200%', maxHeight: 'auto' }} />
-          {this.state.popovers.map((popover, i) => {
-          return <PopoverItem key={i} item={popover} id={i} />;
-        })}
+          <img
+            className="map"
+            src={map}
+            style={{ maxWidth: "200%", maxHeight: "auto" }}
+          />
+          {this.props.popovers &&
+            this.props.popovers.map((popover, i) => {
+              return <PopoverItem key={i} item={popover} id={i} />;
+            })}
         </div>
       </span>
     );
   }
 }
 
-export default PopoverExampleMulti;
+export default connect(
+  state => state.map,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(PopoverExampleMulti);
