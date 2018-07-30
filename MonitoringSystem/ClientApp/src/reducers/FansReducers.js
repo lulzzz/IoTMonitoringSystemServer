@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux'
 import {requestFansType, receiveFansType, updateFanStatusType} from '../actions/FansActions'
 
-function updateFanStatus(state = 'reactjs', action) {
+function updatedFanStatus(state = 'reactjs', action) {
+    console.log('ahihi')
     switch (action.type) {
         case updateFanStatusType:
-            return action.fan
+            console.log('aaa')
+            return action.fans
         default:
             return state
     }
@@ -46,6 +48,6 @@ function fanList(state = {}, action) {
     }
 }
 
-const fansReducer = combineReducers({fanList, updateFanStatus})
+const fansReducer = combineReducers({fanList, updatedFanStatus})
 
 export default fansReducer
