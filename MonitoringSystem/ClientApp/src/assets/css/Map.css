@@ -56,18 +56,19 @@
 
 .container .censor-btn#sensor1-6 {
   top: 23px;
-  left: 329px;
+  left: 374px;
   width:63.5px;
 }
 
 .container .censor-btn#sensor1-7 {
-  top: 11%;
-  left: 148%;
+  top: 23px;
+  left: 460px;
 }
 
 .container .censor-btn#sensor1-8 {
-  top: 11%;
-  left: 163%;
+  top: 23px;
+  left: 505px;
+  width: 63.5px;
 }
 
 /* row2  */
@@ -130,6 +131,7 @@
   top: 41%;
   left: 72%;
 }
+
 
 .container .censor-btn#sensor3-2 {
   position: absolute;
