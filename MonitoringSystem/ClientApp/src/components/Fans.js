@@ -1,5 +1,7 @@
+import {connect} from 'react-redux'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {updateFanStatus, fetchFansIfNeeded, invalidateUpdateFan} from '../actions/FansActions'
 import {
     Card,
     Button,
@@ -10,9 +12,11 @@ import {
     CardBody
 } from "reactstrap";
 
-export default class Fans extends Component {
+class Fans extends Component {
+
     render() {
-        console.log(this.props.fans)
+
+        var isEmpty = this.props.fans
         return (
             <div>
                 <Row>
@@ -56,15 +60,22 @@ export default class Fans extends Component {
             </div>
         )
     }
-    
-    _handleChange(fan) {
-      console.log(fan);
-      fan.isOn = !fan.isOn;
-      const isLoaded = false;
-      this.props.updateFanStatus(fan);
+
+     _handleChange(fan) {
+        fan.isOn = !fan.isOn;
+        const {dispatch, fans} = this.props
+        // dispatch(invalidateUpdateFan(fan, fans))
+        dispatch(updateFanStatus(fan, fans))
+        // await this
+        //     .props
+        //     .dispatch(updateFanStatus(fan, fans))
+        //   const isLoaded = false;   this.props.updateFanStatus(fan);
     }
+
 }
 
 Fans.propTypes = {
     fansRes: PropTypes.array.isRequired
 }
+
+export default connect()(Fans)
