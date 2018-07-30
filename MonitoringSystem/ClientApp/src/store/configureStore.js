@@ -8,6 +8,7 @@ import * as Admin from "./Admin";
 import * as Map from "./Map";
 import fansReducer from "../reducers/FansReducers";
 import temperaturesReducer from "../reducers/TemperaturesReducers";
+import humiditiesReducer from "../reducers/HumiditiesReducers";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -17,7 +18,8 @@ export default function configureStore(history, initialState) {
     admin: Admin.reducer,
     map: Map.reducer,
     fansReducer,
-    temperaturesReducer
+    temperaturesReducer,
+    humiditiesReducer
   };
 
   const middleware = [thunk, routerMiddleware(history)];

@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import Temperatures from './AsyncTemperatures';
+import Humidities from './AsyncHumidities';
 import {Row, Col} from 'reactstrap'
 
 class Dashboard extends Component {
     render() {
         return (
-            <Row>
-                <Col xs="6">
-                    <div className="Dashboard">
+            <div className="">
+                <Row>
+                    <Col xs="6">
                         <Temperatures/>
-                    </div>
-                </Col>
-                <Col xs="6">Độ ẩm</Col>
-            </Row>
+                    </Col>
+                    <Col xs="6">
+                        <Humidities/>
+                    </Col>
+                </Row>
+            </div>
         );
     }
 }

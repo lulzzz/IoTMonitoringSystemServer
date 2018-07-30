@@ -143,7 +143,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import "../components/Map.css";
+import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
 import logo from "../assets/img/logo_vntt.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";

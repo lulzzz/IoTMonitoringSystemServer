@@ -14,9 +14,9 @@ var layoutUpdate = {
         title: "Thời gian"
     },
     yaxis: {
-        title: "Nhiệt độ"
+        title: "Độ ẩm"
     },
-    title: 'Cảm biến nhiệt độ'
+    title: 'Cảm biến độ ẩm'
 };
 
 function formatStartDateDisplay(date, defaultText) {
@@ -31,7 +31,7 @@ function formatEndDateDisplay(date, defaultText) {
     return format(date, 'YYYY-MM-DD 23:59');
 }
 
-export default class Temperatures extends Component {
+export default class Humidities extends Component {
     constructor(props, context) {
         super(props, context);
         this.toggle = this
@@ -68,7 +68,7 @@ export default class Temperatures extends Component {
             }
         });
 
-        data = this.props.temperatures.items
+        data = this.props.humidities.items
 
         var layout = {
             xaxis: {
@@ -79,13 +79,14 @@ export default class Temperatures extends Component {
             }
         };
 
-        Plotly.update('temperatures', data, layout);
+        Plotly.update('humidities', data, layout);
     }
 
     render() {
-        if (this.props.temperatures != undefined && this.props.temperatures.length !== 0) {
-            data = this.props.temperatures
-            Plotly.newPlot('temperatures', data, layoutUpdate);
+        // console.log(this.props.humidities != undefined)
+        if (this.props.humidities != undefined && this.props.humidities.length !== 0) {
+            data = this.props.humidities
+            Plotly.newPlot('humidities', data, layoutUpdate);
         }
         return (
             <div>
@@ -112,6 +113,6 @@ export default class Temperatures extends Component {
     }
 }
 
-Temperatures.propTypes = {
-    temperaturesRes: PropTypes.array.isRequired
+Humidities.propTypes = {
+    humiditiesRes: PropTypes.array.isRequired
 }
