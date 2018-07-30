@@ -50,5 +50,20 @@ namespace MonitoringSystem.Controllers
             //convert all of sensor into sensorResource json
             return mapper.Map<QueryResult<Plot>, QueryResultResource<PlotResource>>(queryResult);
         }
+
+        [HttpGet]
+        [Route("humidity/getall")]
+        public async Task<QueryResultResource<PlotResource>> GetAllHumidityOfAllSensorForPlot(QueryResource queryResource)
+        {
+
+            //convert queryresource json into query object
+            var query = mapper.Map<QueryResource, Query>(queryResource);
+
+            //get all the plot with filter and sorting form of the query
+            var queryResult = await plotRepository.GetAllHumidityOfAllSensorForPlot(query);
+
+            //convert all of sensor into sensorResource json
+            return mapper.Map<QueryResult<Plot>, QueryResultResource<PlotResource>>(queryResult);
+        }
     }
 }

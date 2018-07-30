@@ -67,5 +67,33 @@ namespace MonitoringSystem.Persistences.Repositories
 
             return result;
         }
+
+        public async Task<QueryResult<Plot>> GetAllHumidityOfAllSensorForPlot(Query queryObj)
+        {
+            var result = new QueryResult<Plot>();
+            var query = context.Sensors
+                    .AsQueryable();
+
+            var plots = new Collection<Plot>();
+            foreach (var sensor in query)
+            {
+                var humidity = context.Humidities
+                    .Where(h => h.IsDeleted == false && h.Status.Sensor.SensorId == sensor.SensorId)
+                    .OrderBy(t => t.Status.DateTime)
+                    .AsQueryable();
+                var plot = new Plot
+                {
+                    x = await humidity.Select(q => q.Status.DateTime).ToListAsync(),
+                    y = await humidity.Select(q => q.Value).ToListAsync(),
+                    name = sensor.SensorName
+                };
+                plots.Add(plot);
+            }
+
+            result.Items = plots.ToList();
+            result.TotalItems = result.Items.Count();
+
+            return result;
+        }
     }
 }
