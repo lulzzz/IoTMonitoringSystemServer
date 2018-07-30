@@ -147,6 +147,7 @@ import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
 import logo from "../assets/img/logo_vntt.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import { Container, Row, Col } from 'reactstrap';
 import props from "./Layout";
 import { actionCreators } from "../store/Map";
 class PopoverItem extends React.Component {
@@ -167,9 +168,10 @@ class PopoverItem extends React.Component {
 
   render() {
     return (
+      // row 1
       <div>
         <Button
-          className="btn"
+          className="censor-btn"
           color="success"
           id={"sensor1-" + this.props.id}
           onClick={this.toggle}
@@ -190,7 +192,6 @@ class PopoverItem extends React.Component {
         </Popover>
       </div>
 
-      //               {/* row 1 */}
     );
   }
 }
@@ -212,21 +213,21 @@ class PopoverExampleMulti extends React.Component {
     // console.log("render");
     // console.log(this.props.popovers);
     return (
-      <span>
-        <div className="container">
+      <Row className="container">
+        <Col sm="12" md={{ size: 8, offset: 2 }}>
           <img
             className="map"
             src={map}
-            style={{ maxWidth: "200%", maxHeight: "auto" }}
           />
           {this.props.popovers &&
             this.props.popovers.map((popover, i) => {
               return <PopoverItem key={i} item={popover} id={i} />;
             })}
-        </div>
-      </span>
+        </Col>
+      </Row>
     );
   }
+
 }
 
 export default connect(

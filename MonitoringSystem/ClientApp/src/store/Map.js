@@ -26,6 +26,7 @@ export const actionCreators = {
         humidity: sensor.latestStatus.humidity
       });
     }
+    popovers = popovers.reverse();
 
     dispatch({ type: receiveMapsType, isLoaded, popovers });
   }
