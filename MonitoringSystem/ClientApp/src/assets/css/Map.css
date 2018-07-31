@@ -187,105 +187,106 @@
   left: 393px;
 }
 
-.container .censor-btn#sensor4-6 {
-  position: absolute;
-  top: 51%;
-  left: 144%;
+.container .censor-btn#sensor-30 {
+  top: 289px;
+  left: 439px;
+  width: 64px;
 }
 
-.container .censor-btn#sensor4-7 {
-  position: absolute;
-  top: 51%;
-  left: 163%;
+.container .censor-btn#sensor-31 {
+  top: 289px;
+  left: 525px;
 }
 
 /* row 5 */
 
-.container .censor-btn#sensor5-0 {
-  position: absolute;
-  top: 71%;
-  left: 22%;
+.container .censor-btn#sensor-32 {
+  top: 375px;
+  left: 58px;
+  width: 10px;
 }
 
-.container .censor-btn#sensor5-1 {
-  position: absolute;
-  top: 71%;
-  left: 39%;
+.container .censor-btn#sensor-33 {
+  top: 375px;
+  left: 105px;
 }
 
-.container .censor-btn#sensor5-2 {
-  position: absolute;
-  top: 71%;
-  left: 52%;
+.container .censor-btn#sensor-34 {
+  top: 375px;
+  left: 150px;
 }
 
-.container .censor-btn#sensor5-3 {
-  position: absolute;
-  top: 71%;
-  left: 68%;
+.container .censor-btn#sensor-35 {
+  top: 375px;
+  left: 195px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor5-4 {
-  position: absolute;
-  top: 71%;
-  left: 95%;
+.container .censor-btn#sensor-36{
+  top: 375px;
+  left: 282px;
 }
 
-.container .censor-btn#sensor5-5 {
-  top: 71%;
-  left: 110%;
+.container .censor-btn#sensor-37 {
+  top: 375px;
+  left: 327px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor5-6 {
-  top: 71%;
-  left: 130%;
+.container .censor-btn#sensor-38 {
+  top: 375px;
+  left: 392px;
 }
 
-.container .censor-btn#sensor5-7 {
-  top: 71%;
-  left: 145%;
+.container .censor-btn#sensor-39 {
+  top: 375px;
+  left: 438px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor5-8 {
-  top: 71%;
-  left: 163%;
+.container .censor-btn#sensor-40 {
+  top: 375px;
+  left: 526px;
 }
 
 /* row 6 */
 
-.container .censor-btn#sensor6-0 {
-  top: 82%;
-  left: 19%;
+.container .censor-btn#sensor-41 {
+  top: 465px;
+  left: 37px;
 }
 
-.container .censor-btn#sensor6-1 {
-  top: 82%;
-  left: 49%;
+.container .censor-btn#sensor-42 {
+  top: 465px;
+  left: 128px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-2 {
-  top: 82%;
-  left: 75%;
+.container .censor-btn#sensor-43 {
+  top: 465px;
+  left: 217px;
 }
 
-.container .censor-btn#sensor6-3 {
-  top: 82%;
-  left: 88%;
+.container .censor-btn#sensor-44 {
+  top: 465px;
+  left: 263px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-4 {
-  top: 82%;
-  left: 128%;
+.container .censor-btn#sensor-45 {
+  top: 465px;
+  left: 393px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-5 {
-  top: 82%;
-  left: 150%;
+.container .censor-btn#sensor-46 {
+  top: 465px;
+  left: 482px;
 }
 
-.container .censor-btn#sensor6-6 {
-  top: 82%;
-  left: 163%;
+.container .censor-btn#sensor-47 {
+  top: 465px;
+  left: 525px;
 }
 
 .container .censor-btn#sensor-safe {
