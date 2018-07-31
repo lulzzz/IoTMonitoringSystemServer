@@ -1,17 +1,13 @@
-
-
 .map {
   left: 500;
   width: 500;
   height: 500;
-  
 }
-
-
 
 .censor-btn {
   border-radius: 0 !important;
   position: absolute;
+  text-align: center;
   background-color: green;
   border: none;
   cursor: pointer;
@@ -24,48 +20,48 @@
 
 /*sensor row1 */
 
-#sensor1-0 {
+.container .censor-btn#sensor-0 {
   top: 23px;
   left: 61px;
 }
 
-.container .censor-btn#sensor1-1 {
+.container .censor-btn#sensor-1 {
   top: 23px;
   left: 105px;
 }
 
-.container .censor-btn#sensor1-2 {
+.container .censor-btn#sensor-2 {
   top: 23px;
   left: 150px;
 }
 
-.container .censor-btn#sensor1-3 {
+.container .censor-btn#sensor-3 {
   top: 23px;
   left: 219px;
 }
 
-.container .censor-btn#sensor1-4 {
+.container .censor-btn#sensor-4 {
   top: 23px;
   left: 259px;
 }
 
-.container .censor-btn#sensor1-5 {
-  top: 23px;  
+.container .censor-btn#sensor-5 {
+  top: 23px;
   left: 329px;
 }
 
-.container .censor-btn#sensor1-6 {
+.container .censor-btn#sensor-6 {
   top: 23px;
   left: 374px;
-  width:63.5px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor1-7 {
+.container .censor-btn#sensor-7 {
   top: 23px;
   left: 460px;
 }
 
-.container .censor-btn#sensor1-8 {
+.container .censor-btn#sensor-8 {
   top: 23px;
   left: 505px;
   width: 63.5px;
@@ -73,127 +69,122 @@
 
 /* row2  */
 
-.container .censor-btn#sensor2-0 {
-  top: 21%;
-  left: 25%;
+.container .censor-btn#sensor-9 {
+  top: 112px;
+  left: 61px;
 }
 
-.container .censor-btn#sensor2-1 {
-  top: 21%;
-  left: 49%;
+.container .censor-btn#sensor-10 {
+  top: 112px;
+  left: 130px;
 }
 
-.container .censor-btn#sensor2-2 {
-  top: 21%;
-  left: 65%;
+.container .censor-btn#sensor-11 {
+  top: 112px;
+  left: 173px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-3 {
-  position: absolute;
-  top: 21%;
-  left: 88%;
+.container .censor-btn#sensor-12 {
+  top: 112px;
+  left: 262px;
 }
 
-.container .censor-btn#sensor2-4 {
-  position: absolute;
-  top: 21%;
-  left: 105%;
+.container .censor-btn#sensor-13 {
+  top: 112px;
+  left: 306px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-5 {
-  position: absolute;
-  top: 21%;
-  left: 128%;
+.container .censor-btn#sensor-14 {
+  top: 112px;
+  left: 395px;
 }
 
-.container .censor-btn#sensor2-6 {
-  position: absolute;
-  top: 21%;
-  left: 143%;
+.container .censor-btn#sensor-15 {
+  top: 112px;
+  left: 440px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-7 {
-  position: absolute;
-  top: 21%;
-  left: 163%;
+.container .censor-btn#sensor-16 {
+  top: 112px;
+  left: 526px;
 }
 
 /* row3  */
 
-.container .censor-btn#sensor3-0 {
-  position: absolute;
-  top: 41%;
-  left: 48%;
+.container .censor-btn#sensor-17 {
+  top: 200px;
+  left: 128px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor3-1 {
-  position: absolute;
-  top: 41%;
-  left: 72%;
+.container .censor-btn#sensor-18 {
+  top: 200px;
+  left: 215px;
 }
 
-
-.container .censor-btn#sensor3-2 {
-  position: absolute;
-  top: 41%;
-  left: 85%;
+.container .censor-btn#sensor-19 {
+  top: 200px;
+  left: 260px;
 }
 
-.container .censor-btn#sensor3-3 {
-  position: absolute;
-  top: 41%;
-  left: 100%;
+.container .censor-btn#sensor-20 {
+  top: 200px;
+  left: 323px;
+  width: 18px;
 }
 
-.container .censor-btn#sensor3-4 {
-  position: absolute;
-  top: 41%;
-  left: 125%;
+.container .censor-btn#sensor-21 {
+  top: 200px;
+  left: 392px;
 }
 
-.container .censor-btn#sensor3-5 {
-  top: 41%;
-  left: 145%;
+.container .censor-btn#sensor-22 {
+  top: 200px;
+  left: 460px;
 }
 
-.container .censor-btn#sensor3-6 {
-  top: 41%;
-  left: 160%;
+.container .censor-btn#sensor-23 {
+  top: 200px;
+  left: 505px;
+  width: 63.5px;
 }
 
 /* row 4 */
 
-.container .censor-btn#sensor4-0 {
-  top: 51%;
-  left: 22%;
+.container .censor-btn#sensor-24 {
+  top: 289px;
+  left: 40px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor4-1 {
-  top: 51%;
-  left: 50%;
+.container .censor-btn#sensor-25 {
+  top: 289px;
+  left: 128px;
 }
 
-.container .censor-btn#sensor4-2 {
-  position: absolute;
-  top: 51%;
-  left: 64%;
+.container .censor-btn#sensor-26 {
+  top: 289px;
+  left: 173px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor4-3 {
-  top: 51%;
-  left: 88%;
+.container .censor-btn#sensor-27 {
+  top: 289px;
+  left: 260px;
 }
 
-.container .censor-btn#sensor4-4 {
-  position: absolute;
-  top: 51%;
-  left: 100%;
+.container .censor-btn#sensor-28 {
+  top: 289px;
+  left: 305px;
+  width: 64px;
 }
 
-.container .censor-btn#sensor4-5 {
-  position: absolute;
-  top: 51%;
-  left: 128%;
+.container .censor-btn#sensor-29 {
+  top: 289px;
+  left: 393px;
 }
 
 .container .censor-btn#sensor4-6 {
