@@ -1,7 +1,15 @@
+import * as signalR from "@aspnet/signalr";
+
 const requestSensorsType = "REQUEST_SENSORS";
 const receiveSensorsType = "RECEIVE_SENSORS";
 const addSensorsType = "ADD_SENSORS";
-const initialState = { sensors: [], racks: [], rooms: [], isLoading: false };
+const initialState = {
+  sensors: [],
+  racks: [],
+  rooms: [],
+  isLoading: false,
+  hubConnection: null
+};
 
 export const actionCreators = {
   requestSensors: isLoaded => async (dispatch, getState) => {
@@ -11,7 +19,24 @@ export const actionCreators = {
       return;
     }
 
-    dispatch({ type: requestSensorsType, isLoaded });
+    var hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl("/hub")
+      .build();
+
+    hubConnection.on("LoadData", () => {
+      loadData(dispatch, isLoaded);
+    });
+
+    hubConnection
+      .start()
+      .then(() => {
+        console.log("Hub connection started");
+      })
+      .catch(err => {
+        console.log("Error while establishing connection");
+      });
+
+    dispatch({ type: requestSensorsType, isLoaded, hubConnection });
     loadData(dispatch, isLoaded);
   },
 
@@ -201,7 +226,8 @@ export const reducer = (state, action) => {
     return {
       ...state,
       isLoading: true,
-      isLoaded: action.isLoaded
+      isLoaded: action.isLoaded,
+      hubConnection: action.hubConnection
     };
   }
 
