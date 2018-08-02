@@ -3,6 +3,7 @@ using MonitoringSystem.Data;
 using MonitoringSystem.Extensions;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
+using MonitoringSystem.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace MonitoringSystem.Persistences.Repositories
             }
             return await context.Fans
                 .Include(f => f.Room)
+                .Include(f => f.FanStatuses)
                 .SingleOrDefaultAsync(f => f.FanId == id);
         }
 
@@ -41,6 +43,7 @@ namespace MonitoringSystem.Persistences.Repositories
             var query = context.Fans
                     .Where(a => a.IsDeleted == false)
                     .Include(f => f.Room)
+                    .Include(f => f.FanStatuses)
                     .AsQueryable();
             //filter
 
@@ -91,6 +94,65 @@ namespace MonitoringSystem.Persistences.Repositories
                 ", capacity change from: " + oldFan.Capacity + " to " + fan.Capacity +
                 ", room change from " + oldFan.Room.RoomName + " to " + fan.Room.RoomName + "."
             });
+        }
+
+        public async Task<Fan> GetFanByFanCode(string fanCode, bool includeRelated = true)
+        {
+            return await context.Fans
+                .Include(f => f.Room)
+                .Include(f => f.FanStatuses)
+                .SingleOrDefaultAsync(f => f.FanCode == fanCode);
+        }
+
+        public bool checkFan(Fan fan, FanStatusResource fanStatusResource)
+        {
+            var currentFanStatuses = fan.FanStatuses
+            .OrderByDescending(fs => fs.DateTime)
+            .Where(fs => fs.IsDeleted == false)
+            .Take(12)
+            .ToList();
+
+            if (currentFanStatuses.Count != 12)
+            {
+                return true;
+            }
+
+            var vibrationTrueCount = 0;
+            var vibrationFalseCount = 0;
+
+            foreach (var fanstatus in currentFanStatuses)
+            {
+                if (fanstatus.Vibration == 0)
+                {
+                    vibrationFalseCount++;
+                }
+                else
+                {
+                    vibrationTrueCount++;
+                }
+            }
+
+            if ((fan.IsOn && vibrationFalseCount >= 8) || (!fan.IsOn && vibrationTrueCount >= 8))
+            {
+                foreach (var fanstatus in currentFanStatuses)
+                {
+                    fanstatus.IsDeleted = true;
+                }
+                return false;
+            }
+
+            return true;
+        }
+
+        public void ClearFanStatus(Fan fan)
+        {
+            var currentFanStatuses = fan.FanStatuses
+                .Where(fs => fs.IsDeleted == false)
+                .ToList();
+            foreach (var fanstatus in currentFanStatuses)
+            {
+                fanstatus.IsDeleted = true;
+            }
         }
     }
 }

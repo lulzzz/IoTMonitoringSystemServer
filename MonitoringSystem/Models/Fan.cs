@@ -13,10 +13,12 @@ namespace MonitoringSystem.Models
         public bool IsDeleted { get; set; }
         public Room Room { get; set; }
         public ICollection<Log> Logs { get; set; }
+        public ICollection<FanStatus> FanStatuses { get; set; }
         public Fan()
         {
             IsDeleted = false;
             Logs = new Collection<Log>();
+            FanStatuses = new Collection<FanStatus>();
         }
     }
 }

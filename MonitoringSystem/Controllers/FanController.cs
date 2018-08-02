@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MimeKit;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using MonitoringSystem.Resources.SubResources;
+using System;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
@@ -15,14 +20,18 @@ namespace MonitoringSystem.Controllers
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
         private IRoomRepository roomRepository;
+        private IFanStatusRepository fanStatusRepository;
+        private IConfiguration config;
 
         public FanController(IFanRepository fanRepository, IMapper mapper, IUnitOfWork unitOfWork,
-            IRoomRepository roomRepository)
+            IRoomRepository roomRepository, IFanStatusRepository fanStatusRepository, IConfiguration config)
         {
             this.fanRepository = fanRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.roomRepository = roomRepository;
+            this.fanStatusRepository = fanStatusRepository;
+            this.config = config;
         }
         // GET: api/fans/getall
         [HttpGet]
@@ -120,6 +129,9 @@ namespace MonitoringSystem.Controllers
             //add log
             fanRepository.UpdateFanLog(oldFan, fan);
 
+            //clear fanStatus
+            fanRepository.ClearFanStatus(fan);
+
             await unitOfWork.Complete();
 
             // converting fan object to json result
@@ -145,6 +157,98 @@ namespace MonitoringSystem.Controllers
             await unitOfWork.Complete();
 
             return Ok(id);
+        }
+
+        [HttpPost]
+        [Route("checkfan")]
+        public async Task<IActionResult> CheckFan([FromBody] FanStatusResource fanStatusResource)
+        {
+            //get fan for converting to json result
+            var fan = await fanRepository.GetFanByFanCode(fanStatusResource.FanCode);
+
+            //check if fan with the id dont exist in the database
+            if (fan == null)
+            {
+                return NotFound();
+            }
+
+            if (fanStatusResource.DateTime == null)
+            {
+                fanStatusResource.DateTime = DateTime.Now;
+            }
+
+            //map fanStatusResource json into fanStatus model
+            var fanStatus = mapper.Map<FanStatusResource, FanStatus>(fanStatusResource);
+
+            //add Fan for fanStatus
+            fanStatus.Fan = await fanRepository.GetFanByFanCode(fanStatusResource.FanCode, true);
+
+            //add log
+            fanStatusRepository.AddFanStatusLog(fanStatus);
+
+            //add fanStatus into database
+            fanStatusRepository.AddFanStatus(fanStatus);
+            await unitOfWork.Complete();
+
+            //check fan
+            if (!fanRepository.checkFan(fan, fanStatusResource))
+            {
+                FanWarningEmail(fan);
+                await unitOfWork.Complete();
+            }
+
+            // converting fan object to json result
+            fanStatus = await fanStatusRepository.GetFanStatus(fanStatus.FanStatusId, true);
+            var result = mapper.Map<FanStatus, FanStatusResource>(fanStatus);
+
+            return Ok(result);
+        }
+
+        public void FanWarningEmail(Fan fan)
+        {
+            try
+            {
+                string FromAddress = "damducduy.it@gmail.com";
+                string FromAdressTitle = "Email from Monitoring System!";
+                //To Address  
+                string ToAddress = "duy.dam.k3set@eiu.edu.vn";
+                string ToAdressTitle = "Something wrong with your fan!";
+                string Subject = "Something wrong with your fan!";
+                string BodyContent = "Please check your fan which have"
+                + fan.FanCode + " and " + fan.FanName + " in " + fan.Room.RoomName;
+                //Smtp Server  
+                string SmtpServer = this.config["EmailSettings:Server"];
+                //Smtp Port Number  
+                int SmtpPortNumber = System.Int32.Parse(this.config["EmailSettings:Port"]);
+
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(new MailboxAddress(FromAdressTitle, FromAddress));
+                mimeMessage.To.Add(new MailboxAddress(ToAdressTitle, ToAddress));
+                mimeMessage.Subject = Subject;
+
+                var builder = new BodyBuilder();
+                builder.TextBody = BodyContent;
+
+
+                // Now we just need to set the message body 
+                mimeMessage.Body = builder.ToMessageBody();
+
+                using (var client = new SmtpClient())
+                {
+
+                    client.Connect(SmtpServer, SmtpPortNumber, false);
+                    // Note: only needed if the SMTP server requires authentication  
+                    // Error 5.5.1 Authentication   
+                    client.Authenticate(this.config["EmailSettings:Email"], this.config["EmailSettings:Password"]);
+                    client.Send(mimeMessage);
+                    client.Disconnect(true);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

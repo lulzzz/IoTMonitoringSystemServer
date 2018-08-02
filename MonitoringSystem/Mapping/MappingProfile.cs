@@ -65,7 +65,12 @@ namespace MonitoringSystem.Mapping
                 }));
 
             CreateMap<Fan, FanResource>()
+                .ForMember(fr => fr.FanStatuses, opt => opt.MapFrom(f => f.FanStatuses.Select(ff => ff.FanStatusId)))
                 .ForMember(fr => fr.RoomId, opt => opt.MapFrom(f => f.Room.RoomId));
+
+            CreateMap<FanStatus, FanStatusResource>()
+                .ForMember(fr => fr.FanId, opt => opt.MapFrom(f => f.Fan.FanId))
+                .ForMember(fr => fr.FanCode, opt => opt.MapFrom(f => f.Fan.FanCode));
 
             CreateMap<Rack, RackResource>()
                 .ForMember(rr => rr.RoomId, opt => opt.MapFrom(r => r.Room.RoomId))
@@ -113,6 +118,9 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<FanResource, Fan>()
                     .ForMember(m => m.FanId, opt => opt.Ignore());
+
+            CreateMap<FanStatusResource, FanStatus>()
+                    .ForMember(m => m.FanStatusId, opt => opt.Ignore());
 
             CreateMap<RackResource, Rack>()
                     .ForMember(m => m.RackId, opt => opt.Ignore());

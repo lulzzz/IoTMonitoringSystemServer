@@ -38,6 +38,7 @@ namespace MonitoringSystem
             services.AddScoped<ITemperatureRepository, TemperatureRepository>();
             services.AddScoped<IPlotRepository, PlotRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
+            services.AddScoped<IFanStatusRepository, FanStatusRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
