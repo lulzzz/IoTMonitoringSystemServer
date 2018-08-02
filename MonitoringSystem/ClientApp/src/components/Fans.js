@@ -5,7 +5,8 @@ import {Card, CardTitle, Row, Col, CardBody} from "reactstrap";
 export default class Fans extends Component {
 
     render() {
-        const {fans, onChange, options} = this.props
+        const {fans, onChange} = this.props
+        console.log(fans)
         return (
             <div>
                 <Row>

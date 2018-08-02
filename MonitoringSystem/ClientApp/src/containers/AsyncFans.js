@@ -31,15 +31,18 @@ class AsyncFans extends Component {
         this
             .props
             .dispatch(updateFanStatus(fan, fans))
-        
+        this
+            .props
+            .dispatch(fetchFansIfNeeded())
+
     }
 
     render() {
-        const {fansArray, isFetching, dispatch} = this.props
+        const {fansArray, isFetching} = this.props
         // console.log(this.props)
         return (
             <div>
-                {isFetching && fansArray.length === 0 && <img src={LoadingIcon}/>}
+                {isFetching && <img src={LoadingIcon} alt='loading-icon'/>}
                 {fansArray !== undefined && <Fans fans={fansArray} onChange={this._handleChange}/>}
             </div>
         )
@@ -56,7 +59,7 @@ AsyncFans.propTypes = {
 function mapStateToProps(state) {
     // console.log
     const {fanList} = state.fansReducer
-    const {isFetching, lastUpdated, items: fans} = fanList || {
+    const {isFetching, lastUpdated, items: fans} = fanList.fans || {
         isFetching: true,
         items: []
     }
@@ -64,8 +67,6 @@ function mapStateToProps(state) {
     if (fanList.fans != undefined) {
         fansArray = fanList.fans.items
     }
-
-    // console.log(fanList.fans)
 
     return {fansArray, isFetching, lastUpdated}
 }
