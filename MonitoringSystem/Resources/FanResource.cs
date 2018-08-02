@@ -1,4 +1,7 @@
-﻿namespace MonitoringSystem.Resources
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace MonitoringSystem.Resources
 {
     public class FanResource
     {
@@ -10,5 +13,11 @@
         public bool IsDeleted { get; set; }
         public int? RoomId { get; set; }
         public RoomResource Room { get; set; }
+        public ICollection<int> FanStatuses { get; set; }
+        public FanResource()
+        {
+            FanStatuses = new Collection<int>();
+            IsDeleted = false;
+        }
     }
 }

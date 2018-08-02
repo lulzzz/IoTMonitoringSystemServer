@@ -20,8 +20,6 @@ class AsyncTemperatures extends Component {
         return (
 
             <div>
-                {/* {isFetching && <h2>Loading...</h2>}
-                {temperaturesArray !== undefined &&} */}
                 {isFetching
                     ? <div className='text-center'><img src={LoadingIcon}/></div>
                     : <div>

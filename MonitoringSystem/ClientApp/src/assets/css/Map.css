@@ -1,762 +1,310 @@
+.map {
+  left: 500;
+  width: 500;
+  height: 500;
+}
 
 .censor-btn {
-    text-align: center;
-    border-radius: 30%;
+  border-radius: 0 !important;
+  position: absolute;
+  text-align: center;
+  background-color: green;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 10px;
+  padding: 13px 13px;
 }
 
-.container .map {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: height 500%;
-    max-width: auto;
-}
 /* Style the button and place it in the middle of the container/image */
+
 /*sensor row1 */
-.container .censor-btn#sensor1-1 {
-    position: absolute;
-    top: 11%;
-    left: 26%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+
+.container .censor-btn#sensor-0 {
+  top: 23px;
+  left: 61px;
 }
 
-.container .censor-btn#sensor1-2 {
-    position: absolute;
-    top: 11%;
-    left: 39%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-1 {
+  top: 23px;
+  left: 105px;
 }
 
-.container .censor-btn#sensor1-3 {
-    position: absolute;
-    top: 11%;
-    left: 52%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-2 {
+  top: 23px;
+  left: 150px;
 }
 
-.container .censor-btn#sensor1-4 {
-    position: absolute;
-    top: 11%;
-    left: 72%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-3 {
+  top: 23px;
+  left: 219px;
 }
 
-.container .censor-btn#sensor1-5 {
-    position: absolute;
-    top: 11%;
-    left: 85%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-4 {
+  top: 23px;
+  left: 259px;
 }
 
-.container .censor-btn#sensor1-6 {
-    position: absolute;
-    top: 11%;
-    left: 108%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-5 {
+  top: 23px;
+  left: 329px;
 }
 
-.container .censor-btn#sensor1-7 {
-    position: absolute;
-    top: 11%;
-    left: 124%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-6 {
+  top: 23px;
+  left: 374px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor1-8 {
-    position: absolute;
-    top: 11%;
-    left: 148%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-7 {
+  top: 23px;
+  left: 460px;
 }
 
-.container .censor-btn#sensor1-9 {
-    position: absolute;
-    top: 11%;
-    left: 163%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-8 {
+  top: 23px;
+  left: 505px;
+  width: 63.5px;
 }
 
 /* row2  */
-.container .censor-btn#sensor2-1 {
-    position: absolute;
-    top: 21%;
-    left: 25%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+
+.container .censor-btn#sensor-9 {
+  top: 112px;
+  left: 61px;
 }
 
-.container .censor-btn#sensor2-2 {
-    position: absolute;
-    top: 21%;
-    left: 49%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-10 {
+  top: 112px;
+  left: 130px;
 }
 
-.container .censor-btn#sensor2-3 {
-    position: absolute;
-    top: 21%;
-    left: 65%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-11 {
+  top: 112px;
+  left: 173px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-4 {
-    position: absolute;
-    top: 21%;
-    left: 88%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-12 {
+  top: 112px;
+  left: 262px;
 }
 
-.container .censor-btn#sensor2-5 {
-    position: absolute;
-    top: 21%;
-    left: 105%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-13 {
+  top: 112px;
+  left: 306px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-6 {
-    position: absolute;
-    top: 21%;
-    left: 128%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-14 {
+  top: 112px;
+  left: 395px;
 }
 
-.container .censor-btn#sensor2-7 {
-    position: absolute;
-    top: 21%;
-    left: 143%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-15 {
+  top: 112px;
+  left: 440px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor2-8 {
-    position: absolute;
-    top: 21%;
-    left: 163%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-16 {
+  top: 112px;
+  left: 526px;
 }
 
 /* row3  */
-.container .censor-btn#sensor3-1 {
-    position: absolute;
-    top: 41%;
-    left: 48%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+
+.container .censor-btn#sensor-17 {
+  top: 200px;
+  left: 128px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor3-2 {
-    position: absolute;
-    top: 41%;
-    left: 72%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-18 {
+  top: 200px;
+  left: 215px;
 }
 
-.container .censor-btn#sensor3-3 {
-    position: absolute;
-    top: 41%;
-    left: 85%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-19 {
+  top: 200px;
+  left: 260px;
 }
 
-.container .censor-btn#sensor3-4 {
-    position: absolute;
-    top: 41%;
-    left: 100%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-20 {
+  top: 200px;
+  left: 323px;
+  width: 18px;
 }
 
-.container .censor-btn#sensor3-5 {
-    position: absolute;
-    top: 41%;
-    left: 125%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-21 {
+  top: 200px;
+  left: 392px;
 }
 
-.container .censor-btn#sensor3-6 {
-    position: absolute;
-    top: 41%;
-    left: 145%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-22 {
+  top: 200px;
+  left: 460px;
 }
 
-.container .censor-btn#sensor3-7 {
-    position: absolute;
-    top: 41%;
-    left: 160%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-23 {
+  top: 200px;
+  left: 505px;
+  width: 63.5px;
 }
 
 /* row 4 */
 
-.container .censor-btn#sensor4-1 {
-    position: absolute;
-    top: 51%;
-    left: 22%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-24 {
+  top: 289px;
+  left: 40px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor4-2 {
-    position: absolute;
-    top: 51%;
-    left: 50%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-25 {
+  top: 289px;
+  left: 128px;
 }
 
-.container .censor-btn#sensor4-3 {
-    position: absolute;
-    top: 51%;
-    left: 64%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-26 {
+  top: 289px;
+  left: 173px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor4-4 {
-    position: absolute;
-    top: 51%;
-    left: 88%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-27 {
+  top: 289px;
+  left: 260px;
 }
 
-.container .censor-btn#sensor4-5 {
-    position: absolute;
-    top: 51%;
-    left: 100%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-28 {
+  top: 289px;
+  left: 305px;
+  width: 64px;
 }
 
-.container .censor-btn#sensor4-6 {
-    position: absolute;
-    top: 51%;
-    left: 128%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-29 {
+  top: 289px;
+  left: 393px;
 }
 
-.container .censor-btn#sensor4-7 {
-    position: absolute;
-    top: 51%;
-    left: 144%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-30 {
+  top: 289px;
+  left: 439px;
+  width: 64px;
 }
 
-.container .censor-btn#sensor4-8 {
-    position: absolute;
-    top: 51%;
-    left: 163%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-31 {
+  top: 289px;
+  left: 525px;
 }
 
 /* row 5 */
 
-.container .censor-btn#sensor5-1 {
-    position: absolute;
-    top: 71%;
-    left: 22%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-32 {
+  top: 375px;
+  left: 58px;
+  width: 10px;
 }
 
-.container .censor-btn#sensor5-2 {
-    position: absolute;
-    top: 71%;
-    left: 39%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-33 {
+  top: 375px;
+  left: 105px;
 }
 
-.container .censor-btn#sensor5-3 {
-    position: absolute;
-    top: 71%;
-    left: 52%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-34 {
+  top: 375px;
+  left: 150px;
 }
 
-.container .censor-btn#sensor5-4 {
-    position: absolute;
-    top: 71%;
-    left: 68%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-35 {
+  top: 375px;
+  left: 195px;
+  width: 63.5px;
 }
 
-.container .censor-btn#sensor5-5 {
-    position: absolute;
-    top: 71%;
-    left: 95%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-36{
+  top: 375px;
+  left: 282px;
 }
 
-.container .censor-btn#sensor5-6 {
-    position: absolute;
-    top: 71%;
-    left: 110%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-37 {
+  top: 375px;
+  left: 327px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor5-7 {
-    position: absolute;
-    top: 71%;
-    left: 130%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-38 {
+  top: 375px;
+  left: 392px;
 }
 
-.container .censor-btn#sensor5-8 {
-    position: absolute;
-    top: 71%;
-    left: 145%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-39 {
+  top: 375px;
+  left: 438px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor5-9 {
-    position: absolute;
-    top: 71%;
-    left: 163%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-40 {
+  top: 375px;
+  left: 526px;
 }
 
 /* row 6 */
 
-.container .censor-btn#sensor6-1 {
-    position: absolute;
-    top: 82%;
-    left: 19%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-41 {
+  top: 465px;
+  left: 37px;
 }
 
-.container .censor-btn#sensor6-2 {
-    position: absolute;
-    top: 82%;
-    left: 49%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-42 {
+  top: 465px;
+  left: 128px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-3 {
-    position: absolute;
-    top: 82%;
-    left: 75%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-43 {
+  top: 465px;
+  left: 217px;
 }
 
-.container .censor-btn#sensor6-4 {
-    position: absolute;
-    top: 82%;
-    left: 88%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-44 {
+  top: 465px;
+  left: 263px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-5 {
-    position: absolute;
-    top: 82%;
-    left: 128%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-45 {
+  top: 465px;
+  left: 393px;
+  width: 65px;
 }
 
-.container .censor-btn#sensor6-6 {
-    position: absolute;
-    top: 82%;
-    left: 150%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-46 {
+  top: 465px;
+  left: 482px;
 }
 
-.container .censor-btn#sensor6-7 {
-    position: absolute;
-    top: 82%;
-    left: 163%;
-    transform: translate(-60%, -60%);
-    -ms-transform: translate(-70%, -70%);
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 0.5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+.container .censor-btn#sensor-47 {
+  top: 465px;
+  left: 525px;
 }
 
 .container .censor-btn#sensor-safe {
-    background-color: green;
-
+  background-color: green;
 }
 
 .container .censor-btn#sensor-danger {
-    background-color: red;
-
+  background-color: red;
 }
 
 .container .censor-btn#btn-safe {
-    background-color: green;
+  background-color: green;
 }
 
 .container .censor-btn#btn-danger {
-    background-color: red;
+  background-color: red;
 }
+
 .container .censor-btn:hover {
-    background-color: black;
+  background-color: black;
 }

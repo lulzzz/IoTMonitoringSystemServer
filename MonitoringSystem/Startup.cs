@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MonitoringSystem.Data;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Persistences.Repositories;
+using PMS.Hubs;
 
 namespace MonitoringSystem
 {
@@ -36,6 +38,7 @@ namespace MonitoringSystem
             services.AddScoped<ITemperatureRepository, TemperatureRepository>();
             services.AddScoped<IPlotRepository, PlotRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
+            services.AddScoped<IFanStatusRepository, FanStatusRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -51,7 +54,23 @@ namespace MonitoringSystem
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddCors(options =>
+                {
+                    options.AddPolicy("AllowAll", builder =>
+                    {
+                        builder.AllowAnyHeader()
+                            .AllowAnyOrigin()
+                            .AllowCredentials()
+                            .AllowAnyMethod();
+                    });
+                });
+            services.AddSignalR();
+            services.AddResponseCompression();
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<GzipCompressionProvider>();
+            });
             services.AddAutoMapper();
 
             // In production, the React files will be served from this directory
@@ -79,6 +98,13 @@ namespace MonitoringSystem
             app.UseSpaStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseResponseCompression();
+
+            app.UseCors("AllowAll");
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MonitoringSystemHub>("/hub");
+            });
 
             app.UseMvc(routes =>
             {

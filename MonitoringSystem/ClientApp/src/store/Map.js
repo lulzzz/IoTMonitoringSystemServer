@@ -1,6 +1,9 @@
 const requestMapsType = "REQUEST_SENSORS";
 const receiveMapsType = "RECEIVE_SENSORS";
-const initialState = { popovers: [], isLoading: false };
+const initialState = {
+  popovers: [],
+  isLoading: false
+};
 
 export const actionCreators = {
   requestMaps: isLoaded => async (dispatch, getState) => {
@@ -10,7 +13,10 @@ export const actionCreators = {
       return;
     }
 
-    dispatch({ type: requestMapsType, isLoaded });
+    dispatch({
+      type: requestMapsType,
+      isLoaded
+    });
 
     const url = `api/sensors/getall`;
     const response = await fetch(url);
@@ -19,15 +25,20 @@ export const actionCreators = {
     var popovers = [];
     for (let sensor of sensors.items) {
       popovers.push({
-        placement: sensor.latestStatus.placement,
-        text: sensor.latestStatus.text,
-        sensor: sensor.latestStatus.sensor,
-        temperature: sensor.latestStatus.temperature,
-        humidity: sensor.latestStatus.humidity
+        placement: sensor.latestStatus ? sensor.latestStatus.placement : 'top',
+        text: sensor.latestStatus ? sensor.latestStatus.text : sensor.sensorCode,
+        sensor: sensor.latestStatus ? sensor.latestStatus.sensor : sensor.sensorName,
+        temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
+        humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
       });
     }
+    popovers = popovers.reverse();
 
-    dispatch({ type: receiveMapsType, isLoaded, popovers });
+    dispatch({
+      type: receiveMapsType,
+      isLoaded,
+      popovers
+    });
   }
 };
 

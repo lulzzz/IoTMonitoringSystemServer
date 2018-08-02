@@ -1,8 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using PMS.Hubs;
 using System;
 using System.Threading.Tasks;
 
@@ -16,13 +18,15 @@ namespace MonitoringSystem.Controllers
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
         private IRoomRepository roomRepository;
+        private IHubContext<MonitoringSystemHub> hubContext { get; set; }
 
-        public SensorController(ISensorRepository sensorRepository, IMapper mapper, IUnitOfWork unitOfWork, IRoomRepository roomRepository)
+        public SensorController(IHubContext<MonitoringSystemHub> hubContext, ISensorRepository sensorRepository, IMapper mapper, IUnitOfWork unitOfWork, IRoomRepository roomRepository)
         {
             this.sensorRepository = sensorRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.roomRepository = roomRepository;
+            this.hubContext = hubContext;
         }
         // GET: api/sensors/getall
         [HttpGet]
@@ -98,6 +102,7 @@ namespace MonitoringSystem.Controllers
 
             //get sensor for converting to json result
             sensor = await sensorRepository.GetSensor(sensor.SensorId);
+            await hubContext.Clients.All.SendAsync("LoadData");
             var result = mapper.Map<Sensor, SensorResource>(sensor);
 
             return Ok(result);
