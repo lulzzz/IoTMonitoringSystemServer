@@ -214,8 +214,8 @@ namespace MonitoringSystem.Controllers
                 string ToAddress = "duy.dam.k3set@eiu.edu.vn";
                 string ToAdressTitle = "Something wrong with your fan!";
                 string Subject = "Something wrong with your fan!";
-                string BodyContent = "Please check your fan which have"
-                + fan.FanCode + " and " + fan.FanName + " in " + fan.Room.RoomName;
+                string BodyContent = "Please check your fan which have code is:"
+                + fan.FanCode + " and fan name is:" + fan.FanName + " in " + fan.Room.RoomName;
                 //Smtp Server  
                 string SmtpServer = this.config["EmailSettings:Server"];
                 //Smtp Port Number  
