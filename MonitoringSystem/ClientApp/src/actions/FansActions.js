@@ -11,12 +11,6 @@ export const invalidateUpdateFanType = "INVALIDATE_UPDATE_FAN";
 export function updateFanStatus(fan, fans) {
   console.log("updateAction");
   return dispatch => {
-    return dispatch(requestUpdateFans(fan));
-  };
-}
-
-function requestUpdateFans(fan) {
-  return dispatch => {
     const url = "api/fans/update/" + fan.fanId;
     return fetch(url, {
       method: "PUT",
