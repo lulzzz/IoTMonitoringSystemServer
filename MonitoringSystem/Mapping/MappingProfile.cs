@@ -112,8 +112,8 @@ namespace MonitoringSystem.Mapping
                     .ForMember(m => m.HumidityId, opt => opt.Ignore());
 
             CreateMap<FanResource, Fan>()
-                    .ForMember(m => m.Room, opt => opt.Ignore())
-                    .ForMember(m => m.FanId, opt => opt.Ignore());
+                    .ForMember(m => m.FanId, opt => opt.Ignore())
+                    .ForMember(m => m.Room, opt => opt.Ignore());
 
             CreateMap<RackResource, Rack>()
                     .ForMember(m => m.RackId, opt => opt.Ignore());
