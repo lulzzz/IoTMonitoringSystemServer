@@ -9,54 +9,59 @@ export const invalidateUpdateFanType = "INVALIDATE_UPDATE_FAN";
 // FETCH_PRODUCTS_FAILURE   } from './productActions';
 
 export function updateFanStatus(fan, fans) {
-    console.log("updateAction");
-    console.log(fans)
+  console.log("updateAction");
+  return dispatch => {
+    return dispatch(requestUpdateFans(fan));
+  };
+}
+
+function requestUpdateFans(fan) {
+  return dispatch => {
     const url = "api/fans/update/" + fan.fanId;
-    const response = fetch(url, {
-        method: "PUT",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(fan)
-    });
-    console.log(response)
-    return {type: updateFanStatusType, fans};
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(fan)
+    }).then(() => dispatch(fetchFans()));
+  };
 }
 
 function requestFans() {
-    return {type: requestFansType};
+  return { type: requestFansType };
 }
 
 function receiveFans(json) {
-    return {
-        type: receiveFansType,
-        fans: json.items,
-        receivedAt: Date.now()
-    };
+  return {
+    type: receiveFansType,
+    fans: json.items,
+    receivedAt: Date.now()
+  };
 }
 
 function fetchFans() {
-    return dispatch => {
-        dispatch(requestFans());
-        return fetch(`/api/fans/getall`)
-            .then(response => response.json())
-            .then(json => dispatch(receiveFans(json)));
-    };
+  return dispatch => {
+    dispatch(requestFans());
+    return fetch(`/api/fans/getall`)
+      .then(response => response.json())
+      .then(json => dispatch(receiveFans(json)));
+  };
 }
 
 function shouldFetchFans(state) {
-    const fans = state.fansReducer.fanList;
-    // console.log('should') console.log(state)
-    console.log(state);
-    if (fans != undefined) {
-        return true;
-    } else if (fans.isFetching) {
-        return false;
-    } else {
-        console.log("sss");
-        return fans.didInvalidate;
-    }
+  const fans = state.fansReducer.fanList;
+  // console.log('should') console.log(state)
+  console.log(state);
+  if (fans != undefined) {
+    return true;
+  } else if (fans.isFetching) {
+    return false;
+  } else {
+    console.log("sss");
+    return fans.didInvalidate;
+  }
 }
 
 // export function updateFans (state, fan) {     if (isLoaded ===
@@ -72,10 +77,9 @@ function shouldFetchFans(state) {
 // isLoading: false, fans});     return; }
 
 export function fetchFansIfNeeded() {
-    return (dispatch, getState) => {
-        if (shouldFetchFans(getState())) {
-            return dispatch(fetchFans());
-        }
-    };
+  return (dispatch, getState) => {
+    if (shouldFetchFans(getState())) {
+      return dispatch(fetchFans());
+    }
+  };
 }
-

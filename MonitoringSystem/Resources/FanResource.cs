@@ -12,6 +12,7 @@ namespace MonitoringSystem.Resources
         public int Capacity { get; set; }
         public bool IsDeleted { get; set; }
         public int? RoomId { get; set; }
+        public string RoomName { get; set; }
         public RoomResource Room { get; set; }
         public ICollection<int> FanStatuses { get; set; }
         public FanResource()

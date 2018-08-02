@@ -83,7 +83,7 @@ namespace MonitoringSystem.Controllers
             //add room to sensor
             sensor.Room = await roomRepository.GetRoom(sensorResource.RoomId);
 
-            //if sensor id is undefined in json which post to server
+            //if room id is undefined in json which post to server
             if (!String.IsNullOrEmpty(sensorResource.RoomName))
             {
                 sensor.Room = await roomRepository.GetRoomByRoomName(sensorResource.RoomName);
@@ -102,7 +102,9 @@ namespace MonitoringSystem.Controllers
 
             //get sensor for converting to json result
             sensor = await sensorRepository.GetSensor(sensor.SensorId);
+
             await hubContext.Clients.All.SendAsync("LoadData");
+
             var result = mapper.Map<Sensor, SensorResource>(sensor);
 
             return Ok(result);
@@ -153,6 +155,7 @@ namespace MonitoringSystem.Controllers
 
             await unitOfWork.Complete();
 
+            await hubContext.Clients.All.SendAsync("LoadData");
             // converting sensor object to json result
             var result = mapper.Map<Sensor, SensorResource>(sensor);
             return Ok(result);
@@ -174,6 +177,8 @@ namespace MonitoringSystem.Controllers
             //just change the IsDeleted of sensor into true
             sensorRepository.RemoveSensor(sensor);
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             return Ok(id);
         }

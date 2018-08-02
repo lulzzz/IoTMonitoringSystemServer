@@ -37,6 +37,7 @@ class Admin extends Component {
         {this.renderSensorsTable(this.props)}
         {this.renderRacksTable(this.props)}
         {this.renderRoomsTable(this.props)}
+        {this.renderFansTable(this.props)}
       </div>
     );
   }
@@ -280,8 +281,131 @@ class Admin extends Component {
     );
   }
 
+  renderFansTable(props) {
+    const options = {
+      page: 1, // which page you want to show as default
+      sizePerPage: 5, // which size per page you want to locate as default
+      pageStartIndex: 1, // where to start counting the pages
+      paginationSize: 3, // the pagination bar size.
+      prePage: "Prev", // Previous page button text
+      nextPage: "Next", // Next page button text
+      firstPage: "First", // First page button text
+      lastPage: "Last", // Last page button text
+      paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
+      paginationPosition: "bottom", // default is bottom, top and both is all available
+      hideSizePerPage: true,
+      onAddRow: this.onAddFanRow,
+      onDeleteRow: this.onDeleteFanRow,
+      onCellEdit: this.onFanCellEdit
+    };
+    const cellEditProp = {
+      mode: "click"
+    };
+    return (
+      <Row className="table">
+        <BootstrapTable
+          data={this.props.fans.items}
+          striped
+          hover
+          condensed
+          pagination={true}
+          insertRow
+          deleteRow
+          selectRow={{ mode: "radio" }}
+          //remote={true}
+          cellEdit={cellEditProp}
+          options={options}
+        >
+          <TableHeaderColumn
+            dataField="fanId"
+            hidden={true}
+            hiddenOnInsert
+            isKey
+          >
+            Fan Id
+          </TableHeaderColumn>
+          <TableHeaderColumn
+            dataField="fanCode"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+          >
+            Fan Code
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="fanName"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+          >
+            Fan Name
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="capacity"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+          >
+            Capacity
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="isOn"
+            dataFormat={this.showIsOnFormat}
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+            editable={{
+              type: "select",
+              options: {
+                values: this.props.trueFalseFormatter,
+                textKey: "formatter",
+                valueKey: "id"
+              }
+            }}
+          >
+            Is On
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="roomId"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+            dataFormat={this.showRoomName}
+            editable={{
+              type: "select",
+              options: {
+                values: this.props.rooms.items,
+                textKey: "roomName",
+                valueKey: "roomId"
+              }
+            }}
+          >
+            Room Name
+          </TableHeaderColumn>
+        </BootstrapTable>
+      </Row>
+    );
+  }
+
   showRoomName(cell, row) {
     return row.roomName;
+  }
+
+  showIsOnFormat(cell, row) {
+    if (row.isOn) {
+      return "On";
+    } else {
+      return "Off";
+    }
   }
 
   onAddSensorRow = row => {
@@ -312,6 +436,16 @@ class Admin extends Component {
   };
   onRackCellEdit = (row, fieldName, value) => {
     this.props.updateRacks(row, fieldName, value);
+  };
+
+  onAddFanRow = row => {
+    this.props.addFans(row);
+  };
+  onDeleteFanRow = row => {
+    this.props.deleteFans(row[0]);
+  };
+  onFanCellEdit = (row, fieldName, value) => {
+    this.props.updateFans(row, fieldName, value);
   };
   // handleSave(data) {
   //   this.props.addSensors(data);

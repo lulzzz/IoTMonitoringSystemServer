@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using PMS.Hubs;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
@@ -14,12 +16,15 @@ namespace MonitoringSystem.Controllers
         private IRoomRepository roomRepository;
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
+        private IHubContext<MonitoringSystemHub> hubContext;
 
-        public RoomController(IRoomRepository roomRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public RoomController(IHubContext<MonitoringSystemHub> hubContext, IRoomRepository roomRepository,
+         IMapper mapper, IUnitOfWork unitOfWork)
         {
             this.roomRepository = roomRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.hubContext = hubContext;
         }
         // GET: api/rooms/getall
         [HttpGet]
@@ -89,6 +94,9 @@ namespace MonitoringSystem.Controllers
 
             //get room for converting to json result
             room = await roomRepository.GetRoom(room.RoomId);
+
+            await hubContext.Clients.All.SendAsync("LoadData");
+
             var result = mapper.Map<Room, RoomResource>(room);
 
             return Ok(result);
@@ -132,6 +140,8 @@ namespace MonitoringSystem.Controllers
 
             await unitOfWork.Complete();
 
+            await hubContext.Clients.All.SendAsync("LoadData");
+
             // converting room object to json result
             var result = mapper.Map<Room, RoomResource>(room);
             return Ok(result);
@@ -153,6 +163,8 @@ namespace MonitoringSystem.Controllers
             //just change the IsDeleted of room into true
             roomRepository.RemoveRoom(room);
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             return Ok(id);
         }

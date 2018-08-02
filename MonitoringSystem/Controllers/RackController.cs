@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using PMS.Hubs;
 using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
@@ -16,15 +18,17 @@ namespace MonitoringSystem.Controllers
         private IUnitOfWork unitOfWork;
         private IRoomRepository roomRepository;
         private ISensorRepository sensorRepository;
+        private IHubContext<MonitoringSystemHub> hubContext;
 
         public RackController(IRackRepository rackRepository, IMapper mapper, IUnitOfWork unitOfWork,
-            IRoomRepository roomRepository, ISensorRepository sensorRepository)
+            IRoomRepository roomRepository, ISensorRepository sensorRepository, IHubContext<MonitoringSystemHub> hubContext)
         {
             this.rackRepository = rackRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.roomRepository = roomRepository;
             this.sensorRepository = sensorRepository;
+            this.hubContext = hubContext;
         }
         // GET: api/racks/getall
         [HttpGet]
@@ -90,6 +94,9 @@ namespace MonitoringSystem.Controllers
 
             //get rack for converting to json result
             rack = await rackRepository.GetRack(rack.RackId);
+
+            await hubContext.Clients.All.SendAsync("LoadData");
+
             var result = mapper.Map<Rack, RackResource>(rack);
 
             return Ok(result);
@@ -127,6 +134,8 @@ namespace MonitoringSystem.Controllers
 
             await unitOfWork.Complete();
 
+            await hubContext.Clients.All.SendAsync("LoadData");
+
             // converting rack object to json result
             var result = mapper.Map<Rack, RackResource>(rack);
             return Ok(result);
@@ -148,6 +157,8 @@ namespace MonitoringSystem.Controllers
             //just change the IsDeleted of rack into true
             rackRepository.RemoveRack(rack);
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             return Ok(id);
         }

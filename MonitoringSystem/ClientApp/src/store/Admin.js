@@ -7,8 +7,10 @@ const initialState = {
   sensors: [],
   racks: [],
   rooms: [],
+  fans: [],
   isLoading: false,
-  hubConnection: null
+  hubConnection: null,
+  trueFalseFormatter: []
 };
 
 export const actionCreators = {
@@ -18,6 +20,11 @@ export const actionCreators = {
       // data)
       return;
     }
+
+    var trueFalseFormatter = [
+      { id: true, formatter: "On" },
+      { id: false, formatter: "Off" }
+    ];
 
     var hubConnection = new signalR.HubConnectionBuilder()
       .withUrl("/hub")
@@ -36,7 +43,12 @@ export const actionCreators = {
         console.log("Error while establishing connection");
       });
 
-    dispatch({ type: requestSensorsType, isLoaded, hubConnection });
+    dispatch({
+      type: requestSensorsType,
+      isLoaded,
+      hubConnection,
+      trueFalseFormatter
+    });
     loadData(dispatch, isLoaded);
   },
 
@@ -77,6 +89,22 @@ export const actionCreators = {
 
     delete data.sensorId;
     await fetch(`api/sensors/add`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    loadData(dispatch);
+  },
+
+  addFans: data => async (dispatch, getState) => {
+    console.log("addFans");
+
+    delete data.fanId;
+    await fetch(`api/fans/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -160,6 +188,33 @@ export const actionCreators = {
     loadData(dispatch);
   },
 
+  updateFans: (data, fieldName, value) => async (dispatch, getState) => {
+    console.log("updateFans");
+    var fanId = data.fanId;
+    data[fieldName] = value;
+
+    data = {
+      fanCode: data.fanCode,
+      FanName: data.fanName,
+      isOn: data.isOn,
+      capacity: data.capacity,
+      roomName: data.roomName
+    };
+
+    console.log(data);
+    var res = await fetch(`api/fans/update/` + fanId, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    console.log(res);
+
+    loadData(dispatch);
+  },
+
   deleteRacks: rackId => async (dispatch, getState) => {
     await fetch(`api/racks/delete/` + rackId, {
       method: "DELETE",
@@ -194,6 +249,18 @@ export const actionCreators = {
     });
 
     loadData(dispatch);
+  },
+
+  deleteSensors: fanId => async (dispatch, getState) => {
+    await fetch(`api/fans/delete/` + fanId, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+
+    loadData(dispatch);
   }
 };
 
@@ -216,7 +283,13 @@ export const loadData = async (dispatch, isLoaded) => {
     return response.json();
   });
 
-  dispatch({ type: receiveSensorsType, sensors, isLoaded, rooms, racks });
+  const fans = await fetch(`api/fans/getall`, {
+    method: "GET"
+  }).then(function(response) {
+    return response.json();
+  });
+
+  dispatch({ type: receiveSensorsType, sensors, isLoaded, rooms, racks, fans });
 };
 
 export const reducer = (state, action) => {
@@ -227,7 +300,8 @@ export const reducer = (state, action) => {
       ...state,
       isLoading: true,
       isLoaded: action.isLoaded,
-      hubConnection: action.hubConnection
+      hubConnection: action.hubConnection,
+      trueFalseFormatter: action.trueFalseFormatter
     };
   }
 
@@ -238,7 +312,8 @@ export const reducer = (state, action) => {
       isLoading: false,
       isLoaded: action.isLoaded,
       rooms: action.rooms,
-      racks: action.racks
+      racks: action.racks,
+      fans: action.fans
     };
   }
 

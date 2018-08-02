@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
 using MonitoringSystem.Resources.SubResources;
+using PMS.Hubs;
 using System;
 using System.Threading.Tasks;
 
@@ -22,9 +24,11 @@ namespace MonitoringSystem.Controllers
         private IRoomRepository roomRepository;
         private IFanStatusRepository fanStatusRepository;
         private IConfiguration config;
+        private IHubContext<MonitoringSystemHub> hubContext;
 
         public FanController(IFanRepository fanRepository, IMapper mapper, IUnitOfWork unitOfWork,
-            IRoomRepository roomRepository, IFanStatusRepository fanStatusRepository, IConfiguration config)
+            IRoomRepository roomRepository, IFanStatusRepository fanStatusRepository, IConfiguration config,
+            IHubContext<MonitoringSystemHub> hubContext)
         {
             this.fanRepository = fanRepository;
             this.mapper = mapper;
@@ -32,6 +36,7 @@ namespace MonitoringSystem.Controllers
             this.roomRepository = roomRepository;
             this.fanStatusRepository = fanStatusRepository;
             this.config = config;
+            this.hubContext = hubContext;
         }
         // GET: api/fans/getall
         [HttpGet]
@@ -85,6 +90,12 @@ namespace MonitoringSystem.Controllers
             //add room for fan
             fan.Room = await roomRepository.GetRoom(fanResource.RoomId, true);
 
+            //if room id is undefined in json which post to server
+            if (!String.IsNullOrEmpty(fanResource.RoomName))
+            {
+                fan.Room = await roomRepository.GetRoomByRoomName(fanResource.RoomName);
+            }
+
             //add log
             fanRepository.AddFanLog(fan);
 
@@ -94,6 +105,9 @@ namespace MonitoringSystem.Controllers
 
             //get fan for converting to json result
             fan = await fanRepository.GetFan(fan.FanId);
+
+            await hubContext.Clients.All.SendAsync("LoadData");
+
             var result = mapper.Map<Fan, FanResource>(fan);
 
             return Ok(result);
@@ -126,6 +140,12 @@ namespace MonitoringSystem.Controllers
             //edit room for fan
             fan.Room = await roomRepository.GetRoom(fanResource.RoomId, true);
 
+            //if room id is undefined in json which post to server
+            if (!String.IsNullOrEmpty(fanResource.RoomName))
+            {
+                fan.Room = await roomRepository.GetRoomByRoomName(fanResource.RoomName);
+            }
+
             //add log
             fanRepository.UpdateFanLog(oldFan, fan);
 
@@ -133,6 +153,8 @@ namespace MonitoringSystem.Controllers
             fanRepository.ClearFanStatus(fan);
 
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             // converting fan object to json result
             var result = mapper.Map<Fan, FanResource>(fan);
@@ -155,6 +177,8 @@ namespace MonitoringSystem.Controllers
             //just change the IsDeleted of fan into true
             fanRepository.RemoveFan(fan);
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             return Ok(id);
         }

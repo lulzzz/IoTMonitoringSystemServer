@@ -66,7 +66,8 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<Fan, FanResource>()
                 .ForMember(fr => fr.FanStatuses, opt => opt.MapFrom(f => f.FanStatuses.Select(ff => ff.FanStatusId)))
-                .ForMember(fr => fr.RoomId, opt => opt.MapFrom(f => f.Room.RoomId));
+                .ForMember(fr => fr.RoomId, opt => opt.MapFrom(f => f.Room.RoomId))
+                .ForMember(fr => fr.RoomName, opt => opt.MapFrom(f => f.Room.RoomName));
 
             CreateMap<FanStatus, FanStatusResource>()
                 .ForMember(fr => fr.FanId, opt => opt.MapFrom(f => f.Fan.FanId))
