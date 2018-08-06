@@ -1,8 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 
-const requestSensorsType = "REQUEST_SENSORS";
-const receiveSensorsType = "RECEIVE_SENSORS";
-const addSensorsType = "ADD_SENSORS";
+const requestAdminType = "REQUEST_SENSORS";
+const receiveAdminType = "RECEIVE_SENSORS";
 const initialState = {
   sensors: [],
   racks: [],
@@ -14,7 +13,7 @@ const initialState = {
 };
 
 export const actionCreators = {
-  requestSensors: isLoaded => async (dispatch, getState) => {
+  requestAdmin: isLoaded => async (dispatch, getState) => {
     if (isLoaded === getState().admin.isLoaded) {
       // Don't issue a duplicate request (we already have or are loading the requested
       // data)
@@ -44,7 +43,7 @@ export const actionCreators = {
       });
 
     dispatch({
-      type: requestSensorsType,
+      type: requestAdminType,
       isLoaded,
       hubConnection,
       trueFalseFormatter
@@ -289,13 +288,13 @@ export const loadData = async (dispatch, isLoaded) => {
     return response.json();
   });
 
-  dispatch({ type: receiveSensorsType, sensors, isLoaded, rooms, racks, fans });
+  dispatch({ type: receiveAdminType, sensors, isLoaded, rooms, racks, fans });
 };
 
 export const reducer = (state, action) => {
   state = state || initialState;
 
-  if (action.type === requestSensorsType) {
+  if (action.type === requestAdminType) {
     return {
       ...state,
       isLoading: true,
@@ -305,7 +304,7 @@ export const reducer = (state, action) => {
     };
   }
 
-  if (action.type === receiveSensorsType) {
+  if (action.type === receiveAdminType) {
     return {
       ...state,
       sensors: action.sensors,

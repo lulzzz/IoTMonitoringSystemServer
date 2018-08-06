@@ -15,6 +15,7 @@ import {
   PaginationItem,
   PaginationLink,
   Row,
+  Button,
   Table
 } from "reactstrap";
 
@@ -22,13 +23,13 @@ class Admin extends Component {
   componentWillMount() {
     // This method runs when the component is first added to the page
     const isLoaded = false;
-    this.props.requestSensors(isLoaded);
+    this.props.requestAdmin(isLoaded);
   }
 
   componentWillReceiveProps(nextProps) {
     // This method runs when incoming props (e.g., route params) change
     const isLoaded = false;
-    this.props.requestSensors(isLoaded);
+    this.props.requestAdmin(isLoaded);
   }
 
   render() {
@@ -72,6 +73,7 @@ class Admin extends Component {
           pagination={true}
           insertRow
           deleteRow
+          exportCSV
           selectRow={{ mode: "radio" }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -123,6 +125,8 @@ class Admin extends Component {
           >
             Room Name
           </TableHeaderColumn>
+
+          <TableHeaderColumn dataFormat={this.editCellButton} />
         </BootstrapTable>
       </Row>
     );
@@ -158,6 +162,7 @@ class Admin extends Component {
           pagination={true}
           insertRow
           deleteRow
+          exportCSV
           selectRow={{ mode: "radio" }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -244,6 +249,7 @@ class Admin extends Component {
           pagination={true}
           insertRow
           deleteRow
+          exportCSV
           selectRow={{ mode: "radio" }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -311,6 +317,7 @@ class Admin extends Component {
           pagination={true}
           insertRow
           deleteRow
+          exportCSV
           selectRow={{ mode: "radio" }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -406,6 +413,17 @@ class Admin extends Component {
     } else {
       return "Off";
     }
+  }
+
+  editCellButton(cell, row, enumObject, rowIndex) {
+    let theEditButton = (
+      <p>
+        <Link className="btn btn-primary" to={`/fetchdata/5`}>
+          Detail
+        </Link>
+      </p>
+    );
+    return theEditButton;
   }
 
   onAddSensorRow = row => {

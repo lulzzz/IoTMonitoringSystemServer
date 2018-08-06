@@ -17,9 +17,9 @@ namespace MonitoringSystem.Data
             }
             var rooms = new Room[]
             {
-                new Room{IsDeleted = false, RoomCode="001", RoomName="Room 1"},
-                new Room{IsDeleted = false, RoomCode="002", RoomName="Room 2"},
-                new Room{IsDeleted = false, RoomCode="003", RoomName="Room 3"},
+                new Room{IsDeleted = false, RoomCode="R1", RoomName="Room 1"},
+                new Room{IsDeleted = false, RoomCode="R2", RoomName="Room 2"},
+                new Room{IsDeleted = false, RoomCode="R3", RoomName="Room 3"},
             };
             foreach (var room in rooms)
             {
@@ -29,12 +29,12 @@ namespace MonitoringSystem.Data
 
             var sensors = new Sensor[]
             {
-                new Sensor{IsDeleted = false, SensorCode="001", SensorName="Sensor 1", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="002",SensorName="Sensor 2", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="003", SensorName="Sensor 3", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
-                new Sensor{IsDeleted = false, SensorCode="004", SensorName="Sensor 4", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
-                new Sensor{IsDeleted = false, SensorCode="005", SensorName="Sensor 5", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
-                new Sensor{IsDeleted = false, SensorCode="006", SensorName="Sensor 6", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)}
+                new Sensor{IsDeleted = false, SensorCode="N1", SensorName="Sensor 1", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="N2",SensorName="Sensor 2", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
+                new Sensor{IsDeleted = false, SensorCode="N3", SensorName="Sensor 3", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
+                new Sensor{IsDeleted = false, SensorCode="N4", SensorName="Sensor 4", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
+                new Sensor{IsDeleted = false, SensorCode="N5", SensorName="Sensor 5", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)},
+                new Sensor{IsDeleted = false, SensorCode="N6", SensorName="Sensor 6", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3)}
 
             };
             foreach (var sensor in sensors)
@@ -45,9 +45,9 @@ namespace MonitoringSystem.Data
 
             var fans = new Fan[]
             {
-                new Fan{IsDeleted = false, FanCode="001", FanName="Fan 1",IsOn=true,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Fan{IsDeleted = false, FanCode="002", FanName="Fan 2",IsOn=false,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Fan{IsDeleted = false, FanCode="003", FanName="Fan 3",IsOn=false,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
+                new Fan{IsDeleted = false, FanCode="FI1", FanName="Fan 1",IsOn=true,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Fan{IsDeleted = false, FanCode="FI2", FanName="Fan 2",IsOn=false,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Fan{IsDeleted = false, FanCode="FI3", FanName="Fan 3",IsOn=false,Capacity=0,Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2)},
             };
             foreach (var fan in fans)
             {
@@ -57,12 +57,12 @@ namespace MonitoringSystem.Data
 
             var racks = new Rack[]
             {
-                new Rack{IsDeleted = false, RackCode="001",RackName="Rack 1",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
-                new Rack{IsDeleted = false, RackCode="002",RackName="Rack 2",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
-                new Rack{IsDeleted = false, RackCode="003",RackName="Rack 3",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
-                new Rack{IsDeleted = false, RackCode="004",RackName="Rack 4",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
-                new Rack{IsDeleted = false, RackCode="005",RackName="Rack 5",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
-                new Rack{IsDeleted = false, RackCode="006",RackName="Rack 6",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==6)},
+                new Rack{IsDeleted = false, RackCode="S1",RackName="Rack 1",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Rack{IsDeleted = false, RackCode="S2",RackName="Rack 2",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==1)},
+                new Rack{IsDeleted = false, RackCode="S3",RackName="Rack 3",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Rack{IsDeleted = false, RackCode="S4",RackName="Rack 4",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==2), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==2)},
+                new Rack{IsDeleted = false, RackCode="S5",RackName="Rack 5",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
+                new Rack{IsDeleted = false, RackCode="S6",RackName="Rack 6",Room = context.Rooms.FirstOrDefault(r=>r.RoomId==3), Sensor = context.Sensors.FirstOrDefault(r=>r.SensorId==3)},
             };
             foreach (var rack in racks)
             {
