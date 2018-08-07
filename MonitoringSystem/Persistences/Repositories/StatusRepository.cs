@@ -44,6 +44,8 @@ namespace MonitoringSystem.Persistences.Repositories
             return await context.Statuses
                 .Include(s => s.Humidity)
                 .Include(s => s.Temperature)
+                .Include(s => s.Sensor)
+                    .ThenInclude(se => se.Logs)
                 .SingleOrDefaultAsync(h => h.StatusId == id);
         }
 
@@ -54,9 +56,13 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Where(h => h.IsDeleted == false)
                     .Include(s => s.Humidity)
                     .Include(s => s.Temperature)
+                    .Include(s => s.Sensor)
                     .AsQueryable();
             //filter
-
+            if (queryObj.SensorId.HasValue)
+            {
+                query = query.Where(q => q.Sensor.SensorId == queryObj.SensorId);
+            }
             //sort
             var columnsMap = new Dictionary<string, Expression<Func<Status, object>>>()
             {
@@ -91,11 +97,26 @@ namespace MonitoringSystem.Persistences.Repositories
                 Description = "status have temperature's value is: " + status.Temperature.Value + ", status have humidity's value is: " + status.Humidity.Value +
                 " was added into sensor " + status.Sensor.SensorName + "."
             });
+
+            status.Sensor.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "status have temperature's value is: " + status.Temperature.Value + ", status have humidity's value is: " + status.Humidity.Value +
+                " was added into sensor " + status.Sensor.SensorName + "."
+            });
         }
 
         public void UpdateStatusLog(Status oldStatus, Status status)
         {
             status.Logs.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Description = "status have temperature's value change from " + oldStatus.Temperature.Value + " to " + status.Temperature.Value +
+                 ", status have humidity's value change from " + oldStatus.Humidity.Value + " to " + status.Humidity.Value +
+                " was added into sensor change from " + oldStatus.Sensor.SensorName + " to " + status.Sensor.SensorName + "."
+            });
+
+            status.Sensor.Logs.Add(new Log
             {
                 DateTime = DateTime.Now,
                 Description = "status have temperature's value change from " + oldStatus.Temperature.Value + " to " + status.Temperature.Value +

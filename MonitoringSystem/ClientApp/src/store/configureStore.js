@@ -5,6 +5,7 @@ import * as Counter from "./Counter";
 import * as WeatherForecasts from "./WeatherForecasts";
 import * as Temperatures from "./Temperatures";
 import * as Admin from "./Admin";
+import * as Sensor from "./Sensor";
 import * as Map from "./Map";
 import fansReducer from "../reducers/FansReducers";
 import temperaturesReducer from "../reducers/TemperaturesReducers";
@@ -16,6 +17,7 @@ export default function configureStore(history, initialState) {
     weatherForecasts: WeatherForecasts.reducer,
     temperatures: Temperatures.reducer,
     admin: Admin.reducer,
+    sensor: Sensor.reducer,
     map: Map.reducer,
     fansReducer,
     temperaturesReducer,

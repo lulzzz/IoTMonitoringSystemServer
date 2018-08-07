@@ -5,19 +5,7 @@ import { Link } from "react-router-dom";
 import { actionCreators } from "../../store/Admin";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Row,
-  Button,
-  Table
-} from "reactstrap";
+import { Row } from "reactstrap";
 
 class Admin extends Component {
   componentWillMount() {
@@ -35,10 +23,10 @@ class Admin extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        {this.renderSensorsTable(this.props)}
-        {this.renderRacksTable(this.props)}
-        {this.renderRoomsTable(this.props)}
-        {this.renderFansTable(this.props)}
+        <Row>{this.renderSensorsTable(this.props)}</Row>
+        <Row>{this.renderRacksTable(this.props)}</Row>
+        <Row>{this.renderRoomsTable(this.props)}</Row>
+        <Row>{this.renderFansTable(this.props)}</Row>
       </div>
     );
   }
@@ -64,7 +52,7 @@ class Admin extends Component {
       mode: "click"
     };
     return (
-      <Row className="table">
+      <div className="table">
         <BootstrapTable
           data={this.props.sensors.items}
           striped
@@ -128,7 +116,7 @@ class Admin extends Component {
 
           <TableHeaderColumn dataFormat={this.editCellButton} />
         </BootstrapTable>
-      </Row>
+      </div>
     );
   }
 
@@ -153,7 +141,7 @@ class Admin extends Component {
       mode: "click"
     };
     return (
-      <Row className="table">
+      <div className="table">
         <BootstrapTable
           data={this.props.racks.items}
           striped
@@ -215,7 +203,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
         </BootstrapTable>
-      </Row>
+      </div>
     );
   }
 
@@ -240,7 +228,7 @@ class Admin extends Component {
       mode: "click"
     };
     return (
-      <Row className="table">
+      <div className="table">
         <BootstrapTable
           data={this.props.rooms.items}
           striped
@@ -283,7 +271,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
         </BootstrapTable>
-      </Row>
+      </div>
     );
   }
 
@@ -308,7 +296,7 @@ class Admin extends Component {
       mode: "click"
     };
     return (
-      <Row className="table">
+      <div className="table">
         <BootstrapTable
           data={this.props.fans.items}
           striped
@@ -399,7 +387,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
         </BootstrapTable>
-      </Row>
+      </div>
     );
   }
 
@@ -418,7 +406,7 @@ class Admin extends Component {
   editCellButton(cell, row, enumObject, rowIndex) {
     let theEditButton = (
       <p>
-        <Link className="btn btn-primary" to={`/fetchdata/5`}>
+        <Link className="btn btn-primary" to={`/sensor/${row.sensorId}`}>
           Detail
         </Link>
       </p>

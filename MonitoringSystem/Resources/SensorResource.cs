@@ -20,12 +20,14 @@ namespace MonitoringSystem.Resources
         public string RoomName { get; set; }
         public bool IsDeleted { get; set; }
         public LatestStatusResource LatestStatus { get; set; }
+        public ICollection<LogResource> Logs { get; set; }
         public SensorResource()
         {
             Statuses = new Collection<int>();
             Racks = new Collection<int>();
             IsDeleted = false;
             RackNames = new Collection<string>();
+            Logs = new Collection<LogResource>();
         }
     }
 }

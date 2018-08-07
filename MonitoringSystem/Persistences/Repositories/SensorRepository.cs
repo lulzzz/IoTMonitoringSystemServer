@@ -34,6 +34,7 @@ namespace MonitoringSystem.Persistences.Repositories
             }
             return await context.Sensors
                 .Include(r => r.Room)
+                .Include(r => r.Logs)
                 .Include(r => r.Racks)
                 .Include(r => r.Statuses)
                     .ThenInclude(s => s.Temperature)
@@ -50,6 +51,7 @@ namespace MonitoringSystem.Persistences.Repositories
             }
             return await context.Sensors
                 .Include(r => r.Room)
+                .Include(r => r.Logs)
                 .Include(r => r.Racks)
                 .Include(r => r.Statuses)
                     .ThenInclude(s => s.Temperature)
@@ -63,6 +65,7 @@ namespace MonitoringSystem.Persistences.Repositories
             var query = context.Sensors
                     .Where(r => r.IsDeleted == false)
                     .Include(r => r.Room)
+                    .Include(r => r.Logs)
                     .Include(r => r.Racks)
                     .Include(r => r.Statuses)
                         .ThenInclude(s => s.Temperature)

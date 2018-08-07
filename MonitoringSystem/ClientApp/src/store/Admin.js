@@ -1,7 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 
-const requestAdminType = "REQUEST_SENSORS";
-const receiveAdminType = "RECEIVE_SENSORS";
+const requestAdminType = "REQUEST_ADMINS";
+const receiveAdminType = "RECEIVE_ADMINS";
 const initialState = {
   sensors: [],
   racks: [],

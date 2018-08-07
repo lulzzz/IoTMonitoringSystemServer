@@ -5,6 +5,7 @@ import Admin from "../components/Admin/Admin";
 import AsyncFans from "../containers/AsyncFans";
 import AsyncDashboard from "../containers/AsyncDashboard";
 import Map from "./../components/Map";
+import Sensor from "./../components/Admin/Sensor";
 
 export default () => (
   <Layout>
@@ -12,5 +13,6 @@ export default () => (
     <Route path="/fans" component={AsyncFans} />
     <Route path="/admin" component={Admin} />
     <Route path="/map" component={Map} />
+    <Route path="/sensor/:sensorId?" component={Sensor} />
   </Layout>
 );

@@ -12,5 +12,6 @@ namespace MonitoringSystem.Models
         public bool IsSortAscending { get; set; }
         public int? Page { get; set; }
         public byte PageSize { get; set; }
+        public int? SensorId { get; set; }
     }
 }
