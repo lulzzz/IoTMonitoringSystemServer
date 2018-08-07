@@ -5,7 +5,7 @@ import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
 import logo from "../assets/img/logo_vntt.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
 import props from "./Layout";
 import { actionCreators } from "../store/Map";
 class PopoverItem extends React.Component {
@@ -49,7 +49,6 @@ class PopoverItem extends React.Component {
           </PopoverBody>
         </Popover>
       </div>
-
     );
   }
 }
@@ -73,10 +72,7 @@ class PopoverExampleMulti extends React.Component {
     return (
       <Row className="container">
         <Col sm="12" md={{ size: 8, offset: 2 }}>
-          <img
-            className="map"
-            src={map}
-          />
+          <img className="map" src={map} />
           {this.props.popovers &&
             this.props.popovers.map((popover, i) => {
               return <PopoverItem key={i} item={popover} id={i} />;
@@ -85,7 +81,6 @@ class PopoverExampleMulti extends React.Component {
       </Row>
     );
   }
-
 }
 
 export default connect(
