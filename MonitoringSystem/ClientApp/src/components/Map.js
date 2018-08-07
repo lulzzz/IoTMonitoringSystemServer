@@ -3,15 +3,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
-import logo from "../assets/img/logo_vntt.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-import { Container, Row, Col } from 'reactstrap';
-import props from "./Layout";
+import { Container, Row, Col } from "reactstrap";
 import { actionCreators } from "../store/Map";
+import Temperatures from '../containers/AsyncTemperatures';
+import Humidities from '../containers/AsyncHumidities';
 class PopoverItem extends React.Component {
   constructor(props) {
     super(props);
-
     this.toggle = this.toggle.bind(this);
     this.state = {
       popoverOpen: false
@@ -26,7 +25,6 @@ class PopoverItem extends React.Component {
 
   render() {
     return (
-      // row 1
       <div>
         <Button
           className="censor-btn"
@@ -49,7 +47,6 @@ class PopoverItem extends React.Component {
           </PopoverBody>
         </Popover>
       </div>
-
     );
   }
 }
@@ -61,31 +58,37 @@ class PopoverExampleMulti extends React.Component {
     this.props.requestMaps(isLoaded);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // This method runs when incoming props (e.g., route params) change
-    const isLoaded = false;
-    this.props.requestMaps(isLoaded);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   // This method runs when incoming props (e.g., route params) change
+  //   const isLoaded = false;
+  //   this.props.requestMaps(isLoaded);  
+  // }
 
   render() {
-    // console.log("render");
-    // console.log(this.props.popovers);
     return (
+      <Container>
       <Row className="container">
-        <Col sm="12" md={{ size: 8, offset: 2 }}>
-          <img
-            className="map"
-            src={map}
-          />
+        <Col sm="12" md={{ size: 8, offset: 2 }} >
+          <img className="map" src={map} />
           {this.props.popovers &&
             this.props.popovers.map((popover, i) => {
               return <PopoverItem key={i} item={popover} id={i} />;
             })}
         </Col>
       </Row>
+
+      <Row>
+        <Col xs="6">
+          <Humidities/>
+        </Col>
+
+        <Col xs="6">
+          <Temperatures/>
+        </Col>
+      </Row>
+      </Container>
     );
   }
-
 }
 
 export default connect(

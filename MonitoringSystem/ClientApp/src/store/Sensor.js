@@ -45,7 +45,6 @@ export const loadData = async (dispatch, isLoaded, sensorId) => {
 
 export const reducer = (state, action) => {
   state = state || initialState;
-
   if (action.type === requestSensorType) {
     return {
       ...state,

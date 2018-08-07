@@ -80,7 +80,6 @@ export default class Temperatures extends Component {
         ]
       }
     };
-
     Plotly.update("temperatures", data, layout);
   }
 

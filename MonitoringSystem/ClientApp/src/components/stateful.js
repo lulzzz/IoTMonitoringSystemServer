@@ -17,7 +17,7 @@ return <StatefulToolTip parent={ buttonStateful } position="right" arrow="center
 
     render() {
         const buttonStateful = <span className="btn btn-default">Hover me Stateful</span>
-
+        
         return (
             <div className="row" style={{ marginTop: 20 }}>
                 <div className="col-lg-12">

@@ -9,10 +9,9 @@ import Sensor from "./../components/Admin/Sensor";
 
 export default () => (
   <Layout>
-    <Route exact path="/" component={AsyncDashboard} />
+    <Route exact path="/" component={Map} />
     <Route path="/fans" component={AsyncFans} />
     <Route path="/admin" component={Admin} />
-    <Route path="/map" component={Map} />
     <Route path="/sensor/:sensorId?" component={Sensor} />
   </Layout>
 );
