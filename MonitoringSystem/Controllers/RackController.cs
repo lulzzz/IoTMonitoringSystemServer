@@ -129,6 +129,9 @@ namespace MonitoringSystem.Controllers
             //edit room for rack
             rack.Room = await roomRepository.GetRoom(rackResource.RoomId, true);
 
+            //edit sensor for rack
+            rack.Sensor = await sensorRepository.GetSensor(rackResource.SensorId, true);
+
             //add log
             rackRepository.UpdateRackLog(oldRack, rack);
 
