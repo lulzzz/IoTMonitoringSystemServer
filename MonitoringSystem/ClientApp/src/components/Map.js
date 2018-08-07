@@ -5,6 +5,10 @@ import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
+<<<<<<< HEAD
+=======
+import props from "./Layout";
+>>>>>>> master
 import { actionCreators } from "../store/Map";
 import Temperatures from '../containers/AsyncTemperatures';
 import Humidities from '../containers/AsyncHumidities';
@@ -68,7 +72,11 @@ class PopoverExampleMulti extends React.Component {
     return (
       <Container>
       <Row className="container">
+<<<<<<< HEAD
         <Col sm="12" md={{ size: 8, offset: 2 }} >
+=======
+        <Col sm="12" md={{ size: 8, offset: 2 }}>
+>>>>>>> master
           <img className="map" src={map} />
           {this.props.popovers &&
             this.props.popovers.map((popover, i) => {
