@@ -38,6 +38,9 @@ export default class NavMenu extends React.Component {
                 <NavLink href="/">Dashboard</NavLink>
               </NavItem>
               <NavItem>
+                <NavLink href="/map">Map</NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink href="/fans/">Fan</NavLink>
               </NavItem>
               <NavItem>

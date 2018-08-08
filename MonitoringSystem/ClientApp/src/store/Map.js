@@ -1,5 +1,5 @@
-const requestMapsType = "REQUEST_MAPS";
-const receiveMapsType = "RECEIVE_MAPS";
+const requestMapsType = "REQUEST_SENSORS";
+const receiveMapsType = "RECEIVE_SENSORS";
 const initialState = {
   popovers: [],
   isLoading: false
@@ -7,7 +7,7 @@ const initialState = {
 
 export const actionCreators = {
   requestMaps: isLoaded => async (dispatch, getState) => {
-    if (isLoaded === getState().map.isLoaded) {
+    if (isLoaded === getState().admin.isLoaded) {
       // Don't issue a duplicate request (we already have or are loading the requested
       // data)
       return;
@@ -25,13 +25,9 @@ export const actionCreators = {
     var popovers = [];
     for (let sensor of sensors.items) {
       popovers.push({
-        placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
-        text: sensor.latestStatus
-          ? sensor.latestStatus.text
-          : sensor.sensorCode,
-        sensor: sensor.latestStatus
-          ? sensor.latestStatus.sensor
-          : sensor.sensorName,
+        placement: sensor.latestStatus ? sensor.latestStatus.placement : 'top',
+        text: sensor.latestStatus ? sensor.latestStatus.text : sensor.sensorCode,
+        sensor: sensor.latestStatus ? sensor.latestStatus.sensor : sensor.sensorName,
         temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
         humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
       });

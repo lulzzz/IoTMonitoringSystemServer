@@ -51,6 +51,7 @@ AsyncFans.propTypes = {
 };
 
 function mapStateToProps(state) {
+  // console.log
   const { fanList } = state.fansReducer;
   const { isFetching, lastUpdated, items: fans } = fanList.fans || {
     isFetching: true,

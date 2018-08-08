@@ -5,13 +5,9 @@ import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-<<<<<<< HEAD
-=======
-import props from "./Layout";
->>>>>>> master
 import { actionCreators } from "../store/Map";
-import Temperatures from '../containers/AsyncTemperatures';
-import Humidities from '../containers/AsyncHumidities';
+import Plot from "react-plotly.js";
+
 class PopoverItem extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +21,11 @@ class PopoverItem extends React.Component {
     this.setState({
       popoverOpen: !this.state.popoverOpen
     });
+  }
+
+  changeColor() {
+    if (this.props.item.temperature > 50) {
+    }
   }
 
   render() {
@@ -65,35 +66,37 @@ class PopoverExampleMulti extends React.Component {
   // componentWillReceiveProps(nextProps) {
   //   // This method runs when incoming props (e.g., route params) change
   //   const isLoaded = false;
-  //   this.props.requestMaps(isLoaded);  
+  //   this.props.requestMaps(isLoaded);
   // }
 
   render() {
     return (
       <Container>
-      <Row className="container">
-<<<<<<< HEAD
-        <Col sm="12" md={{ size: 8, offset: 2 }} >
-=======
-        <Col sm="12" md={{ size: 8, offset: 2 }}>
->>>>>>> master
-          <img className="map" src={map} />
-          {this.props.popovers &&
-            this.props.popovers.map((popover, i) => {
-              return <PopoverItem key={i} item={popover} id={i} />;
-            })}
-        </Col>
-      </Row>
+        <Row className="container">
+          <div className="col-md-7 col-xs-12">
+            <img className="map" src={map} />
+            {this.props.popovers &&
+              this.props.popovers.map((popover, i) => {
+                return <PopoverItem key={i} item={popover} id={i} />;
+              })}
+          </div>
 
-      <Row>
-        <Col xs="6">
-          <Humidities/>
-        </Col>
-
-        <Col xs="6">
-          <Temperatures/>
-        </Col>
-      </Row>
+          <div className="col-md-5 col-xs-12">
+            <Plot
+              data={[
+                {
+                  x: [1, 2, 3],
+                  y: [2, 6, 3],
+                  type: "scatter",
+                  mode: "lines+points",
+                  marker: { color: "red" }
+                },
+                { type: "bar", x: [1, 2, 3], y: [2, 5, 3] }
+              ]}
+              layout={{ width: 320, height: 240, title: "A Fancy Plot" }}
+            />
+          </div>
+        </Row>
       </Container>
     );
   }

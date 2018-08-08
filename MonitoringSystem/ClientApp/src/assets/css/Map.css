@@ -297,14 +297,6 @@
   background-color: red;
 }
 
-.container .censor-btn#btn-safe {
-  background-color: green;
-}
-
-.container .censor-btn#btn-danger {
-  background-color: red;
-}
-
 .container .censor-btn:hover {
   background-color: black;
 }

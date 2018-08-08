@@ -24,11 +24,25 @@ class Sensor extends Component {
     return (
       <div>
         <h1>
-          <b>Sensor {this.props.sensorId}</b>
+          <b>Sensor Name: </b>
+          {this.props.sensor.sensorName}
         </h1>
+        <h2>
+          <b>Sensor Code: </b>
+          {this.props.sensor.sensorCode}
+        </h2>
+        <h2>
+          <b>Room Name: </b>
+          {this.props.sensor.roomName}
+        </h2>
         <Row>
-          {this.renderStatusTable(this.props)}
-          {this.renderLogTable(this.props)}
+          <div className="col-md-7 col-xs-12">
+            {this.renderStatusTable(this.props)}
+          </div>
+          <div className="col-md-5 col-xs-12">
+            {this.renderLogTable(this.props)}
+            {this.renderRackTable(this.props)}
+          </div>
         </Row>
       </div>
     );
@@ -107,7 +121,7 @@ class Sensor extends Component {
   renderLogTable(props) {
     const options = {
       page: 1, // which page you want to show as default
-      sizePerPage: 10, // which size per page you want to locate as default
+      sizePerPage: 5, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 5, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -160,6 +174,109 @@ class Sensor extends Component {
       </div>
     );
   }
+
+  renderRackTable(props) {
+    const options = {
+      page: 1, // which page you want to show as default
+      sizePerPage: 10, // which size per page you want to locate as default
+      pageStartIndex: 1, // where to start counting the pages
+      paginationSize: 5, // the pagination bar size.
+      prePage: "Prev", // Previous page button text
+      nextPage: "Next", // Next page button text
+      firstPage: "First", // First page button text
+      lastPage: "Last", // Last page button text
+      paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
+      paginationPosition: "bottom", // default is bottom, top and both is all available
+      hideSizePerPage: true,
+      onAddRow: this.onAddRackRow,
+      onDeleteRow: this.onDeleteRackRow,
+      onCellEdit: this.onRackCellEdit
+    };
+    const cellEditProp = {
+      mode: "click"
+    };
+    return (
+      <div className="table">
+        <BootstrapTable
+          data={this.props.racks}
+          striped
+          hover
+          condensed
+          pagination={true}
+          insertRow
+          deleteRow
+          exportCSV
+          selectRow={{ mode: "radio" }}
+          //remote={true}
+          cellEdit={cellEditProp}
+          options={options}
+        >
+          <TableHeaderColumn
+            dataField="rackId"
+            hidden={true}
+            hiddenOnInsert
+            cellEdit={cellEditProp}
+            isKey
+          >
+            Rack Id
+          </TableHeaderColumn>
+          <TableHeaderColumn
+            dataField="rackCode"
+            cellEdit={cellEditProp}
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+          >
+            Rack Code
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="rackName"
+            cellEdit={cellEditProp}
+            filter={{
+              type: "TextFilter"
+            }}
+          >
+            Rack Name
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="roomId"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+            dataFormat={this.showRoomName}
+            editable={{
+              type: "select",
+              options: {
+                values: this.props.rooms.items,
+                textKey: "roomName",
+                valueKey: "roomId"
+              }
+            }}
+          >
+            Room Name
+          </TableHeaderColumn>
+        </BootstrapTable>
+      </div>
+    );
+  }
+
+  showRoomName(cell, row) {
+    return row.roomName;
+  }
+
+  onAddRackRow = row => {
+    this.props.addRacks(row);
+  };
+  onDeleteRackRow = row => {
+    this.props.deleteRacks(row[0]);
+  };
+  onRackCellEdit = (row, fieldName, value) => {
+    this.props.updateRacks(row, fieldName, value);
+  };
 }
 
 export default connect(
