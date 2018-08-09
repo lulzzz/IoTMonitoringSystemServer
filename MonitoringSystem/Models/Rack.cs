@@ -11,6 +11,7 @@ namespace MonitoringSystem.Models
         public Sensor Sensor { get; set; }
         public Room Room { get; set; }
         public bool IsDeleted { get; set; }
+        public int Location { get; set; }
         public ICollection<Log> Logs { get; set; }
         public Rack()
         {

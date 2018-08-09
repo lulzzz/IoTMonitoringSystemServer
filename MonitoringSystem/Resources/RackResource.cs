@@ -13,10 +13,13 @@ namespace MonitoringSystem.Resources
         public bool IsDeleted { get; set; }
         public int? RoomId { get; set; }
         public string RoomName { get; set; }
+        public int Location { get; set; }
         public RoomResource Room { get; set; }
+        public ICollection<LogResource> Logs { get; set; }
         public RackResource()
         {
             IsDeleted = false;
+            Logs = new Collection<LogResource>();
         }
     }
 }

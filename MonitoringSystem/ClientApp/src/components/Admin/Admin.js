@@ -114,7 +114,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataFormat={this.editCellButton} />
+          <TableHeaderColumn dataFormat={this.sensorDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -202,6 +202,8 @@ class Admin extends Component {
           >
             Room Name
           </TableHeaderColumn>
+
+          <TableHeaderColumn dataFormat={this.rackDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -270,6 +272,8 @@ class Admin extends Component {
           >
             Room Name
           </TableHeaderColumn>
+
+          <TableHeaderColumn dataFormat={this.roomDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -403,10 +407,32 @@ class Admin extends Component {
     }
   }
 
-  editCellButton(cell, row, enumObject, rowIndex) {
+  sensorDetailButton(cell, row, enumObject, rowIndex) {
     let theEditButton = (
       <p>
         <Link className="btn btn-primary" to={`/sensor/${row.sensorId}`}>
+          Detail
+        </Link>
+      </p>
+    );
+    return theEditButton;
+  }
+
+  rackDetailButton(cell, row, enumObject, rowIndex) {
+    let theEditButton = (
+      <p>
+        <Link className="btn btn-primary" to={`/rack/${row.rackId}`}>
+          Detail
+        </Link>
+      </p>
+    );
+    return theEditButton;
+  }
+
+  roomDetailButton(cell, row, enumObject, rowIndex) {
+    let theEditButton = (
+      <p>
+        <Link className="btn btn-primary" to={`/room/${row.roomId}`}>
           Detail
         </Link>
       </p>

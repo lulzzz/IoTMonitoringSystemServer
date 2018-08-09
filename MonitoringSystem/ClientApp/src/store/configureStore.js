@@ -6,6 +6,8 @@ import * as WeatherForecasts from "./WeatherForecasts";
 import * as Temperatures from "./Temperatures";
 import * as Admin from "./Admin";
 import * as Sensor from "./Sensor";
+import * as Rack from "./Rack";
+import * as Room from "./Room";
 import * as Map from "./Map";
 import fansReducer from "../reducers/FansReducers";
 import temperaturesReducer from "../reducers/TemperaturesReducers";
@@ -18,6 +20,8 @@ export default function configureStore(history, initialState) {
     temperatures: Temperatures.reducer,
     admin: Admin.reducer,
     sensor: Sensor.reducer,
+    rack: Rack.reducer,
+    room: Room.reducer,
     map: Map.reducer,
     fansReducer,
     temperaturesReducer,

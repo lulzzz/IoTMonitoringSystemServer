@@ -1,39 +1,52 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { actionCreators } from "../../store/Sensor";
+import { actionCreators } from "../../store/Rack";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Row } from "reactstrap";
 
-class Sensor extends Component {
+class Rack extends Component {
   componentWillMount() {
     // This method runs when the component is first added to the page
-    const sensorId = parseInt(this.props.match.params.sensorId, 10) || 0;
+    const rackId = parseInt(this.props.match.params.rackId, 10) || 0;
     const isLoaded = false;
-    this.props.requestSensor(isLoaded, sensorId);
+    this.props.requestRack(isLoaded, rackId);
   }
 
   componentWillReceiveProps(nextProps) {
     // This method runs when incoming props (e.g., route params) change
-    const sensorId = parseInt(this.props.match.params.sensorId, 10) || 0;
+    const rackId = parseInt(this.props.match.params.rackId, 10) || 0;
     const isLoaded = false;
-    this.props.requestSensor(isLoaded, sensorId);
+    this.props.requestRack(isLoaded, rackId);
   }
 
   render() {
+    console.log(this.props.rack);
     return (
       <div>
         <h1>
-          <b>Sensor Name: </b>
-          {this.props.sensor.sensorName}
+          <b>Rack Name: </b>
+          {this.props.rack.rackName}
         </h1>
         <h2>
           <b>Sensor Code: </b>
-          {this.props.sensor.sensorCode}
+          {this.props.rack.sensor == undefined
+            ? ""
+            : this.props.rack.sensor.sensorCode}
+        </h2>
+        <h2>
+          <b>Sensor Name: </b>
+          {this.props.rack.sensor == undefined
+            ? ""
+            : this.props.rack.sensor.sensorName}
+        </h2>
+        <h2>
+          <b>Rack Code: </b>
+          {this.props.rack.rackCode}
         </h2>
         <h2>
           <b>Room Name: </b>
-          {this.props.sensor.roomName}
+          {this.props.rack.roomName}
         </h2>
         <Row>
           <div className="col-md-7 col-xs-12">
@@ -41,7 +54,6 @@ class Sensor extends Component {
           </div>
           <div className="col-md-5 col-xs-12">
             {this.renderLogTable(this.props)}
-            {this.renderRackTable(this.props)}
           </div>
         </Row>
       </div>
@@ -135,7 +147,7 @@ class Sensor extends Component {
     return (
       <div className="table">
         <BootstrapTable
-          data={this.props.sensor.logs}
+          data={this.props.rack.logs}
           striped
           hover
           condensed
@@ -174,112 +186,9 @@ class Sensor extends Component {
       </div>
     );
   }
-
-  renderRackTable(props) {
-    const options = {
-      page: 1, // which page you want to show as default
-      sizePerPage: 10, // which size per page you want to locate as default
-      pageStartIndex: 1, // where to start counting the pages
-      paginationSize: 5, // the pagination bar size.
-      prePage: "Prev", // Previous page button text
-      nextPage: "Next", // Next page button text
-      firstPage: "First", // First page button text
-      lastPage: "Last", // Last page button text
-      paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
-      paginationPosition: "bottom", // default is bottom, top and both is all available
-      hideSizePerPage: true,
-      onAddRow: this.onAddRackRow,
-      onDeleteRow: this.onDeleteRackRow,
-      onCellEdit: this.onRackCellEdit
-    };
-    const cellEditProp = {
-      mode: "click"
-    };
-    return (
-      <div className="table">
-        <BootstrapTable
-          data={this.props.racks}
-          striped
-          hover
-          condensed
-          pagination={true}
-          insertRow
-          deleteRow
-          exportCSV
-          selectRow={{ mode: "radio" }}
-          //remote={true}
-          cellEdit={cellEditProp}
-          options={options}
-        >
-          <TableHeaderColumn
-            dataField="rackId"
-            hidden={true}
-            hiddenOnInsert
-            cellEdit={cellEditProp}
-            isKey
-          >
-            Rack Id
-          </TableHeaderColumn>
-          <TableHeaderColumn
-            dataField="rackCode"
-            cellEdit={cellEditProp}
-            filter={{
-              type: "TextFilter",
-              delay: 1000
-            }}
-          >
-            Rack Code
-          </TableHeaderColumn>
-
-          <TableHeaderColumn
-            dataField="rackName"
-            cellEdit={cellEditProp}
-            filter={{
-              type: "TextFilter"
-            }}
-          >
-            Rack Name
-          </TableHeaderColumn>
-
-          <TableHeaderColumn
-            dataField="roomId"
-            filter={{
-              type: "TextFilter",
-              delay: 1000
-            }}
-            dataFormat={this.showRoomName}
-            editable={{
-              type: "select",
-              options: {
-                values: this.props.rooms.items,
-                textKey: "roomName",
-                valueKey: "roomId"
-              }
-            }}
-          >
-            Room Name
-          </TableHeaderColumn>
-        </BootstrapTable>
-      </div>
-    );
-  }
-
-  showRoomName(cell, row) {
-    return row.roomName;
-  }
-
-  onAddRackRow = row => {
-    this.props.addRacks(row);
-  };
-  onDeleteRackRow = row => {
-    this.props.deleteRacks(row[0]);
-  };
-  onRackCellEdit = (row, fieldName, value) => {
-    this.props.updateRacks(row, fieldName, value);
-  };
 }
 
 export default connect(
-  state => state.sensor,
+  state => state.rack,
   dispatch => bindActionCreators(actionCreators, dispatch)
-)(Sensor);
+)(Rack);

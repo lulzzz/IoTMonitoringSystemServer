@@ -45,7 +45,12 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Include(r => r.Room)
                     .Include(r => r.Sensor)
                     .AsQueryable();
+
             //filter
+            if (queryObj.RoomId.HasValue)
+            {
+                query = query.Where(q => q.Room.RoomId == queryObj.RoomId);
+            }
 
             //sort
             var columnsMap = new Dictionary<string, Expression<Func<Rack, object>>>()

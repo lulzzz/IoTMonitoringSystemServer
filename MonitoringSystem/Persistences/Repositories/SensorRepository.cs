@@ -73,6 +73,10 @@ namespace MonitoringSystem.Persistences.Repositories
                         .ThenInclude(s => s.Humidity)
                     .AsQueryable();
             //filter
+            if (queryObj.RoomId.HasValue)
+            {
+                query = query.Where(q => q.Room.RoomId == queryObj.RoomId);
+            }
 
             //sort
             var columnsMap = new Dictionary<string, Expression<Func<Sensor, object>>>()

@@ -21,19 +21,30 @@ export const actionCreators = {
     const url = `api/sensors/getall`;
     const response = await fetch(url);
     const sensors = await response.json();
-
     var popovers = [];
     for (let sensor of sensors.items) {
+      const rack = await await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
+        method: "GET"
+      }).then(function(response) {
+        return response.json();
+      });
+
       popovers.push({
-        placement: sensor.latestStatus ? sensor.latestStatus.placement : 'top',
-        text: sensor.latestStatus ? sensor.latestStatus.text : sensor.sensorCode,
-        sensor: sensor.latestStatus ? sensor.latestStatus.sensor : sensor.sensorName,
+        key: rack.location,
+        placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
+        text: sensor.latestStatus
+          ? sensor.latestStatus.text
+          : sensor.sensorCode,
+        sensor: sensor.latestStatus
+          ? sensor.latestStatus.sensor
+          : sensor.sensorName,
         temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
         humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
       });
     }
     popovers = popovers.reverse();
 
+    console.log(popovers);
     dispatch({
       type: receiveMapsType,
       isLoaded,

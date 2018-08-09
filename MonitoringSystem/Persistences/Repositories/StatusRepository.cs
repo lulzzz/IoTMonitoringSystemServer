@@ -46,6 +46,8 @@ namespace MonitoringSystem.Persistences.Repositories
                 .Include(s => s.Temperature)
                 .Include(s => s.Sensor)
                     .ThenInclude(se => se.Logs)
+                .Include(s => s.Sensor)
+                    .ThenInclude(se => se.Racks)
                 .SingleOrDefaultAsync(h => h.StatusId == id);
         }
 
@@ -57,11 +59,18 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Include(s => s.Humidity)
                     .Include(s => s.Temperature)
                     .Include(s => s.Sensor)
+                        .ThenInclude(se => se.Logs)
+                    .Include(s => s.Sensor)
+                        .ThenInclude(se => se.Racks)
                     .AsQueryable();
             //filter
             if (queryObj.SensorId.HasValue)
             {
                 query = query.Where(q => q.Sensor.SensorId == queryObj.SensorId);
+            }
+            if (queryObj.RackId.HasValue)
+            {
+                query = query.Where(q => q.Sensor.Racks.Any(r => r.RackId == queryObj.RackId));
             }
             //sort
             var columnsMap = new Dictionary<string, Expression<Func<Status, object>>>()
@@ -104,6 +113,16 @@ namespace MonitoringSystem.Persistences.Repositories
                 Description = "status have temperature's value is: " + status.Temperature.Value + ", status have humidity's value is: " + status.Humidity.Value +
                 " was added into sensor " + status.Sensor.SensorName + "."
             });
+
+            foreach (var rack in status.Sensor.Racks)
+            {
+                rack.Logs.Add(new Log
+                {
+                    DateTime = DateTime.Now,
+                    Description = "status have temperature's value is: " + status.Temperature.Value + ", status have humidity's value is: " + status.Humidity.Value +
+                " was added into sensor " + status.Sensor.SensorName + "whick is watching rack name: " + rack.RackName + " - rack code: " + rack.RackCode
+                });
+            }
         }
 
         public void UpdateStatusLog(Status oldStatus, Status status)

@@ -12,11 +12,13 @@ namespace MonitoringSystem.Resources
         public ICollection<int> Racks { get; set; }
         public ICollection<int> Fans { get; set; }
         public bool IsDeleted { get; set; }
+        public ICollection<LogResource> Logs { get; set; }
         public RoomResource()
         {
             Sensors = new Collection<int>();
             Racks = new Collection<int>();
             Fans = new Collection<int>();
+            Logs = new Collection<LogResource>();
         }
     }
 }

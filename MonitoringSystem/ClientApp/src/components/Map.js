@@ -77,10 +77,9 @@ class PopoverExampleMulti extends React.Component {
             <img className="map" src={map} />
             {this.props.popovers &&
               this.props.popovers.map((popover, i) => {
-                return <PopoverItem key={i} item={popover} id={i} />;
+                return <PopoverItem key={i} item={popover} id={popover.key} />;
               })}
           </div>
-
           <div className="col-md-5 col-xs-12">
             <Plot
               data={[
