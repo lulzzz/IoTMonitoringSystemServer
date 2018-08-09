@@ -87,7 +87,7 @@ export const actionCreators = {
     console.log("addSensors");
 
     delete data.sensorId;
-    await fetch(`api/sensors/add`, {
+    const res = await fetch(`api/sensors/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -123,7 +123,8 @@ export const actionCreators = {
     data = {
       rackId: data.rackId,
       rackCode: data.rackCode,
-      rackName: data.rackName
+      rackName: data.rackName,
+      location: data.location
     };
 
     console.log(data);
@@ -280,6 +281,21 @@ export const loadData = async (dispatch, isLoaded) => {
     method: "GET"
   }).then(function(response) {
     return response.json();
+  });
+  racks.items.sort(function(rack1, rack2) {
+    if (rack1.roomName > rack2.roomName) return -1;
+    if (rack1.roomName < rack2.roomName) return 1;
+
+    if (
+      parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) >
+      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+    )
+      return -1;
+    if (
+      parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) <
+      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+    )
+      return 1;
   });
 
   const fans = await fetch(`api/fans/getall`, {

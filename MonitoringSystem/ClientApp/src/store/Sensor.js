@@ -73,6 +73,7 @@ export const actionCreators = {
       rackId: data.rackId,
       rackCode: data.rackCode,
       rackName: data.rackName,
+      location: data.location,
       sensorId: sensorId,
       roomId: data.roomId
     };

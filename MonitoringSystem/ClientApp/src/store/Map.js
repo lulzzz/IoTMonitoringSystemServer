@@ -28,7 +28,6 @@ export const actionCreators = {
       }).then(function(response) {
         return response.json();
       });
-
       popovers.push({
         key: rack.location,
         placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
@@ -43,8 +42,6 @@ export const actionCreators = {
       });
     }
     popovers = popovers.reverse();
-
-    console.log(popovers);
     dispatch({
       type: receiveMapsType,
       isLoaded,

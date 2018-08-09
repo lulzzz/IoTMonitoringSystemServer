@@ -7,6 +7,7 @@ import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 import { actionCreators } from "../store/Map";
 import Plot from "react-plotly.js";
+import $ from "jquery";
 
 class PopoverItem extends React.Component {
   constructor(props) {
@@ -23,11 +24,6 @@ class PopoverItem extends React.Component {
     });
   }
 
-  changeColor() {
-    if (this.props.item.temperature > 50) {
-    }
-  }
-
   render() {
     return (
       <div>
@@ -35,8 +31,7 @@ class PopoverItem extends React.Component {
           className="censor-btn"
           color="success"
           id={"sensor-" + this.props.id}
-          onClick={this.toggle}
-        >
+          onClick={this.toggle} >
           {this.props.item.text}
         </Button>
         <Popover
@@ -73,28 +68,76 @@ class PopoverExampleMulti extends React.Component {
     return (
       <Container>
         <Row className="container">
-          <div className="col-md-7 col-xs-12">
+          <Col sm="12" md={{ size: 8, offset: 2 }}>
             <img className="map" src={map} />
             {this.props.popovers &&
               this.props.popovers.map((popover, i) => {
                 return <PopoverItem key={i} item={popover} id={popover.key} />;
               })}
-          </div>
-          <div className="col-md-5 col-xs-12">
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs="6">
             <Plot
               data={[
                 {
-                  x: [1, 2, 3],
-                  y: [2, 6, 3],
-                  type: "scatter",
-                  mode: "lines+points",
-                  marker: { color: "red" }
-                },
-                { type: "bar", x: [1, 2, 3], y: [2, 5, 3] }
+                  name: "Sensor",
+                  type: "bar",
+                  x: [
+                    "Sensor1",
+                    "Sensor2",
+                    "Sensor3",
+                    "Sensor4",
+                    "Sensor5",
+                    "Sensor6",
+                    "Sensor7",
+                    "Sensor8",
+                    "Sensor9",
+                    "Sensor10"
+                  ],
+                  y: [4, 1, 8, 5, 3, 7, 12, 16, 10, 11],
+                  marker: {
+                    color: "red"
+                  }
+                }
               ]}
-              layout={{ width: 320, height: 240, title: "A Fancy Plot" }}
+              layout={{
+                width: 600,
+                height: 500,
+                title: "Biểu đồ Độ ẩm"
+              }}
             />
-          </div>
+          </Col>
+
+          <Col xs="6">
+            <Plot
+              data={[
+                {
+                  title: "Sensor",
+                  type: "bar",
+                  x: [
+                    "Sensor1",
+                    "Sensor2",
+                    "Sensor3",
+                    "Sensor4",
+                    "Sensor5",
+                    "Sensor6",
+                    "Sensor7",
+                    "Sensor8",
+                    "Sensor9",
+                    "Sensor10"
+                  ],
+                  y: [1, 3, 6, 9, 6, 5, 8, 9, 11, 16]
+                }
+              ]}
+              layout={{
+                width: 600,
+                height: 500,
+                title: "Bieu đồ Độ ẩm"
+              }}
+            />
+          </Col>
         </Row>
       </Container>
     );

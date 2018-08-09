@@ -45,6 +45,10 @@ class Rack extends Component {
           {this.props.rack.rackCode}
         </h2>
         <h2>
+          <b>Location: </b>
+          {this.props.rack.location}
+        </h2>
+        <h2>
           <b>Room Name: </b>
           {this.props.rack.roomName}
         </h2>

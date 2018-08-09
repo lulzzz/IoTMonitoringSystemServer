@@ -242,6 +242,16 @@ class Sensor extends Component {
           </TableHeaderColumn>
 
           <TableHeaderColumn
+            dataField="location"
+            cellEdit={cellEditProp}
+            filter={{
+              type: "TextFilter"
+            }}
+          >
+            Location
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
             dataField="roomId"
             filter={{
               type: "TextFilter",
