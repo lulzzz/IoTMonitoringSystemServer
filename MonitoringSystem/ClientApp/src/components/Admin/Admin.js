@@ -185,6 +185,16 @@ class Admin extends Component {
           </TableHeaderColumn>
 
           <TableHeaderColumn
+            dataField="location"
+            filter={{
+              type: "TextFilter",
+              delay: 1000
+            }}
+          >
+            Location
+          </TableHeaderColumn>
+
+          <TableHeaderColumn
             dataField="roomId"
             filter={{
               type: "TextFilter",

@@ -71,6 +71,7 @@ export const actionCreators = {
     data = {
       rackCode: data.rackCode,
       rackName: data.rackName,
+      location: data.location,
       sensorId: data.sensorId,
       roomId: roomId
     };
@@ -166,6 +167,21 @@ export const loadData = async (dispatch, roomId, isLoaded) => {
     method: "GET"
   }).then(function(response) {
     return response.json();
+  });
+  racks.items.sort(function(rack1, rack2) {
+    if (rack1.roomName > rack2.roomName) return -1;
+    if (rack1.roomName < rack2.roomName) return 1;
+
+    if (
+      parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) >
+      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+    )
+      return -1;
+    if (
+      parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) <
+      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+    )
+      return 1;
   });
 
   const sensors = await fetch(`api/sensors/getall?roomId=${roomId}`, {

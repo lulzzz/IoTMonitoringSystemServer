@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MonitoringSystem.Data;
@@ -19,7 +20,11 @@ namespace MonitoringSystem
                 try
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                     DbInitializer.Initialize(context);
+                    RoleSeed.SeedAsync(context, roleManager).Wait();
+                    AccountInitializer.SeedAsync(context, userManager).Wait();
                 }
                 catch (Exception ex)
                 {

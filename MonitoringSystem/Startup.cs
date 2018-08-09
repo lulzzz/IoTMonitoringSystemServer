@@ -50,7 +50,18 @@ namespace MonitoringSystem
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+            })
+                .AddRoles<IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddUserManager<UserManager<IdentityUser>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -99,6 +110,7 @@ namespace MonitoringSystem
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseResponseCompression();
+            app.UseMvc();
 
             app.UseCors("AllowAll");
             app.UseSignalR(routes =>

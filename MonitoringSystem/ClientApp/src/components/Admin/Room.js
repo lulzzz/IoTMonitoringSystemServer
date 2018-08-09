@@ -167,6 +167,16 @@ class Room extends Component {
           >
             Rack Name
           </TableHeaderColumn>
+
+          <TableHeaderColumn
+            dataField="location"
+            cellEdit={cellEditProp}
+            filter={{
+              type: "TextFilter"
+            }}
+          >
+            Location
+          </TableHeaderColumn>
         </BootstrapTable>
       </div>
     );

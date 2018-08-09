@@ -12,6 +12,7 @@ import * as Map from "./Map";
 import fansReducer from "../reducers/FansReducers";
 import temperaturesReducer from "../reducers/TemperaturesReducers";
 import humiditiesReducer from "../reducers/HumiditiesReducers";
+import { reducer as toastrReducer } from "react-redux-toastr";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -25,7 +26,8 @@ export default function configureStore(history, initialState) {
     map: Map.reducer,
     fansReducer,
     temperaturesReducer,
-    humiditiesReducer
+    humiditiesReducer,
+    toastr: toastrReducer
   };
 
   const middleware = [thunk, routerMiddleware(history)];
