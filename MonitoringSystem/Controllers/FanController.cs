@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
+    [Authorize]
     [Route("/api/fans")]
     //[ApiController]
     public class FanController : Controller

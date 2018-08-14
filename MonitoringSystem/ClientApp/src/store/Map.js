@@ -1,3 +1,5 @@
+import * as authService from "../services/Authentication";
+
 const requestMapsType = "REQUEST_SENSORS";
 const receiveMapsType = "RECEIVE_SENSORS";
 const initialState = {
@@ -18,13 +20,26 @@ export const actionCreators = {
       isLoaded
     });
 
-    const url = `api/sensors/getall`;
-    const response = await fetch(url);
-    const sensors = await response.json();
+    const sensors = await fetch(`api/sensors/getall`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
+      }
+    }).then(function(response) {
+      return response.json();
+    });
+
     var popovers = [];
     for (let sensor of sensors.items) {
-      const rack = await await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
-        method: "GET"
+      const rack = await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authService.getLoggedInUser().access_token
+        }
       }).then(function(response) {
         return response.json();
       });

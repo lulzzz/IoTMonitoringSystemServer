@@ -1,4 +1,5 @@
 import * as signalR from "@aspnet/signalr";
+import * as authService from "../services/Authentication";
 
 const requestAdminType = "REQUEST_ADMINS";
 const receiveAdminType = "RECEIVE_ADMINS";
@@ -59,7 +60,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -75,7 +77,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -91,7 +94,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -107,7 +111,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -132,7 +137,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -155,7 +161,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -179,7 +186,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -206,7 +214,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -220,7 +229,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
 
@@ -232,7 +242,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
 
@@ -244,7 +255,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
 
@@ -256,7 +268,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
 
@@ -266,19 +279,34 @@ export const actionCreators = {
 
 export const loadData = async (dispatch, isLoaded) => {
   const sensors = await await fetch(`api/sensors/getall`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
 
   const rooms = await fetch(`api/rooms/getall`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
 
   const racks = await fetch(`api/racks/getall`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
@@ -299,7 +327,12 @@ export const loadData = async (dispatch, isLoaded) => {
   });
 
   const fans = await fetch(`api/fans/getall`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });

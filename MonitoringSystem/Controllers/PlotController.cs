@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
+    [Authorize]
     [Route("/api/plots")]
     //[ApiController]
     public class PlotController : Controller

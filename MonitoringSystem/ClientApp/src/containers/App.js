@@ -9,14 +9,20 @@ import Sensor from "./../components/Admin/Sensor";
 import Dashboard from "../containers/AsyncDashboard";
 import Rack from "./../components/Admin/Rack";
 import Room from "./../components/Admin/Room";
+import LogIn from "../components/Account/LogIn";
+import Register from "../components/Account/Register";
+import Account from "../components/Account/Account";
 export default () => (
   <Layout>
-    <Route exact path="/" component={AsyncDashboard} />
+    <Route exact path="/" component={LogIn} />
+    <Route path="/dashboard" component={AsyncDashboard} />
     <Route path="/map" component={Map} />
     <Route path="/fans" component={AsyncFans} />
     <Route path="/admin" component={Admin} />
     <Route path="/sensor/:sensorId?" component={Sensor} />
     <Route path="/rack/:rackId?" component={Rack} />
     <Route path="/room/:roomId?" component={Room} />
+    <Route path="/register" component={Register} />
+    <Route path="/account" component={Account} />
   </Layout>
 );

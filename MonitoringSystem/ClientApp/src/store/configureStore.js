@@ -9,10 +9,12 @@ import * as Sensor from "./Sensor";
 import * as Rack from "./Rack";
 import * as Room from "./Room";
 import * as Map from "./Map";
+import * as LogIn from "./LogIn";
+import * as Register from "./Register";
+import * as Account from "./Account";
 import fansReducer from "../reducers/FansReducers";
 import temperaturesReducer from "../reducers/TemperaturesReducers";
 import humiditiesReducer from "../reducers/HumiditiesReducers";
-import { reducer as toastrReducer } from "react-redux-toastr";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -27,7 +29,9 @@ export default function configureStore(history, initialState) {
     fansReducer,
     temperaturesReducer,
     humiditiesReducer,
-    toastr: toastrReducer
+    login: LogIn.reducer,
+    register: Register.reducer,
+    account: Account.reducer
   };
 
   const middleware = [thunk, routerMiddleware(history)];

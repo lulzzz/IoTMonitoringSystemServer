@@ -7,7 +7,7 @@ using MonitoringSystem.Models;
 
 namespace MonitoringSystem.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,6 +17,7 @@ namespace MonitoringSystem.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             builder.Entity<Temperature>().ToTable("Temperature");
             builder.Entity<Humidity>().ToTable("Humidity");
             builder.Entity<Fan>().ToTable("Fan");
@@ -28,6 +29,7 @@ namespace MonitoringSystem.Data
             builder.Entity<Log>().ToTable("Log");
         }
 
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Temperature> Temperatures { get; set; }
         public DbSet<Humidity> Humidities { get; set; }
         public DbSet<Fan> Fans { get; set; }

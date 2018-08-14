@@ -1,4 +1,5 @@
 import * as signalR from "@aspnet/signalr";
+import * as authService from "../services/Authentication";
 
 const requestSensorType = "REQUEST_SENSORS";
 const receiveSensorType = "RECEIVE_SENSORS";
@@ -55,7 +56,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -82,7 +84,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -96,7 +99,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
     const sensorId = getState().sensor.sensorId;
@@ -106,13 +110,23 @@ export const actionCreators = {
 
 export const loadData = async (dispatch, sensorId, isLoaded) => {
   const sensor = await await fetch(`api/sensors/getsensor/${sensorId}`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
 
   const statuses = await fetch(`api/statuses/getall?sensorId=${sensorId}`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
@@ -120,7 +134,12 @@ export const loadData = async (dispatch, sensorId, isLoaded) => {
   const racks = [];
   for (let element of sensor.racks) {
     var rack = await fetch(`api/racks/getrack/${element}`, {
-      method: "GET"
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
+      }
     }).then(function(response) {
       return response.json();
     });
@@ -131,7 +150,12 @@ export const loadData = async (dispatch, sensorId, isLoaded) => {
   }
 
   const rooms = await fetch(`api/rooms/getall`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });

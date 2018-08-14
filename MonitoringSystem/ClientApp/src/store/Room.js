@@ -1,4 +1,5 @@
 import * as signalR from "@aspnet/signalr";
+import * as authService from "../services/Authentication";
 
 const requestRoomType = "REQUEST_ROOMS";
 const receiveRoomType = "RECEIVE_ROOMS";
@@ -54,7 +55,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -80,7 +82,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -94,7 +97,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
     const roomId = getState().room.roomId;
@@ -110,7 +114,8 @@ export const actionCreators = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -134,7 +139,8 @@ export const actionCreators = {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(data)
     });
@@ -148,7 +154,8 @@ export const actionCreators = {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       }
     });
     const roomId = getState().room.roomId;
@@ -158,16 +165,27 @@ export const actionCreators = {
 
 export const loadData = async (dispatch, roomId, isLoaded) => {
   const room = await await fetch(`api/rooms/getroom/${roomId}`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
 
   const racks = await fetch(`api/racks/getall?roomId=${roomId}`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });
+
   racks.items.sort(function(rack1, rack2) {
     if (rack1.roomName > rack2.roomName) return -1;
     if (rack1.roomName < rack2.roomName) return 1;
@@ -185,7 +203,12 @@ export const loadData = async (dispatch, roomId, isLoaded) => {
   });
 
   const sensors = await fetch(`api/sensors/getall?roomId=${roomId}`, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
   }).then(function(response) {
     return response.json();
   });

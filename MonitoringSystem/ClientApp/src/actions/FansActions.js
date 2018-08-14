@@ -1,4 +1,5 @@
 import fetch from "cross-fetch";
+import * as authService from "../services/Authentication";
 
 export const requestFansType = "REQUEST_FANS";
 export const receiveFansType = "RECEIVE_FANS";
@@ -16,7 +17,8 @@ export function updateFanStatus(fan, fans) {
       method: "PUT",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
       },
       body: JSON.stringify(fan)
     }).then(() => dispatch(fetchFans()));
@@ -38,7 +40,14 @@ function receiveFans(json) {
 function fetchFans() {
   return dispatch => {
     dispatch(requestFans());
-    return fetch(`/api/fans/getall`)
+    return fetch(`/api/fans/getall`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authService.getLoggedInUser().access_token
+      }
+    })
       .then(response => response.json())
       .then(json => dispatch(receiveFans(json)));
   };

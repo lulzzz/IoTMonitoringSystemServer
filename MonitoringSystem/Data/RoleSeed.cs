@@ -15,11 +15,20 @@ namespace MonitoringSystem.Data
             {
                 if (!_context.Roles.Any(r => r.Name == "Admin"))
                 {
-                    var roleStudent = new IdentityRole
+                    var roleAdmin = new IdentityRole
                     {
                         Name = "Admin",
                     };
-                    await _roleManager.CreateAsync(roleStudent);
+                    await _roleManager.CreateAsync(roleAdmin);
+                }
+
+                if (!_context.Roles.Any(r => r.Name == "Customer"))
+                {
+                    var roleCustomer = new IdentityRole
+                    {
+                        Name = "Customer",
+                    };
+                    await _roleManager.CreateAsync(roleCustomer);
                 }
             }
         }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
+    [Authorize]
     [Route("/api/fanStatus")]
     //[ApiController]
     public class FanStatusController : Controller
