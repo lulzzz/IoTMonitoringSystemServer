@@ -11,12 +11,12 @@ import { Button, Collapse } from "reactstrap";
 var data = [];
 var layoutUpdate = {
   xaxis: {
-    title: "Thời gian"
+    title: "Time"
   },
   yaxis: {
-    title: "Độ ẩm"
+    title: "Humidity"
   },
-  title: "Cảm biến độ ẩm"
+  title: "Humidity sensor"
 };
 
 function formatStartDateDisplay(date, defaultText) {

@@ -31,7 +31,8 @@ class PopoverItem extends React.Component {
           className="censor-btn"
           color="success"
           id={"sensor-" + this.props.id}
-          onClick={this.toggle} >
+          onClick={this.toggle}
+        >
           {this.props.item.text}
         </Button>
         <Popover
@@ -105,7 +106,7 @@ class PopoverExampleMulti extends React.Component {
               layout={{
                 width: 600,
                 height: 500,
-                title: "Biểu đồ Độ ẩm"
+                title: "Real-time temperature"
               }}
             />
           </Col>
@@ -134,7 +135,7 @@ class PopoverExampleMulti extends React.Component {
               layout={{
                 width: 600,
                 height: 500,
-                title: "Bieu đồ Độ ẩm"
+                title: "Real-time humidity"
               }}
             />
           </Col>
