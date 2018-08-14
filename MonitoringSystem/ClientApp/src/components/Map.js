@@ -84,28 +84,24 @@ class PopoverExampleMulti extends React.Component {
               data={[
                 {
                   name: "Sensor",
-                  type: "bar",
-                  x: [
-                    "Sensor1",
-                    "Sensor2",
-                    "Sensor3",
-                    "Sensor4",
-                    "Sensor5",
-                    "Sensor6",
-                    "Sensor7",
-                    "Sensor8",
-                    "Sensor9",
-                    "Sensor10"
-                  ],
+                  type: "scatter",
+                  x: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
                   y: [4, 1, 8, 5, 3, 7, 12, 16, 10, 11],
+
                   marker: {
-                    color: "red"
+                    color: "green"
                   }
                 }
               ]}
               layout={{
                 width: 600,
                 height: 500,
+                xaxis: {
+                  title: "Sensor"
+                },
+                yaxis: {
+                  title: "Temperature"
+                },
                 title: "Real-time temperature"
               }}
             />
@@ -115,26 +111,20 @@ class PopoverExampleMulti extends React.Component {
             <Plot
               data={[
                 {
-                  title: "Sensor",
-                  type: "bar",
-                  x: [
-                    "Sensor1",
-                    "Sensor2",
-                    "Sensor3",
-                    "Sensor4",
-                    "Sensor5",
-                    "Sensor6",
-                    "Sensor7",
-                    "Sensor8",
-                    "Sensor9",
-                    "Sensor10"
-                  ],
-                  y: [1, 3, 6, 9, 6, 5, 8, 9, 11, 16]
+                  type: "scatter",
+                  x: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                  y: [1, 3, 6, 9, 6, 5, 8, 9, 11, 16]                
                 }
               ]}
               layout={{
                 width: 600,
                 height: 500,
+                xaxis: {
+                  title: "Sensor"
+                },
+                yaxis: {
+                  title: "Humidity"
+                },
                 title: "Real-time humidity"
               }}
             />
