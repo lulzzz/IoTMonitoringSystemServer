@@ -16,7 +16,7 @@ var layoutUpdate = {
   yaxis: {
     title: "Humidity"
   },
-  title: "C?m bi?n d? ?m",
+  title: "Humidity sensor",
   updatemenus: [
     {
       buttons: [
