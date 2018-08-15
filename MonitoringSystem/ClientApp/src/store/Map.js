@@ -4,7 +4,9 @@ const requestMapsType = "REQUEST_SENSORS";
 const receiveMapsType = "RECEIVE_SENSORS";
 const initialState = {
   popovers: [],
-  isLoading: false
+  isLoading: false,
+  latestHumidity: [],
+  latestTemperature: []
 };
 
 export const actionCreators = {
@@ -20,7 +22,25 @@ export const actionCreators = {
       isLoaded
     });
 
-    const sensors = await fetch(`api/sensors/getall`, {
+    loadData(dispatch, isLoaded);
+  }
+};
+
+export const loadData = async (dispatch, isLoaded) => {
+  const sensors = await fetch(`api/sensors/getall`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
+  }).then(function(response) {
+    return response.json();
+  });
+
+  var popovers = [];
+  for (let sensor of sensors.items) {
+    const rack = await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -30,39 +50,48 @@ export const actionCreators = {
     }).then(function(response) {
       return response.json();
     });
-
-    var popovers = [];
-    for (let sensor of sensors.items) {
-      const rack = await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authService.getLoggedInUser().access_token
-        }
-      }).then(function(response) {
-        return response.json();
-      });
-      popovers.push({
-        key: rack.location,
-        placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
-        text: sensor.latestStatus
-          ? sensor.latestStatus.text
-          : sensor.sensorCode,
-        sensor: sensor.latestStatus
-          ? sensor.latestStatus.sensor
-          : sensor.sensorName,
-        temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
-        humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
-      });
-    }
-    popovers = popovers.reverse();
-    dispatch({
-      type: receiveMapsType,
-      isLoaded,
-      popovers
+    popovers.push({
+      key: rack.location,
+      placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
+      text: sensor.latestStatus ? sensor.latestStatus.text : sensor.sensorCode,
+      sensor: sensor.latestStatus
+        ? sensor.latestStatus.sensor
+        : sensor.sensorName,
+      temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
+      humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
     });
   }
+  popovers = popovers.reverse();
+
+  const latestHumidity = await fetch(`api/plots/getlatesthumidity`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
+  }).then(function(response) {
+    return response.json();
+  });
+
+  const latestTemperature = await fetch(`api/plots/getlatesttemperature`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authService.getLoggedInUser().access_token
+    }
+  }).then(function(response) {
+    return response.json();
+  });
+
+  dispatch({
+    type: receiveMapsType,
+    isLoaded,
+    popovers,
+    latestHumidity,
+    latestTemperature
+  });
 };
 
 export const reducer = (state, action) => {
@@ -81,7 +110,9 @@ export const reducer = (state, action) => {
       ...state,
       popovers: action.popovers,
       isLoading: false,
-      isLoaded: action.isLoaded
+      isLoaded: action.isLoaded,
+      latestHumidity: action.latestHumidity,
+      latestTemperature: action.latestTemperature
     };
   }
 

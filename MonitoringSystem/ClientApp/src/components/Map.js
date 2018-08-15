@@ -85,8 +85,8 @@ class PopoverExampleMulti extends React.Component {
                 {
                   name: "Sensor",
                   type: "scatter",
-                  x: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-                  y: [4, 1, 8, 5, 3, 7, 12, 16, 10, 11],
+                  x: this.props.latestTemperature.x,
+                  y: this.props.latestTemperature.y,
 
                   marker: {
                     color: "green"
@@ -112,8 +112,8 @@ class PopoverExampleMulti extends React.Component {
               data={[
                 {
                   type: "scatter",
-                  x: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-                  y: [1, 3, 6, 9, 6, 5, 8, 9, 11, 16]                
+                  x: this.props.latestHumidity.x,
+                  y: this.props.latestHumidity.y
                 }
               ]}
               layout={{

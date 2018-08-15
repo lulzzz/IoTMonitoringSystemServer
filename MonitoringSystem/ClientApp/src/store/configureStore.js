@@ -28,14 +28,10 @@ export default function configureStore(history, initialState) {
     map: Map.reducer,
     fansReducer,
     temperaturesReducer,
-<<<<<<< HEAD
-    humiditiesReducer
-=======
     humiditiesReducer,
     login: LogIn.reducer,
     register: Register.reducer,
     account: Account.reducer
->>>>>>> master
   };
 
   const middleware = [thunk, routerMiddleware(history)];

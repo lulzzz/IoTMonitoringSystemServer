@@ -11,5 +11,7 @@ namespace MonitoringSystem.Persistences.IRepositories
         Task<Plot> GetAllTemperaturesBySensorIdForPlot(int sensorId);
         Task<QueryResult<Plot>> GetAllTemperatureOfAllSensorForPlot(Query queryObj);
         Task<QueryResult<Plot>> GetAllHumidityOfAllSensorForPlot(Query queryObj);
+        Task<SensorPlot> GetLatestHumidityOfAllSensorForPlot();
+        Task<SensorPlot> GetLatestTemperatureOfAllSensorForPlot();
     }
 }

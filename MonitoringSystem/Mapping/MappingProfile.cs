@@ -106,6 +106,8 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<Plot, PlotResource>();
 
+            CreateMap<SensorPlot, SensorPlotResource>();
+
             CreateMap<Log, LogResource>();
 
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));

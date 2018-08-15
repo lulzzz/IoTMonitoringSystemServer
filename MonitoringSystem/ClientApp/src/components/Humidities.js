@@ -16,7 +16,39 @@ var layoutUpdate = {
   yaxis: {
     title: "Humidity"
   },
-  title: "Humidity sensor"
+  title: "C?m bi?n d? ?m",
+  updatemenus: [
+    {
+      buttons: [
+        {
+          label: "Show",
+          method: "restyle",
+          args: ["visible", true]
+        },
+        {
+          label: "Hide",
+          method: "restyle",
+          args: ["visible", "legendonly"]
+        }
+      ]
+    }
+  ]
+};
+var otherSettings = {
+  modeBarButtonsToAdd: [
+    {
+      name: "show",
+      click: gd => {
+        Plotly.restyle(gd, "visible", true);
+      }
+    },
+    {
+      name: "hide",
+      click: gd => {
+        Plotly.restyle(gd, "visible", "legendonly");
+      }
+    }
+  ]
 };
 
 function formatStartDateDisplay(date, defaultText) {
@@ -89,7 +121,7 @@ export default class Humidities extends Component {
       this.props.humidities.length !== 0
     ) {
       data = this.props.humidities;
-      Plotly.newPlot("humidities", data, layoutUpdate);
+      Plotly.newPlot("humidities", data, layoutUpdate, otherSettings);
     }
     return (
       <div>

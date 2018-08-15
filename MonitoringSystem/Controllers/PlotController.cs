@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("/api/plots")]
     //[ApiController]
     public class PlotController : Controller
@@ -66,6 +66,30 @@ namespace MonitoringSystem.Controllers
 
             //convert all of sensor into sensorResource json
             return mapper.Map<QueryResult<Plot>, QueryResultResource<PlotResource>>(queryResult);
+        }
+
+        [HttpGet]
+        [Route("getlatesthumidity")]
+        public async Task<IActionResult> GetLatestHumidityOfAllSensorForPlot()
+        {
+            var sensorPlot = await plotRepository.GetLatestHumidityOfAllSensorForPlot();
+
+            // converting sensorPlot object to json result
+            var sensorPlotResource = mapper.Map<SensorPlot, SensorPlotResource>(sensorPlot);
+
+            return Ok(sensorPlotResource);
+        }
+
+        [HttpGet]
+        [Route("getlatesttemperature")]
+        public async Task<IActionResult> GetLatestTemperatureOfAllSensorForPlot()
+        {
+            var sensorPlot = await plotRepository.GetLatestTemperatureOfAllSensorForPlot();
+
+            // converting sensorPlot object to json result
+            var sensorPlotResource = mapper.Map<SensorPlot, SensorPlotResource>(sensorPlot);
+
+            return Ok(sensorPlotResource);
         }
     }
 }

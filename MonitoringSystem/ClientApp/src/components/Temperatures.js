@@ -16,7 +16,39 @@ var layoutUpdate = {
   yaxis: {
     title: "Temperature"
   },
-  title: "Temperature sensor"
+  title: "C?m bi?n nhi?t d?",
+  updatemenus: [
+    {
+      buttons: [
+        {
+          label: "Show",
+          method: "restyle",
+          args: ["visible", true]
+        },
+        {
+          label: "Hide",
+          method: "restyle",
+          args: ["visible", "legendonly"]
+        }
+      ]
+    }
+  ]
+};
+var otherSettings = {
+  modeBarButtonsToAdd: [
+    {
+      name: "show",
+      click: gd => {
+        Plotly.restyle(gd, "visible", true);
+      }
+    },
+    {
+      name: "hide",
+      click: gd => {
+        Plotly.restyle(gd, "visible", "legendonly");
+      }
+    }
+  ]
 };
 
 function formatStartDateDisplay(date, defaultText) {
@@ -89,7 +121,7 @@ export default class Temperatures extends Component {
       this.props.temperatures.length !== 0
     ) {
       data = this.props.temperatures;
-      Plotly.newPlot("temperatures", data, layoutUpdate);
+      Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings);
     }
     return (
       <div>
