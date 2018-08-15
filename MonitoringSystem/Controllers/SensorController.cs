@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
+    [Authorize]
     [Route("/api/sensors")]
     //[ApiController]
     public class SensorController : Controller

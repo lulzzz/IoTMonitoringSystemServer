@@ -1,19 +1,17 @@
 import * as signalR from "@aspnet/signalr";
 import * as authService from "../services/Authentication";
 
-const requestRackType = "REQUEST_RACKS";
-const receiveRackType = "RECEIVE_RACKS";
+const requestAccountType = "REQUEST_ACCOUNTS";
+const receiveAccountType = "RECEIVE_ACCOUNTS";
 const initialState = {
-  rack: [],
+  accounts: [],
   isLoading: false,
-  statuses: [],
-  racks: [],
   hubConnection: null
 };
 
 export const actionCreators = {
-  requestRack: (isLoaded, rackId) => async (dispatch, getState) => {
-    if (isLoaded === getState().rack.isLoaded) {
+  requestAccount: isLoaded => async (dispatch, getState) => {
+    if (isLoaded === getState().account.isLoaded) {
       // Don't issue a duplicate request (we already have or are loading the requested
       // data)
       return;
@@ -24,7 +22,7 @@ export const actionCreators = {
       .build();
 
     hubConnection.on("LoadData", () => {
-      loadData(dispatch, rackId, isLoaded);
+      loadData(dispatch, isLoaded);
     });
 
     hubConnection
@@ -37,18 +35,16 @@ export const actionCreators = {
       });
 
     dispatch({
-      type: requestRackType,
+      type: requestAccountType,
       isLoaded,
-      hubConnection,
-      rackId
+      hubConnection
     });
-
-    loadData(dispatch, rackId, isLoaded);
+    loadData(dispatch, isLoaded);
   }
 };
 
-export const loadData = async (dispatch, rackId, isLoaded) => {
-  const rack = await await fetch(`api/racks/getrack/${rackId}`, {
+export const loadData = async (dispatch, isLoaded) => {
+  const accounts = await await fetch(`api/accounts/getall`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -59,44 +55,27 @@ export const loadData = async (dispatch, rackId, isLoaded) => {
     return response.json();
   });
 
-  const statuses = await fetch(`api/statuses/getall?rackId=${rackId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
-
-  dispatch({
-    type: receiveRackType,
-    isLoaded,
-    rack,
-    statuses
-  });
+  dispatch({ type: receiveAccountType, isLoaded, accounts });
 };
 
 export const reducer = (state, action) => {
   state = state || initialState;
-  if (action.type === requestRackType) {
+
+  if (action.type === requestAccountType) {
     return {
       ...state,
       isLoading: true,
       isLoaded: action.isLoaded,
-      rackId: action.rackId,
       hubConnection: action.hubConnection
     };
   }
 
-  if (action.type === receiveRackType) {
+  if (action.type === receiveAccountType) {
     return {
       ...state,
+      accounts: action.accounts,
       isLoading: false,
-      isLoaded: action.isLoaded,
-      statuses: action.statuses,
-      rack: action.rack
+      isLoaded: action.isLoaded
     };
   }
 

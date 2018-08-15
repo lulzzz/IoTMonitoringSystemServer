@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
+    [Authorize]
     [Route("/api/racks")]
     //[ApiController]
     public class RackController : Controller
