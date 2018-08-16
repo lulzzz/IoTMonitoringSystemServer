@@ -19,7 +19,7 @@ using MonitoringSystem.Persistences.IRepositories;
 
 namespace MonitoringSystem.Controllers
 {
-    [Authorize]
+
     [Route("/api/accounts")]
     public class AccountController : Controller
     {
@@ -44,6 +44,7 @@ namespace MonitoringSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
@@ -66,7 +67,6 @@ namespace MonitoringSystem.Controllers
             return BadRequest("data which sent to server is not valid.");
         }
 
-        [AllowAnonymous]
         [HttpPost]
         [Route("generatetoken")]
         public async Task<IActionResult> GenerateToken([FromBody] LoginViewModel model)
@@ -113,6 +113,7 @@ namespace MonitoringSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("getall")]
         //[AllowAnonymous]
         public async Task<IActionResult> GetAllUser()

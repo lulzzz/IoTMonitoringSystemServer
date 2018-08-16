@@ -1,4 +1,4 @@
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestMapsType = "REQUEST_SENSORS";
 const receiveMapsType = "RECEIVE_SENSORS";
@@ -27,29 +27,12 @@ export const actionCreators = {
 };
 
 export const loadData = async (dispatch, isLoaded) => {
-  const sensors = await fetch(`api/sensors/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const sensors = await dataService.get(`api/sensors/getall`);
 
   var popovers = [];
   for (let sensor of sensors.items) {
-    const rack = await fetch(`api/racks/getrack/${sensor.racks[0]}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    }).then(function(response) {
-      return response.json();
-    });
+    const rack = await dataService.get(`api/racks/getrack/${sensor.racks[0]}`);
+
     popovers.push({
       key: rack.location,
       placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
@@ -63,27 +46,11 @@ export const loadData = async (dispatch, isLoaded) => {
   }
   popovers = popovers.reverse();
 
-  const latestHumidity = await fetch(`api/plots/getlatesthumidity`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const latestHumidity = await dataService.get(`api/plots/getlatesthumidity`);
 
-  const latestTemperature = await fetch(`api/plots/getlatesttemperature`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const latestTemperature = await dataService.get(
+    `api/plots/getlatesttemperature`
+  );
 
   dispatch({
     type: receiveMapsType,

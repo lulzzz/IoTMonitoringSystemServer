@@ -16,7 +16,7 @@ var layoutUpdate = {
   yaxis: {
     title: "Temperature"
   },
-  title: "Temperature sensor",
+  title: "Temperature Graph",
   updatemenus: [
     {
       buttons: [

@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { actionCreators } from "../../store/Room";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Row } from "reactstrap";
+import RangeFilter from "./RangeFilter";
+
+function getCustomFilter(filterHandler, customFilterParameters) {
+  return <RangeFilter filterHandler={filterHandler} />;
+}
 
 class Room extends Component {
   componentWillMount() {
@@ -82,8 +87,9 @@ class Room extends Component {
           <TableHeaderColumn
             dataField="dateTime"
             filter={{
-              type: "DateFilter",
-              delay: 1000
+              type: "CustomFilter",
+              getElement: getCustomFilter,
+              customFilterParameters: {}
             }}
           >
             DateTime

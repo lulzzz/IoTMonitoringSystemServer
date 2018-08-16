@@ -1,4 +1,4 @@
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestTemperaturesType = "REQUEST_WEATHER_FORECASTS";
 const receiveTemperaturesType = "RECEIVE_WEATHER_FORECASTS";
@@ -17,16 +17,7 @@ export const actionCreators = {
 
     dispatch({ type: requestTemperaturesType, isLoaded });
 
-    const temperatures = await fetch(`api/plots/temperature/getall`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    }).then(function(response) {
-      return response.json();
-    });
+    const temperatures = await dataService.get(`api/plots/temperature/getall`);
 
     dispatch({ type: receiveTemperaturesType, isLoaded, temperatures });
     return;

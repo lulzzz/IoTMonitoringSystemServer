@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestRackType = "REQUEST_RACKS";
 const receiveRackType = "RECEIVE_RACKS";
@@ -48,27 +48,11 @@ export const actionCreators = {
 };
 
 export const loadData = async (dispatch, rackId, isLoaded) => {
-  const rack = await await fetch(`api/racks/getrack/${rackId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const rack = await dataService.get(`api/racks/getrack/${rackId}`);
 
-  const statuses = await fetch(`api/statuses/getall?rackId=${rackId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const statuses = await dataService.get(
+    `api/statuses/getall?rackId=${rackId}`
+  );
 
   dispatch({
     type: receiveRackType,

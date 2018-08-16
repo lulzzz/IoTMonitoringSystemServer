@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestAdminType = "REQUEST_ADMINS";
 const receiveAdminType = "RECEIVE_ADMINS";
@@ -56,16 +56,7 @@ export const actionCreators = {
     console.log("addRacks");
 
     delete data.rackId;
-    await fetch(`api/racks/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
-
+    await dataService.post(`api/racks/add`, data);
     loadData(dispatch);
   },
 
@@ -73,15 +64,7 @@ export const actionCreators = {
     console.log("addRooms");
 
     delete data.roomId;
-    await fetch(`api/rooms/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.post(`api/rooms/add`, data);
 
     loadData(dispatch);
   },
@@ -90,15 +73,7 @@ export const actionCreators = {
     console.log("addSensors");
 
     delete data.sensorId;
-    const res = await fetch(`api/sensors/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.post(`api/sensors/add`, data);
 
     loadData(dispatch);
   },
@@ -107,15 +82,7 @@ export const actionCreators = {
     console.log("addFans");
 
     delete data.fanId;
-    await fetch(`api/fans/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.post(`api/fans/add`, data);
 
     loadData(dispatch);
   },
@@ -133,15 +100,7 @@ export const actionCreators = {
     };
 
     console.log(data);
-    var res = await fetch(`api/racks/update/` + rackId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.put(`api/racks/update/` + rackId, data);
 
     loadData(dispatch);
   },
@@ -157,15 +116,7 @@ export const actionCreators = {
     };
 
     console.log(data);
-    var res = await fetch(`api/rooms/update/` + roomId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.put(`api/rooms/update/` + roomId, data);
 
     loadData(dispatch);
   },
@@ -181,17 +132,7 @@ export const actionCreators = {
       sensorName: data.sensorName
     };
 
-    console.log(data);
-    var res = await fetch(`api/sensors/update/` + sensorId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
-    console.log(res);
+    await dataService.put(`api/sensors/update/` + sensorId, data);
 
     loadData(dispatch);
   },
@@ -210,106 +151,43 @@ export const actionCreators = {
     };
 
     console.log(data);
-    var res = await fetch(`api/fans/update/` + fanId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
-    console.log(res);
+    await dataService.put(`api/fans/update/` + fanId, data);
 
     loadData(dispatch);
   },
 
   deleteRacks: rackId => async (dispatch, getState) => {
-    await fetch(`api/racks/delete/` + rackId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/racks/delete/` + rackId);
 
     loadData(dispatch);
   },
 
   deleteRooms: roomId => async (dispatch, getState) => {
-    await fetch(`api/rooms/delete/` + roomId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/rooms/delete/` + roomId);
 
     loadData(dispatch);
   },
 
   deleteSensors: sensorId => async (dispatch, getState) => {
-    await fetch(`api/sensors/delete/` + sensorId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/sensors/delete/` + sensorId);
 
     loadData(dispatch);
   },
 
   deleteSensors: fanId => async (dispatch, getState) => {
-    await fetch(`api/fans/delete/` + fanId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/fans/delete/` + fanId);
 
     loadData(dispatch);
   }
 };
 
 export const loadData = async (dispatch, isLoaded) => {
-  const sensors = await await fetch(`api/sensors/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const sensors = await dataService.get(`api/sensors/getall`);
 
-  const rooms = await fetch(`api/rooms/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const rooms = await dataService.get(`api/rooms/getall`);
 
-  const racks = await fetch(`api/racks/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const racks = await dataService.get(`api/racks/getall`);
+
   racks.items.sort(function(rack1, rack2) {
     if (rack1.roomName > rack2.roomName) return -1;
     if (rack1.roomName < rack2.roomName) return 1;
@@ -326,16 +204,7 @@ export const loadData = async (dispatch, isLoaded) => {
       return 1;
   });
 
-  const fans = await fetch(`api/fans/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const fans = await dataService.get(`api/fans/getall`);
 
   dispatch({ type: receiveAdminType, sensors, isLoaded, rooms, racks, fans });
 };

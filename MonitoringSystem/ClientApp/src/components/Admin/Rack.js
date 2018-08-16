@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { actionCreators } from "../../store/Rack";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Row } from "reactstrap";
+import RangeFilter from "./RangeFilter";
+
+function getCustomFilter(filterHandler, customFilterParameters) {
+  return <RangeFilter filterHandler={filterHandler} />;
+}
 
 class Rack extends Component {
   componentWillMount() {
@@ -101,8 +106,9 @@ class Rack extends Component {
           <TableHeaderColumn
             dataField="dateTime"
             filter={{
-              type: "DateFilter",
-              delay: 1000
+              type: "CustomFilter",
+              getElement: getCustomFilter,
+              customFilterParameters: {}
             }}
           >
             DateTime
@@ -171,8 +177,9 @@ class Rack extends Component {
           <TableHeaderColumn
             dataField="dateTime"
             filter={{
-              type: "DateFilter",
-              delay: 1000
+              type: "CustomFilter",
+              getElement: getCustomFilter,
+              customFilterParameters: {}
             }}
           >
             DateTime

@@ -1,5 +1,5 @@
 import fetch from "cross-fetch";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 export const requestHumiditiesType = "REQUEST_TEMPERATURES";
 export const receiveHumiditiesType = "RECEIVE_TEMPERATURES";
@@ -19,15 +19,8 @@ function receiveHumidities(json) {
 function fetchHumidities() {
   return dispatch => {
     dispatch(requestHumidities());
-    return fetch(`/api/plots/humidity/getall`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    })
-      .then(response => response.json())
+    return dataService
+      .get(`/api/plots/humidity/getall`)
       .then(json => dispatch(receiveHumidities(json)));
   };
 }

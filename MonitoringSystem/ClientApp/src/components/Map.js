@@ -3,8 +3,16 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
-import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-import { Container, Row, Col } from "reactstrap";
+import {
+  Button,
+  Popover,
+  PopoverHeader,
+  PopoverBody,
+  Container,
+  Row,
+  Col,
+  Alert
+} from "reactstrap";
 import { actionCreators } from "../store/Map";
 import Plot from "react-plotly.js";
 import $ from "jquery";
@@ -16,6 +24,10 @@ class PopoverItem extends React.Component {
     this.state = {
       popoverOpen: false
     };
+  }
+
+  showAlert() {
+    <Alert color="warning">This is a warning alert — check it out!</Alert>;
   }
 
   toggle() {

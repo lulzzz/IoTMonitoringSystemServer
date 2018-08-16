@@ -1,19 +1,16 @@
 .map {
-  left: 300;
-  width: 500;
-  height: 500;
+  left: 310;
 }
 
 .censor-btn {
   border-radius: 0 !important;
   position: absolute;
   text-align: center;
-  background-color: green;
   border: none;
   cursor: pointer;
   color: white;
   font-size: 10px;
-  padding: 14px 14px;
+  padding: 12px 12px;
 }
 
 /* Style the button and place it in the middle of the container/image */
@@ -21,48 +18,48 @@
 /*sensor row1 */
 
 .container .censor-btn#sensor-0 {
-  top: 23px;
-  left: 63px;
+  top: 25px;
+  left: 60px;
 }
 
 .container .censor-btn#sensor-1 {
-  top: 23px;
+  top: 25px;
   left: 105px;
 }
 
 .container .censor-btn#sensor-2 {
-  top: 23px;
+  top: 25px;
   left: 150px;
 }
 
 .container .censor-btn#sensor-3 {
-  top: 23px;
+  top: 25px;
   left: 219px;
 }
 
 .container .censor-btn#sensor-4 {
-  top: 23px;
-  left: 259px;
+  top: 25px;
+  left: 261px;
 }
 
 .container .censor-btn#sensor-5 {
-  top: 23px;
+  top: 25px;
   left: 329px;
 }
 
 .container .censor-btn#sensor-6 {
-  top: 23px;
+  top: 25px;
   left: 374px;
   width: 63.5px;
 }
 
 .container .censor-btn#sensor-7 {
-  top: 23px;
+  top: 25px;
   left: 460px;
 }
 
 .container .censor-btn#sensor-8 {
-  top: 23px;
+  top: 25px;
   left: 505px;
   width: 63.5px;
 }
@@ -132,7 +129,7 @@
 
 .container .censor-btn#sensor-20 {
   top: 200px;
-  left: 323px;
+  left: 325px;
   width: 18px;
 }
 
@@ -222,7 +219,7 @@
   width: 63.5px;
 }
 
-.container .censor-btn#sensor-36{
+.container .censor-btn#sensor-36 {
   top: 375px;
   left: 282px;
 }
@@ -299,12 +296,4 @@
 
 .container .censor-btn:hover {
   background-color: black;
-}
-
-
-@keyframes button-animation{
-  0%{background-color: aliceblue}
-  25%{background-color:yellow;}
-  50%{background-color:green;}
-  100% {background-color: red;}
 }

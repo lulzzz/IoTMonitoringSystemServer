@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { actionCreators } from "../../store/Sensor";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Row } from "reactstrap";
+import RangeFilter from "./RangeFilter";
+
+function getCustomFilter(filterHandler, customFilterParameters) {
+  return <RangeFilter filterHandler={filterHandler} />;
+}
 
 class Sensor extends Component {
   componentWillMount() {
@@ -85,8 +90,9 @@ class Sensor extends Component {
           <TableHeaderColumn
             dataField="dateTime"
             filter={{
-              type: "DateFilter",
-              delay: 1000
+              type: "CustomFilter",
+              getElement: getCustomFilter,
+              customFilterParameters: {}
             }}
           >
             DateTime
@@ -97,7 +103,7 @@ class Sensor extends Component {
             filter={{
               type: "NumberFilter",
               delay: 1000,
-              numberComparators: ["=", ">", "<="]
+              numberComparators: ["=", ">", "<"]
             }}
           >
             Temperature Value
@@ -108,7 +114,7 @@ class Sensor extends Component {
             filter={{
               type: "NumberFilter",
               delay: 1000,
-              numberComparators: ["=", ">", "<="]
+              numberComparators: ["=", ">", "<"]
             }}
           >
             Humidity Value
@@ -155,8 +161,9 @@ class Sensor extends Component {
           <TableHeaderColumn
             dataField="dateTime"
             filter={{
-              type: "DateFilter",
-              delay: 1000
+              type: "CustomFilter",
+              getElement: getCustomFilter,
+              customFilterParameters: {}
             }}
           >
             DateTime

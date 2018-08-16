@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestRoomType = "REQUEST_ROOMS";
 const receiveRoomType = "RECEIVE_ROOMS";
@@ -51,15 +51,7 @@ export const actionCreators = {
     const roomId = getState().room.roomId;
     data.roomId = roomId;
     delete data.rackId;
-    await fetch(`api/racks/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.post(`api/racks/add`, data);
 
     loadData(dispatch, roomId);
   },
@@ -78,29 +70,15 @@ export const actionCreators = {
       roomId: roomId
     };
 
-    var res = await fetch(`api/racks/update/` + rackId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    var res = await dataService.put(`api/racks/update/` + rackId, data);
 
     loadData(dispatch, roomId);
   },
 
   deleteRacks: rackId => async (dispatch, getState) => {
     console.log("deleteRacks");
-    await fetch(`api/racks/delete/` + rackId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/racks/delete/` + rackId);
+
     const roomId = getState().room.roomId;
     loadData(dispatch, roomId);
   },
@@ -110,15 +88,7 @@ export const actionCreators = {
     const roomId = getState().room.roomId;
     data.roomId = roomId;
     delete data.sensorId;
-    await fetch(`api/sensors/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    await dataService.post(`api/sensors/add`, data);
 
     loadData(dispatch, roomId);
   },
@@ -135,56 +105,23 @@ export const actionCreators = {
       roomId: roomId
     };
 
-    var res = await fetch(`api/sensors/update/` + sensorId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    var res = await dataService.put(`api/sensors/update/` + sensorId, data);
 
     loadData(dispatch, roomId);
   },
 
   deleteSensors: sensorId => async (dispatch, getState) => {
     console.log("deleteSensors");
-    await fetch(`api/sensors/delete/` + sensorId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/sensors/delete/` + sensorId);
     const roomId = getState().room.roomId;
     loadData(dispatch, roomId);
   }
 };
 
 export const loadData = async (dispatch, roomId, isLoaded) => {
-  const room = await await fetch(`api/rooms/getroom/${roomId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const room = await dataService.get(`api/rooms/getroom/${roomId}`);
 
-  const racks = await fetch(`api/racks/getall?roomId=${roomId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const racks = await dataService.get(`api/racks/getall?roomId=${roomId}`);
 
   racks.items.sort(function(rack1, rack2) {
     if (rack1.roomName > rack2.roomName) return -1;
@@ -202,16 +139,7 @@ export const loadData = async (dispatch, roomId, isLoaded) => {
       return 1;
   });
 
-  const sensors = await fetch(`api/sensors/getall?roomId=${roomId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const sensors = await dataService.get(`api/sensors/getall?roomId=${roomId}`);
 
   dispatch({
     type: receiveRoomType,
