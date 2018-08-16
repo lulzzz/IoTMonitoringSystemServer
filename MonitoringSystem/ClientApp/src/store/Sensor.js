@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestSensorType = "REQUEST_SENSORS";
 const receiveSensorType = "RECEIVE_SENSORS";
@@ -52,15 +52,7 @@ export const actionCreators = {
     const sensorId = getState().sensor.sensorId;
     data.sensorId = sensorId;
     delete data.rackId;
-    const res = await fetch(`api/racks/add`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    const res = await dataService.post(`api/racks/add`, data);
 
     loadData(dispatch, sensorId);
   },
@@ -80,85 +72,36 @@ export const actionCreators = {
       roomId: data.roomId
     };
 
-    var res = await fetch(`api/racks/update/` + rackId, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
-
+    var res = await dataService.put(`api/racks/update/` + rackId, data);
     loadData(dispatch, sensorId);
   },
 
   deleteRacks: rackId => async (dispatch, getState) => {
     console.log("deleteRacks");
-    await fetch(`api/racks/delete/` + rackId, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    });
+    await dataService.remove(`api/racks/delete/` + rackId);
+
     const sensorId = getState().sensor.sensorId;
     loadData(dispatch, sensorId);
   }
 };
 
 export const loadData = async (dispatch, sensorId, isLoaded) => {
-  const sensor = await await fetch(`api/sensors/getsensor/${sensorId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const sensor = await dataService.get(`api/sensors/getsensor/${sensorId}`);
 
-  const statuses = await fetch(`api/statuses/getall?sensorId=${sensorId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const statuses = await dataService.get(
+    `api/statuses/getall?sensorId=${sensorId}`
+  );
 
   const racks = [];
   for (let element of sensor.racks) {
-    var rack = await fetch(`api/racks/getrack/${element}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      }
-    }).then(function(response) {
-      return response.json();
-    });
+    var rack = await dataService.get(`api/racks/getrack/${element}`);
 
     if (!rack.isDeleted) {
       racks.push(rack);
     }
   }
 
-  const rooms = await fetch(`api/rooms/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const rooms = await dataService.get(`api/rooms/getall`);
 
   dispatch({
     type: receiveSensorType,

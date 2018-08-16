@@ -1,5 +1,5 @@
 import { push } from "react-router-redux";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestLogInType = "REQUEST_LOGIN";
 const receiveLogInType = "RECEIVE_LOGIN";
@@ -29,15 +29,7 @@ export const actionCreators = {
       password: password
     };
 
-    var res = await fetch(`api/accounts/generatetoken`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authService.getLoggedInUser().access_token
-      },
-      body: JSON.stringify(data)
-    });
+    var res = await dataService.login(`api/accounts/generatetoken`, data);
 
     const jsonRespone = await res.json();
 

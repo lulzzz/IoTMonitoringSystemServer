@@ -1,5 +1,5 @@
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestAccountType = "REQUEST_ACCOUNTS";
 const receiveAccountType = "RECEIVE_ACCOUNTS";
@@ -44,16 +44,7 @@ export const actionCreators = {
 };
 
 export const loadData = async (dispatch, isLoaded) => {
-  const accounts = await await fetch(`api/accounts/getall`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authService.getLoggedInUser().access_token
-    }
-  }).then(function(response) {
-    return response.json();
-  });
+  const accounts = await dataService.get(`api/accounts/getall`);
 
   dispatch({ type: receiveAccountType, isLoaded, accounts });
 };

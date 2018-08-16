@@ -1,5 +1,5 @@
 import { push } from "react-router-redux";
-import * as authService from "../services/Authentication";
+import * as dataService from "../services/DataService";
 
 const requestRegisterType = "REQUEST_REGISTER";
 const receiveRegisterType = "RECEIVE_REGISTER";
@@ -30,16 +30,8 @@ export const actionCreators = {
     if (user.password.localeCompare(user.confirmPassword) != 0) {
       errorMessage = "Password does not match the confirm password.";
     } else {
-      var res = await fetch(`api/accounts/register`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + authService.getLoggedInUser().access_token
-        },
-        body: JSON.stringify(user)
-      });
-      console.log(res);
+      var res = await dataService.post(`api/accounts/register`, user);
+
       if (res.status == 200) {
         dispatch(push("/login"));
       } else {

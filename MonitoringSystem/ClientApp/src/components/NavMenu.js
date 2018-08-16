@@ -27,7 +27,7 @@ export default class NavMenu extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar expand="md">
           <NavbarBrand href="/">
             <img src={Logo} />
           </NavbarBrand>
