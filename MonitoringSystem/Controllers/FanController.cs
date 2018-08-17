@@ -186,6 +186,7 @@ namespace MonitoringSystem.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("checkfan")]
         public async Task<IActionResult> CheckFan([FromBody] FanStatusResource fanStatusResource)
         {
