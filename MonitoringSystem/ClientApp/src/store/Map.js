@@ -31,18 +31,24 @@ export const loadData = async (dispatch, isLoaded) => {
 
   var popovers = [];
   for (let sensor of sensors.items) {
-    const rack = await dataService.get(`api/racks/getrack/${sensor.racks[0]}`);
+    if (sensor.racks != null && sensor.racks.length != 0) {
+      const rack = await dataService.get(
+        `api/racks/getrack/${sensor.racks[0]}`
+      );
 
-    popovers.push({
-      key: rack.location,
-      placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
-      text: sensor.latestStatus ? sensor.latestStatus.text : sensor.sensorCode,
-      sensor: sensor.latestStatus
-        ? sensor.latestStatus.sensor
-        : sensor.sensorName,
-      temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
-      humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
-    });
+      popovers.push({
+        key: rack.location,
+        placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
+        text: sensor.latestStatus
+          ? sensor.latestStatus.text
+          : sensor.sensorCode,
+        sensor: sensor.latestStatus
+          ? sensor.latestStatus.sensor
+          : sensor.sensorName,
+        temperature: sensor.latestStatus ? sensor.latestStatus.temperature : "",
+        humidity: sensor.latestStatus ? sensor.latestStatus.humidity : ""
+      });
+    }
   }
   popovers = popovers.reverse();
 

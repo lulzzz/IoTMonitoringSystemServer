@@ -6,7 +6,12 @@ export const isUserAuthenticated = () => {
 };
 
 export const getLoggedInUser = () => {
-  var user = null;
+  var user = {
+    access_token: "",
+    email: "",
+    role: "",
+    userName: ""
+  };
   if (isUserAuthenticated()) {
     var userData = JSON.parse(localStorage.getItem("CURRENT_USER"));
     user = {
