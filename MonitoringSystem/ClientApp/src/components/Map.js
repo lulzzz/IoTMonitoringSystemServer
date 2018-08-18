@@ -41,7 +41,7 @@ class PopoverItem extends React.Component {
       <div>
         <Button
           className="censor-btn"
-          color="success"
+          color={parseFloat(this.props.item.temperature) > 30.0 ? "success" : "danger"}
           id={"sensor-" + this.props.id}
           onClick={this.toggle}
         >
