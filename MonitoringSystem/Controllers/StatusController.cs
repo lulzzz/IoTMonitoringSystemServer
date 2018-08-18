@@ -63,6 +63,7 @@ namespace MonitoringSystem.Controllers
         }
 
         // POST: api/statuses/add
+        [AllowAnonymous]
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> CreateStatus([FromBody] StatusResource statusResource)

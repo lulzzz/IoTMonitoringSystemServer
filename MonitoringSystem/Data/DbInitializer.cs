@@ -29,13 +29,12 @@ namespace MonitoringSystem.Data
 
             var sensors = new Sensor[]
             {
-                new Sensor{IsDeleted = false, SensorCode="N1", SensorName="Sensor 1", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="N2",SensorName="Sensor 2", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="N3", SensorName="Sensor 3", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="N4", SensorName="Sensor 4", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="N5", SensorName="Sensor 5", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
-                new Sensor{IsDeleted = false, SensorCode="N6", SensorName="Sensor 6", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)}
-
+                new Sensor{IsDeleted = false, SensorCode="R1.1", SensorName="Sensor 1", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="R1.2",SensorName="Sensor 2", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="R1.3", SensorName="Sensor 3", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="R1.4", SensorName="Sensor 4", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="R1.5", SensorName="Sensor 5", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)},
+                new Sensor{IsDeleted = false, SensorCode="R1.6", SensorName="Sensor 6", Room = context.Rooms.FirstOrDefault(r=>r.RoomId==1)}
             };
             foreach (var sensor in sensors)
             {
