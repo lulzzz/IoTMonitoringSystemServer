@@ -3,30 +3,14 @@
 }
 
 .censor-btn {
-
   border-radius: 0 !important;
   position: absolute;
   text-align: center;
-  color: rgb(68, 68, 68);
+  border: none;
+  cursor: pointer;
+  color: white;
   font-size: 10px;
-  
-}
-
-.censor-btn.btn{
-  padding:8px 12px;
-}
-
-.censor-btn.btn-normal {
-  background: #4af783;
-  border: 0.5px solid #808080;
-}
-.censor-btn.btn-warning {
-  background: #eba844;
-  border: 0.5px solid #808080;
-}
-.censor-btn.btn-danger {
-  background: #f05b40;
-  border: 0.5px solid #808080;
+  padding: 10px 10px;
 }
 
 /* Style the button and place it in the middle of the container/image */
@@ -34,48 +18,48 @@
 /*sensor row1 */
 
 .container .censor-btn#sensor-0 {
-  top: 23px;
+  top: 25px;
   left: 60px;
 }
 
 .container .censor-btn#sensor-1 {
-  top: 23px;
+  top: 25px;
   left: 105px;
 }
 
 .container .censor-btn#sensor-2 {
-  top: 23px;
+  top: 25px;
   left: 150px;
 }
 
 .container .censor-btn#sensor-3 {
-  top: 23px;
+  top: 25px;
   left: 219px;
 }
 
 .container .censor-btn#sensor-4 {
-  top: 23px;
+  top: 25px;
   left: 261px;
 }
 
 .container .censor-btn#sensor-5 {
-  top: 23px;
+  top: 25px;
   left: 329px;
 }
 
 .container .censor-btn#sensor-6 {
-  top: 23px;
+  top: 25px;
   left: 374px;
   width: 63.5px;
 }
 
 .container .censor-btn#sensor-7 {
-  top: 23px;
+  top: 25px;
   left: 460px;
 }
 
 .container .censor-btn#sensor-8 {
-  top: 23px;
+  top: 25px;
   left: 505px;
   width: 63.5px;
 }

@@ -12,7 +12,3 @@ npm start
 =>Create new Terminal
 
 dotnet watch run
-
-#set data to app
-
-dotnet dev-certs https --trust

@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import { actionCreators } from "../store/Map";
 import Plot from "react-plotly.js";
+
 class PopoverItem extends React.Component {
   constructor(props) {
     super(props);
@@ -36,11 +37,7 @@ class PopoverItem extends React.Component {
       <div>
         <Button
           className="censor-btn"
-          color={
-            parseFloat(this.props.item.latestTemperature) < 30 ? "normal"
-              : parseFloat(this.props.item.latestTemperature) > 50 ? "danger"
-                : "normal"
-          }
+          color={parseFloat(this.props.item.latestTemperature) > 30.0 ? "danger" : "success"}
           id={"sensor-" + this.props.id}
           onClick={this.toggle}
         >

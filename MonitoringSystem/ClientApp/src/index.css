@@ -1,6 +1,5 @@
 body {
   font-family: 'Roboto', sans-serif !important;
-  color: #616161;
 }
 
 .body {
@@ -17,12 +16,5 @@ body {
 
 .bg-light {
   background: unset !important;
-}
-
-/* Navbar */
-
-.nav-link {
-  color: #616161;
-  text-transform: uppercase
 }
 

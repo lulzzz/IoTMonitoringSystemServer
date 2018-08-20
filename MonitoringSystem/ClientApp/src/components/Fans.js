@@ -13,9 +13,8 @@ export default class Fans extends Component {
             <Col sm="3" key={fan.fanId}>
               <Card body className="text-center">
                 <img
-                  className={"rotating-" + fan.isOn}
+                  className="rotating"
                   width="100%"
-                  id={fan.fanId}
                   src="http://www.frozentechnologies.co.uk/communities/9/004/013/373/239//images/4627651659.png"
                   alt="Card cap"
                 />

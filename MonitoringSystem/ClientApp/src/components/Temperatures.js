@@ -25,7 +25,6 @@ var otherSettings = {
   modeBarButtonsToAdd: [
     {
       name: "show",
-      icon: Plotly.Icons['coffee'],
       click: gd => {
         Plotly.restyle(gd, "visible", true,
         );
