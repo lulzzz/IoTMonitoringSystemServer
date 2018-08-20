@@ -29,9 +29,7 @@ export const actionCreators = {
       password: password
     };
 
-
-
-    var res = await dataService.login(`api/accounts/generatetoken`, data);
+    var res = await dataService.login(data);
 
     const jsonRespone = await res.json();
 

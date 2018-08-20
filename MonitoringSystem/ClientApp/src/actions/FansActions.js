@@ -1,4 +1,3 @@
-import fetch from "cross-fetch";
 import * as dataService from "../services/DataService";
 
 export const requestFansType = "REQUEST_FANS";

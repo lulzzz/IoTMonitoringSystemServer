@@ -1,4 +1,3 @@
-import fetch from "cross-fetch";
 import * as dataService from "../services/DataService";
 
 export const requestHumiditiesType = "REQUEST_TEMPERATURES";

@@ -11,7 +11,7 @@ const headerWithoutBearer = {
   "Content-Type": "application/json"
 };
 
-export const login = async (url, data) => {
+export const login = async data => {
   return await fetch("api/accounts/generatetoken", {
     method: "POST",
     headers: headerWithoutBearer,

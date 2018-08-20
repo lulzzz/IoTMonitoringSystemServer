@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
@@ -79,7 +79,7 @@ class PopoverExampleMulti extends React.Component {
       <Container>
         <Row className="container">
           <Col sm="12" md={{ size: 8, offset: 2 }}>
-            <img className="map" src={map} />
+            <img className="map" src={map} alt="map" />
             {this.props.popovers &&
               this.props.popovers.map((popover, i) => {
                 return <PopoverItem key={i} item={popover} id={popover.key} />;

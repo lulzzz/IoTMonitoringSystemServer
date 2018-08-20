@@ -174,7 +174,7 @@ export const actionCreators = {
     loadData(dispatch);
   },
 
-  deleteSensors: fanId => async (dispatch, getState) => {
+  deleteFans: fanId => async (dispatch, getState) => {
     await dataService.remove(`api/fans/delete/` + fanId);
 
     loadData(dispatch);

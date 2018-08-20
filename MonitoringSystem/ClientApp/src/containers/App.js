@@ -6,7 +6,6 @@ import AsyncFans from "../containers/AsyncFans";
 import AsyncDashboard from "../containers/AsyncDashboard";
 import Map from "./../components/Map";
 import Sensor from "./../components/Admin/Sensor";
-import Dashboard from "../containers/AsyncDashboard";
 import Rack from "./../components/Admin/Rack";
 import Room from "./../components/Admin/Room";
 import LogIn from "../components/Account/LogIn";
