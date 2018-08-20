@@ -17,29 +17,17 @@ var layoutUpdate = {
     title: "Temperature"
   },
   title: "Temperature Graph",
-  updatemenus: [
-    {
-      buttons: [
-        {
-          label: "Show",
-          method: "restyle",
-          args: ["visible", true]
-        },
-        {
-          label: "Hide",
-          method: "restyle",
-          args: ["visible", "legendonly"]
-        }
-      ]
-    }
-  ]
+  font: {
+    family: 'Roboto, sans-serif'
+  }
 };
 var otherSettings = {
   modeBarButtonsToAdd: [
     {
       name: "show",
       click: gd => {
-        Plotly.restyle(gd, "visible", true);
+        Plotly.restyle(gd, "visible", true,
+        );
       }
     },
     {

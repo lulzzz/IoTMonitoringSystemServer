@@ -1,7 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/switch.css";
-import "./assets/css/fan-animation.css";
-import "./index.css";
+
 import "babel-polyfill";
 
 // Styles
@@ -25,6 +22,11 @@ import configureStore from "./store/configureStore";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 import ReactDOM from "react-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/switch.css";
+import "./assets/css/fan-animation.css";
+import "./index.css";
 
 // Create browser history to use in the Redux store
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");

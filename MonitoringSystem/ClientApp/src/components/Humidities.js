@@ -17,22 +17,10 @@ var layoutUpdate = {
     title: "Humidity"
   },
   title: "Humidity Graph",
-  updatemenus: [
-    {
-      buttons: [
-        {
-          label: "Show",
-          method: "restyle",
-          args: ["visible", true]
-        },
-        {
-          label: "Hide",
-          method: "restyle",
-          args: ["visible", "legendonly"]
-        }
-      ]
-    }
-  ]
+  font: {
+    family: 'Roboto, sans-serif'
+  }
+
 };
 var otherSettings = {
   modeBarButtonsToAdd: [

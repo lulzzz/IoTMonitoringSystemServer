@@ -30,14 +30,8 @@ export const actionCreators = {
     };
 
 
-    var res = await fetch(`api/accounts/generatetoken`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+
+    var res = await dataService.login(`api/accounts/generatetoken`, data);
 
     const jsonRespone = await res.json();
 
