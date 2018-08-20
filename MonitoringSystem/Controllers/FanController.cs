@@ -157,6 +157,7 @@ namespace MonitoringSystem.Controllers
             await unitOfWork.Complete();
 
             await hubContext.Clients.All.SendAsync("LoadData");
+            await hubContext.Clients.All.SendAsync("UpdateFan");
 
             // converting fan object to json result
             var result = mapper.Map<Fan, FanResource>(fan);
@@ -276,6 +277,15 @@ namespace MonitoringSystem.Controllers
             {
                 throw ex;
             }
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("duy")]
+        public async Task GetFadns()
+        {
+            await hubContext.Clients.All.SendAsync("LoadData");
         }
     }
 }
