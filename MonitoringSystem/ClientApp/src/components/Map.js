@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
+import { Link } from "react-router-dom";
 import {
   Button,
   Popover,
@@ -15,7 +16,6 @@ import {
 } from "reactstrap";
 import { actionCreators } from "../store/Map";
 import Plot from "react-plotly.js";
-
 class PopoverItem extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +37,11 @@ class PopoverItem extends React.Component {
       <div>
         <Button
           className="censor-btn"
-          color={parseFloat(this.props.item.latestTemperature) > 30.0 ? "danger" : "success"}
+          color={
+            parseFloat(this.props.item.latestTemperature) < 30 ? "normal"
+              : parseFloat(this.props.item.latestTemperature) > 50 ? "danger"
+                : "normal"
+          }
           id={"sensor-" + this.props.id}
           onClick={this.toggle}
         >
@@ -53,7 +57,9 @@ class PopoverItem extends React.Component {
           <PopoverBody>
             <div>{"Temperature: " + this.props.item.temperature}</div>
             <div>{"Humidity: " + this.props.item.humidity}</div>
-            <div>{"Detail: "}</div>
+            <Link className="btn btn-primary" to={`/sensor/${this.props.item.sensorId}`}>
+              Detail
+           </Link>
           </PopoverBody>
         </Popover>
       </div>

@@ -38,6 +38,7 @@ export const loadData = async (dispatch, isLoaded) => {
 
       popovers.push({
         key: rack.location,
+        sensorId: sensor.sensorId ? sensor.sensorId : "", 
         placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
         text: sensor.latestStatus
           ? sensor.latestStatus.text

@@ -6,6 +6,7 @@ import { actionCreators } from "../../store/Admin";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import { Row } from "reactstrap";
+import { } from "../../assets/css/table.css";
 
 class Admin extends Component {
   componentWillMount() {
@@ -34,7 +35,7 @@ class Admin extends Component {
   renderSensorsTable(props) {
     const options = {
       page: 1, // which page you want to show as default
-      sizePerPage: 5, // which size per page you want to locate as default
+      sizePerPage: 10, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -52,24 +53,23 @@ class Admin extends Component {
       mode: "click"
     };
     return (
-      <div className="table">
+      <div className="table admin-table">
         <BootstrapTable
           data={this.props.sensors.items}
           striped
-          hover
           condensed
           pagination={true}
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{ mode: "checkbox", columnWidth: '40px', clickToSelect: true }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
         >
           <TableHeaderColumn
             dataField="sensorId"
-            hidden={true}
+            hidden
             hiddenOnInsert
             isKey
           >
@@ -84,7 +84,6 @@ class Admin extends Component {
           >
             Sensor Code
           </TableHeaderColumn>
-
           <TableHeaderColumn
             dataField="sensorName"
             filter={{
@@ -94,7 +93,6 @@ class Admin extends Component {
           >
             Sensor Name
           </TableHeaderColumn>
-
           <TableHeaderColumn
             dataField="roomId"
             filter={{
@@ -114,7 +112,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataFormat={this.sensorDetailButton} />
+          <TableHeaderColumn editable={false} dataFormat={this.sensorDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -123,7 +121,7 @@ class Admin extends Component {
   renderRacksTable(props) {
     const options = {
       page: 1, // which page you want to show as default
-      sizePerPage: 5, // which size per page you want to locate as default
+      sizePerPage: 10, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -145,7 +143,6 @@ class Admin extends Component {
         <BootstrapTable
           data={this.props.racks.items}
           striped
-          hover
           condensed
           pagination={true}
           insertRow
@@ -213,7 +210,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataFormat={this.rackDetailButton} />
+          <TableHeaderColumn editable={false} dataFormat={this.rackDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -222,7 +219,7 @@ class Admin extends Component {
   renderRoomsTable(props) {
     const options = {
       page: 1, // which page you want to show as default
-      sizePerPage: 5, // which size per page you want to locate as default
+      sizePerPage: 10, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -244,7 +241,6 @@ class Admin extends Component {
         <BootstrapTable
           data={this.props.rooms.items}
           striped
-          hover
           condensed
           pagination={true}
           insertRow
@@ -283,7 +279,7 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataFormat={this.roomDetailButton} />
+          <TableHeaderColumn editable={false} dataFormat={this.roomDetailButton} />
         </BootstrapTable>
       </div>
     );
@@ -292,7 +288,7 @@ class Admin extends Component {
   renderFansTable(props) {
     const options = {
       page: 1, // which page you want to show as default
-      sizePerPage: 5, // which size per page you want to locate as default
+      sizePerPage: 10, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -314,7 +310,6 @@ class Admin extends Component {
         <BootstrapTable
           data={this.props.fans.items}
           striped
-          hover
           condensed
           pagination={true}
           insertRow
@@ -419,33 +414,27 @@ class Admin extends Component {
 
   sensorDetailButton(cell, row, enumObject, rowIndex) {
     let theEditButton = (
-      <p>
-        <Link className="btn btn-primary" to={`/sensor/${row.sensorId}`}>
-          Detail
-        </Link>
-      </p>
+      <Link className="btn btn-primary" to={`/sensor/${row.sensorId}`}>
+        Detail
+      </Link>
     );
     return theEditButton;
   }
 
   rackDetailButton(cell, row, enumObject, rowIndex) {
     let theEditButton = (
-      <p>
-        <Link className="btn btn-primary" to={`/rack/${row.rackId}`}>
-          Detail
-        </Link>
-      </p>
+      <Link className="btn btn-primary" to={`/rack/${row.rackId}`}>
+        Detail
+      </Link>
     );
     return theEditButton;
   }
 
   roomDetailButton(cell, row, enumObject, rowIndex) {
     let theEditButton = (
-      <p>
-        <Link className="btn btn-primary" to={`/room/${row.roomId}`}>
-          Detail
+      <Link className="btn btn-primary" to={`/room/${row.roomId}`}>
+        Detail
         </Link>
-      </p>
     );
     return theEditButton;
   }

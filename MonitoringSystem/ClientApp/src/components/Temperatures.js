@@ -25,6 +25,7 @@ var otherSettings = {
   modeBarButtonsToAdd: [
     {
       name: "show",
+      icon: Plotly.Icons.hide,
       click: gd => {
         Plotly.restyle(gd, "visible", true,
         );
@@ -36,7 +37,9 @@ var otherSettings = {
         Plotly.restyle(gd, "visible", "legendonly");
       }
     }
-  ]
+  ],
+   displaylogo: false,
+   
 };
 
 function formatStartDateDisplay(date, defaultText) {
@@ -109,7 +112,7 @@ export default class Temperatures extends Component {
       this.props.temperatures.length !== 0
     ) {
       data = this.props.temperatures;
-      Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings);
+      Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings );
     }
     return (
       <div>

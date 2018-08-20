@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Card, CardTitle, Row, Col, CardBody } from "reactstrap";
+import fanImg from "../assets/img/fanImg.png";
 
 export default class Fans extends Component {
   render() {
@@ -13,9 +14,10 @@ export default class Fans extends Component {
             <Col sm="3" key={fan.fanId}>
               <Card body className="text-center">
                 <img
-                  className="rotating"
+                  className={"rotating-" + fan.isOn}
                   width="100%"
-                  src="http://www.frozentechnologies.co.uk/communities/9/004/013/373/239//images/4627651659.png"
+                  id={fan.fanId}
+                  src={fanImg}
                   alt="Card cap"
                 />
                 <CardBody>
