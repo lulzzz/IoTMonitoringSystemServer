@@ -92,9 +92,10 @@ namespace MonitoringSystem
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
                 {
-                    options.AddPolicy("AllowAll", builder =>
+                    options.AddPolicy("CorsPolicy", builder =>
                     {
                         builder.AllowAnyHeader()
+                        .WithOrigins("https://localhost:5001")
                             .AllowAnyOrigin()
                             .AllowCredentials()
                             .AllowAnyMethod();
@@ -137,7 +138,8 @@ namespace MonitoringSystem
             app.UseResponseCompression();
             app.UseMvc();
 
-            app.UseCors("AllowAll");
+            app.UseCors("CorsPolicy");
+
             app.UseSignalR(routes =>
             {
                 routes.MapHub<MonitoringSystemHub>("/hub");

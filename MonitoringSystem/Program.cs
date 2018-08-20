@@ -13,6 +13,7 @@ namespace MonitoringSystem
     {
         public static void Main(string[] args)
         {
+            //AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
             var host = CreateWebHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
