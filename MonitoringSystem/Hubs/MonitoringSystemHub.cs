@@ -10,5 +10,10 @@ namespace PMS.Hubs
             return Clients.All.SendAsync("LoadData");
         }
 
+        public Task UpdateFan()
+        {
+            return Clients.All.SendAsync("UpdateFan");
+        }
+
     }
 }
