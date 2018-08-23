@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("/api/plots")]
     //[ApiController]
     public class PlotController : Controller

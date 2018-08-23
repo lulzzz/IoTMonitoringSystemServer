@@ -6,7 +6,7 @@ import { actionCreators } from "../../store/Admin";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import { Row } from "reactstrap";
-import { } from "../../assets/css/table.css";
+import {} from "../../assets/css/table.css";
 
 class Admin extends Component {
   componentWillMount() {
@@ -62,17 +62,16 @@ class Admin extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "checkbox", columnWidth: '40px', clickToSelect: true }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
         >
-          <TableHeaderColumn
-            dataField="sensorId"
-            hidden
-            hiddenOnInsert
-            isKey
-          >
+          <TableHeaderColumn dataField="sensorId" hidden hiddenOnInsert isKey>
             Sensor Id
           </TableHeaderColumn>
           <TableHeaderColumn
@@ -112,7 +111,10 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn editable={false} dataFormat={this.sensorDetailButton} />
+          <TableHeaderColumn
+            editable={false}
+            dataFormat={this.sensorDetailButton}
+          />
         </BootstrapTable>
       </div>
     );
@@ -210,7 +212,10 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn editable={false} dataFormat={this.rackDetailButton} />
+          <TableHeaderColumn
+            editable={false}
+            dataFormat={this.rackDetailButton}
+          />
         </BootstrapTable>
       </div>
     );
@@ -279,7 +284,10 @@ class Admin extends Component {
             Room Name
           </TableHeaderColumn>
 
-          <TableHeaderColumn editable={false} dataFormat={this.roomDetailButton} />
+          <TableHeaderColumn
+            editable={false}
+            dataFormat={this.roomDetailButton}
+          />
         </BootstrapTable>
       </div>
     );
@@ -434,7 +442,7 @@ class Admin extends Component {
     let theEditButton = (
       <Link className="btn btn-primary" to={`/room/${row.roomId}`}>
         Detail
-        </Link>
+      </Link>
     );
     return theEditButton;
   }

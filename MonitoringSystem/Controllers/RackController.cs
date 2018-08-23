@@ -69,6 +69,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/racks/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateRack([FromBody] RackResource rackResource)
         {
@@ -106,6 +107,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/racks/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> Updaterack(int id, [FromBody]RackResource rackResource)
         {
@@ -148,6 +150,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/racks/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Deleterack(int id)
         {

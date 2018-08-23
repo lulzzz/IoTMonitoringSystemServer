@@ -65,6 +65,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/fanStatuss/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreatefanStatus([FromBody] FanStatusResource fanStatusResource)
         {
@@ -101,6 +102,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/fanStatuss/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateFanStatus(int id, [FromBody]FanStatusResource fanStatusResource)
         {
@@ -138,6 +140,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/fanStatuss/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteFanStatus(int id)
         {

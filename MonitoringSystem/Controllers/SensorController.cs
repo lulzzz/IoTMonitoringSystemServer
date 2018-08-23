@@ -67,6 +67,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/sensor/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateSensor([FromBody] SensorResource sensorResource)
         {
@@ -114,6 +115,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/sensors/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateSensor(int id, [FromBody]SensorResource sensorResource)
         {
@@ -165,6 +167,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/sensors/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteSensor(int id)
         {
