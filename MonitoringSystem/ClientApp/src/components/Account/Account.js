@@ -41,9 +41,9 @@ class Account extends Component {
       paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
       paginationPosition: "bottom", // default is bottom, top and both is all available
       hideSizePerPage: true,
-      onAddRow: this.onAddSensorRow,
-      onDeleteRow: this.onDeleteSensorRow,
-      onCellEdit: this.onSensorCellEdit
+      onAddRow: this.onAddAccountRow,
+      onDeleteRow: this.onDeleteAccountRow,
+      onCellEdit: this.onAccountCellEdit
     };
     const cellEditProp = {
       mode: "click"
@@ -64,11 +64,12 @@ class Account extends Component {
           cellEdit={cellEditProp}
           options={options}
         >
-          <TableHeaderColumn dataField="id" hidden={true} hiddenOnInsert isKey>
+          {/* <TableHeaderColumn dataField="id" hidden={true} hiddenOnInsert isKey>
             Id
-          </TableHeaderColumn>
+          </TableHeaderColumn> */}
 
           <TableHeaderColumn
+            isKey
             dataField="email"
             filter={{
               type: "TextFilter",
@@ -100,6 +101,8 @@ class Account extends Component {
 
           <TableHeaderColumn
             dataField="createdOn"
+            hiddenOnInsert
+            editable={false}
             filter={{
               type: "TextFilter",
               delay: 1000
@@ -110,6 +113,8 @@ class Account extends Component {
 
           <TableHeaderColumn
             dataField="updatedOn"
+            hiddenOnInsert
+            editable={false}
             filter={{
               type: "TextFilter",
               delay: 1000
@@ -117,10 +122,24 @@ class Account extends Component {
           >
             Updated On
           </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="password" hidden={true}>
+            Password
+          </TableHeaderColumn>
         </BootstrapTable>
       </div>
     );
   }
+
+  onAddAccountRow = row => {
+    this.props.addAccount(row);
+  };
+  onDeleteAccountRow = row => {
+    this.props.deleteAccount(row[0]);
+  };
+  onAccountCellEdit = (row, fieldName, value) => {
+    this.props.updateAccount(row, fieldName, value);
+  };
 }
 
 export default connect(

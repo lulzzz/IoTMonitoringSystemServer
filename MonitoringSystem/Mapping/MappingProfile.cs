@@ -109,6 +109,13 @@ namespace MonitoringSystem.Mapping
             CreateMap<SensorPlot, SensorPlotResource>();
 
             CreateMap<Log, LogResource>();
+            CreateMap<ApplicationUser, UserResource>()
+                .ForMember(ur => ur.FullName, opt => opt.MapFrom(a => a.FullName))
+                .ForMember(ur => ur.Email, opt => opt.MapFrom(a => a.Email))
+                .ForMember(ur => ur.PhoneNumber, opt => opt.MapFrom(a => a.PhoneNumber))
+                .ForMember(ur => ur.Id, opt => opt.MapFrom(a => a.Id))
+                .ForMember(ur => ur.CreatedOn, opt => opt.MapFrom(a => a.CreatedOn))
+                .ForMember(ur => ur.UpdatedOn, opt => opt.MapFrom(a => a.UpdatedOn));
 
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
@@ -141,6 +148,11 @@ namespace MonitoringSystem.Mapping
 
             CreateMap<LogResource, Log>()
                     .ForMember(m => m.LogId, opt => opt.Ignore());
+
+            CreateMap<UserResource, ApplicationUser>()
+                    .ForMember(m => m.Id, opt => opt.Ignore())
+                    .ForMember(m => m.CreatedOn, opt => opt.Ignore())
+                    .ForMember(m => m.UpdatedOn, opt => opt.Ignore());
         }
     }
 }

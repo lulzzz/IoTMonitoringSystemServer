@@ -9,6 +9,7 @@ import {
   NavLink
 } from "reactstrap";
 import Logo from "../assets/img/logo_vntt.png";
+import * as authService from "./../services/Authentication";
 
 export default class NavMenu extends React.Component {
   constructor(props) {
@@ -25,6 +26,8 @@ export default class NavMenu extends React.Component {
     });
   }
   render() {
+    var role = authService.getLoggedInUser().role;
+    console.log(role);
     return (
       <div>
         <Navbar expand="md">
@@ -46,6 +49,11 @@ export default class NavMenu extends React.Component {
               <NavItem>
                 <NavLink href="/admin/">Admin</NavLink>
               </NavItem>
+              {role == "Admin" && (
+                <NavItem>
+                  <NavLink href="/account/">Account</NavLink>
+                </NavItem>
+              )}
             </Nav>
           </Collapse>
         </Navbar>
