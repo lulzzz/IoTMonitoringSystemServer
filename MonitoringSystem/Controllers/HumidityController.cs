@@ -60,6 +60,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/humidities/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateHumidity([FromBody] HumidityResource humidityResource)
         {
@@ -85,6 +86,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/humidities/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateHumidity(int id, [FromBody]HumidityResource humidityResource)
         {
@@ -112,6 +114,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/Humidities/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteHumidity(int id)
         {

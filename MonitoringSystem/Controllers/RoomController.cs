@@ -65,6 +65,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/rooms/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> Createroom([FromBody] RoomResource roomResource)
         {
@@ -106,6 +107,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/rooms/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> Updateroom(int id, [FromBody]RoomResource roomResource)
         {
@@ -151,6 +153,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/rooms/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Deleteroom(int id)
         {

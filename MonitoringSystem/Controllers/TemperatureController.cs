@@ -63,6 +63,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/temperatures/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateTemperature([FromBody] TemperatureResource temperatureResource)
         {
@@ -91,6 +92,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/temperatures/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> Updatetemperature(int id, [FromBody]TemperatureResource temperatureResource)
         {
@@ -122,6 +124,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/temperatures/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Deletetemperature(int id)
         {

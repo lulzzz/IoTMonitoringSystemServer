@@ -77,6 +77,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/fans/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateFan([FromBody] FanResource fanResource)
         {
@@ -117,6 +118,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/fans/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateFan(int id, [FromBody]FanResource fanResource)
         {
@@ -166,6 +168,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/fans/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteFan(int id)
         {
@@ -277,15 +280,6 @@ namespace MonitoringSystem.Controllers
             {
                 throw ex;
             }
-        }
-
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("duy")]
-        public async Task GetFadns()
-        {
-            await hubContext.Clients.All.SendAsync("LoadData");
         }
     }
 }

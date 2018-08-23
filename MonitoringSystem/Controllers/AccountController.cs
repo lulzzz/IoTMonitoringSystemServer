@@ -44,7 +44,7 @@ namespace MonitoringSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
@@ -113,7 +113,7 @@ namespace MonitoringSystem.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("getall")]
         //[AllowAnonymous]
         public async Task<IActionResult> GetAllUser()

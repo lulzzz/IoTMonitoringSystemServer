@@ -63,6 +63,7 @@ namespace MonitoringSystem.Controllers
 
         // POST: api/logs/add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("add")]
         public async Task<IActionResult> CreateLog([FromBody] LogResource logResource)
         {
@@ -88,6 +89,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/logs/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateLog(int id, [FromBody]LogResource logResource)
         {
@@ -117,6 +119,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/logs/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteLog(int id)
         {

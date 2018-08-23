@@ -115,6 +115,7 @@ namespace MonitoringSystem.Controllers
 
         // PUT: api/statuss/update/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
         public async Task<IActionResult> Updatestatus(int id, [FromBody]StatusResource statusResource)
         {
@@ -170,6 +171,7 @@ namespace MonitoringSystem.Controllers
 
         // DELETE: api/statuss/delete/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Deletestatus(int id)
         {

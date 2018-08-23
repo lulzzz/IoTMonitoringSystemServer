@@ -25,7 +25,6 @@ class PopoverItem extends React.Component {
     };
   }
 
-
   toggle() {
     this.setState({
       popoverOpen: !this.state.popoverOpen
@@ -38,8 +37,10 @@ class PopoverItem extends React.Component {
         <Button
           className="censor-btn"
           color={
-            parseFloat(this.props.item.latestTemperature) < 30 ? "normal"
-              : parseFloat(this.props.item.latestTemperature) > 50 ? "danger"
+            parseFloat(this.props.item.latestTemperature) < 30
+              ? "normal"
+              : parseFloat(this.props.item.latestTemperature) > 50
+                ? "danger"
                 : "normal"
           }
           id={"sensor-" + this.props.id}
@@ -57,9 +58,9 @@ class PopoverItem extends React.Component {
           <PopoverBody>
             <div>{"Temperature: " + this.props.item.temperature}</div>
             <div>{"Humidity: " + this.props.item.humidity}</div>
-            <Link className="btn btn-primary" to={`/sensor/${this.props.item.sensorId}`}>
+            <a className="btn btn-primary" href={`/sensor/` + this.props.item.sensorId}>
               Detail
-           </Link>
+            </a>
           </PopoverBody>
         </Popover>
       </div>
@@ -119,7 +120,7 @@ class PopoverExampleMulti extends React.Component {
                 },
                 title: "Real-time temperature",
                 font: {
-                  family: 'Roboto, sans-serif'
+                  family: "Roboto, sans-serif"
                 }
               }}
             />
@@ -145,7 +146,7 @@ class PopoverExampleMulti extends React.Component {
                 },
                 title: "Real-time humidity",
                 font: {
-                  family: 'Roboto, sans-serif'
+                  family: "Roboto, sans-serif"
                 }
               }}
             />
