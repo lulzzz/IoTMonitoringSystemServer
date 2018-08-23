@@ -19,7 +19,7 @@ export const actionCreators = {
       // data)
       return;
     }
-
+    
     var hubConnection = new signalR.HubConnectionBuilder()
       .withUrl("/hub")
       .build();
@@ -87,7 +87,7 @@ export const actionCreators = {
 
 export const loadData = async (dispatch, sensorId, isLoaded) => {
   const sensor = await dataService.get(`api/sensors/getsensor/${sensorId}`);
-
+ 
   const statuses = await dataService.get(
     `api/statuses/getall?sensorId=${sensorId}`
   );

@@ -30,15 +30,15 @@ class Sensor extends Component {
       <div>
         <h1>
           <b>Sensor Name: </b>
-          {this.props.sensor.sensorName}
+          {this.props.sensor ? this.props.sensor.sensorName : ""}
         </h1>
         <h2>
           <b>Sensor Code: </b>
-          {this.props.sensor.sensorCode}
+          {this.props.sensor ? this.props.sensor.sensorCode : ""}
         </h2>
         <h2>
           <b>Room Name: </b>
-          {this.props.sensor.roomName}
+          {this.props.sensor ? this.props.sensor.roomName : ""}
         </h2>
         <Row>
           <div className="col-md-7 col-xs-12">
@@ -70,7 +70,7 @@ class Sensor extends Component {
     return (
       <div className="table">
         <BootstrapTable
-          data={this.props.statuses.items}
+          data={this.props.statuses ? this.props.statuses.items : []}
           striped
           hover
           condensed
@@ -141,7 +141,7 @@ class Sensor extends Component {
     return (
       <div className="table">
         <BootstrapTable
-          data={this.props.sensor.logs}
+          data={this.props.sensor ? this.props.sensor.logs : []}
           striped
           hover
           condensed
@@ -268,7 +268,7 @@ class Sensor extends Component {
             editable={{
               type: "select",
               options: {
-                values: this.props.rooms.items,
+                values: this.props.rooms ? this.props.rooms.items : [],
                 textKey: "roomName",
                 valueKey: "roomId"
               }

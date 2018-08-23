@@ -36,7 +36,8 @@ var otherSettings = {
         Plotly.restyle(gd, "visible", "legendonly");
       }
     }
-  ]
+  ],
+   displaylogo: false 
 };
 
 function formatStartDateDisplay(date, defaultText) {
