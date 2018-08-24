@@ -6,58 +6,83 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Button
 } from "reactstrap";
+import PropTypes from "prop-types";
+import Sidebar from "react-sidebar";
 import Logo from "../assets/img/logo_vntt.png";
-import * as authService from "./../services/Authentication";
+import * as authService from "./../services/Authentication";  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default class NavMenu extends React.Component {
+const sidebarStyle = {
+  padding: '2em 1em'
+};
+
+class NavMenu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      sidebarOpen: false
     };
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+
+  onSetSidebarOpen(open) {
+    this.setState({ sidebarOpen: open });
   }
+
   render() {
     var role = authService.getLoggedInUser().role;
-    console.log(role);
     return (
-      <div>
-        <Navbar expand="md">
-          <NavbarBrand href="/">
-            <img src={Logo} />
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/dashboard">Dashboard</NavLink>
+      <Sidebar
+        sidebar={
+          
+          <Nav className="ml-auto" navbar>
+              <NavItem className='sidebar-logo'>
+                <p>
+                  MENU
+                </p>
               </NavItem>
-              <NavItem>
-                <NavLink href="/map">Map</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/fans/">Fan</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/admin/">Admin</NavLink>
-              </NavItem>
-              {role == "Admin" && (
+              <div className="sidebar-item">
                 <NavItem>
-                  <NavLink href="/account/">Account</NavLink>
+                  <NavLink href="/dashboard">Dashboard</NavLink>
                 </NavItem>
-              )}
-            </Nav>
-          </Collapse>
+                <NavItem>
+                  <NavLink href="/map">Map</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/fans/">Fan</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/admin/">Admin</NavLink>
+                </NavItem>
+                {role == "Admin" && (
+                  <NavItem>
+                    <NavLink href="/account/">Account</NavLink>
+                  </NavItem>
+                )}
+              </div>
+              
+          </Nav>
+        }
+        open={this.state.sidebarOpen}
+        onSetOpen={this.onSetSidebarOpen}
+        styles={{ sidebar: { background: "white", width: 250 } }}
+      >
+        <Navbar expand="md">
+          <Button color="link" onClick={() => this.onSetSidebarOpen(true)}>
+            <FontAwesomeIcon icon="bars" />
+          </Button>
+          <NavbarBrand href="/"><a>
+            <img src={Logo} />
+          </a></NavbarBrand>
+
         </Navbar>
-      </div>
+      </Sidebar>
+
     );
   }
 }
+
+export default NavMenu;

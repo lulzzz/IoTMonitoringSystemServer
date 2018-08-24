@@ -118,10 +118,10 @@ class PopoverExampleMulti extends React.Component {
                 yaxis: {
                   title: "Temperature"
                 },
-                title: "Real-time temperature",
                 font: {
                   family: "Roboto, sans-serif"
-                }
+                },
+
               }}
             />
           </Col>
@@ -144,10 +144,9 @@ class PopoverExampleMulti extends React.Component {
                 yaxis: {
                   title: "Humidity"
                 },
-                title: "Real-time humidity",
                 font: {
                   family: "Roboto, sans-serif"
-                }
+                },
               }}
             />
           </Col>
