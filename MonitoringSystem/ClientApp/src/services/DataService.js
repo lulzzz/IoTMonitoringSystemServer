@@ -36,8 +36,6 @@ export const login = async data => {
 };
 
 export const get = async url => {
-  // console.log(header);
-  // console.log(authService.getLoggedInUser().access_token);
   return await fetch(url, {
     method: "GET",
     headers: getHeader()

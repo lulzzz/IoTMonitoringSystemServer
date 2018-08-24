@@ -145,7 +145,7 @@ namespace MonitoringSystem.Controllers
             fan.Room = await roomRepository.GetRoom(fanResource.RoomId, true);
 
             //if room id is undefined in json which post to server
-            if (!String.IsNullOrEmpty(fanResource.RoomName))
+            if (!String.IsNullOrEmpty(fanResource.RoomName) && fanResource.RoomId == null)
             {
                 fan.Room = await roomRepository.GetRoomByRoomName(fanResource.RoomName);
             }
