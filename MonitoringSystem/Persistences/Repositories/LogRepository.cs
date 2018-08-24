@@ -65,7 +65,7 @@ namespace MonitoringSystem.Persistences.Repositories
 
         public void RemoveLog(Log log)
         {
-            log.IsDeleted = false;
+            log.IsDeleted = true;
         }
     }
 }

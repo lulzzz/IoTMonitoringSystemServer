@@ -1,18 +1,20 @@
 using System;
-using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace MonitoringSystem.Models
+namespace MonitoringSystem.Resources
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
-    public class ApplicationUser : IdentityUser
+    public class UserResource
     {
-        public ApplicationUser()
+        public UserResource()
         {
             CreatedOn = DateTime.Now;
             UpdatedOn = DateTime.Now;
         }
-
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
         public string FullName { get; set; }
+        public string Id { get; set; }
         public string Avatar { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

@@ -16,6 +16,8 @@ using System.Text;
 using MonitoringSystem.Data;
 using MonitoringSystem.Models.AccountViewModels;
 using MonitoringSystem.Persistences.IRepositories;
+using AutoMapper;
+using MonitoringSystem.Resources;
 
 namespace MonitoringSystem.Controllers
 {
@@ -29,18 +31,22 @@ namespace MonitoringSystem.Controllers
 
         private readonly ApplicationDbContext _context;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IConfiguration config, ApplicationDbContext context,
-            IUserRepository userRepository)
+            IUserRepository userRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _config = config;
             _context = context;
             _userRepository = userRepository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -60,6 +66,9 @@ namespace MonitoringSystem.Controllers
                 else
                 {
                     var userCreated = await _userManager.FindByEmailAsync(model.Email);
+                    userCreated.FullName = model.FullName;
+                    userCreated.PhoneNumber = model.PhoneNumber;
+                    await _context.SaveChangesAsync();
                     return Ok(userCreated);
                 }
             }
@@ -120,6 +129,57 @@ namespace MonitoringSystem.Controllers
         {
             var users = await _userRepository.GetUsers();
             return Ok(users);
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "Admin")]
+        [Route("update/{email}")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> UpdateUser(string email, [FromBody]UserResource userResource)
+        {
+            //check model is valid?
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _userRepository.GetUserByEmail(email);
+
+            //check if user with the id dont exist in the database
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            //map USerResource json into ApplicationUser model
+            _mapper.Map<UserResource, ApplicationUser>(userResource, user);
+
+            await _unitOfWork.Complete();
+
+            // converting ApplicationUser object to json result
+            var result = _mapper.Map<ApplicationUser, UserResource>(user);
+            return Ok(result);
+
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("delete/{email}")]
+        public async Task<IActionResult> DeleteUser(string email)
+        {
+            var user = await _userRepository.GetUserByEmail(email);
+
+            //check if user with the id dont exist in the database
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            //just change the IsDeleted of user into true
+            _userRepository.RemoveUser(user);
+            await _unitOfWork.Complete();
+
+            return Ok(email);
         }
     }
 }

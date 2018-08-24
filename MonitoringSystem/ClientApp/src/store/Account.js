@@ -40,6 +40,41 @@ export const actionCreators = {
       hubConnection
     });
     loadData(dispatch, isLoaded);
+  },
+
+  addAccount: data => async (dispatch, getState) => {
+    console.log("addAccount");
+    delete data.id;
+    delete data.createdOn;
+    delete data.updatedOn;
+
+    const res = await dataService.post(`api/accounts/register`, data);
+    const isLoaded = getState().account.isLoaded;
+    loadData(dispatch, isLoaded);
+  },
+
+  updateAccount: (data, fieldName, value) => async (dispatch, getState) => {
+    console.log("updateRacks");
+
+    data[fieldName] = value;
+
+    data = {
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      fullName: data.fullName
+    };
+    console.log(data);
+    const isLoaded = getState().account.isLoaded;
+    var res = await dataService.put(`api/accounts/update/` + data.email, data);
+    console.log(res);
+    loadData(dispatch, isLoaded);
+  },
+
+  deleteAccount: email => async (dispatch, getState) => {
+    console.log("deleteAccount");
+    await dataService.remove(`api/accounts/delete/` + email);
+    const isLoaded = getState().account.isLoaded;
+    loadData(dispatch, isLoaded);
   }
 };
 
