@@ -6,7 +6,7 @@ import { actionCreators } from "../../store/Admin";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import { Row } from "reactstrap";
-import {} from "../../assets/css/table.css";
+import { } from "../../assets/css/table.css";
 
 class Admin extends Component {
   componentWillMount() {
@@ -65,7 +65,7 @@ class Admin extends Component {
           selectRow={{
             mode: "checkbox",
             columnWidth: "40px",
-            clickToSelect: true
+            clickToSelect: false
           }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -150,7 +150,11 @@ class Admin extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
@@ -251,7 +255,11 @@ class Admin extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
@@ -323,7 +331,11 @@ class Admin extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
