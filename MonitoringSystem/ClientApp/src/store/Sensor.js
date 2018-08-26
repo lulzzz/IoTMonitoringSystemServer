@@ -1,5 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 const requestSensorType = "REQUEST_SENSORS";
 const receiveSensorType = "RECEIVE_SENSORS";
@@ -14,37 +16,42 @@ const initialState = {
 
 export const actionCreators = {
   requestSensor: (isLoaded, sensorId) => async (dispatch, getState) => {
-    if (isLoaded === getState().sensor.isLoaded) {
-      // Don't issue a duplicate request (we already have or are loading the requested
-      // data)
-      return;
-    }
+    //check if user dont log in
+    if (!authService.isUserAuthenticated()) {
+      dispatch(push("/"));
+    } else {
+      if (isLoaded === getState().sensor.isLoaded) {
+        // Don't issue a duplicate request (we already have or are loading the requested
+        // data)
+        return;
+      }
 
-    var hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("/hub")
-      .build();
+      var hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/hub")
+        .build();
 
-    hubConnection.on("LoadData", () => {
-      loadData(dispatch, sensorId, isLoaded);
-    });
-
-    hubConnection
-      .start()
-      .then(() => {
-        console.log("Hub connection started");
-      })
-      .catch(err => {
-        console.log("Error while establishing connection");
+      hubConnection.on("LoadData", () => {
+        loadData(dispatch, sensorId, isLoaded);
       });
 
-    dispatch({
-      type: requestSensorType,
-      isLoaded,
-      hubConnection,
-      sensorId
-    });
+      hubConnection
+        .start()
+        .then(() => {
+          console.log("Hub connection started");
+        })
+        .catch(err => {
+          console.log("Error while establishing connection");
+        });
 
-    loadData(dispatch, sensorId, isLoaded);
+      dispatch({
+        type: requestSensorType,
+        isLoaded,
+        hubConnection,
+        sensorId
+      });
+
+      loadData(dispatch, sensorId, isLoaded);
+    }
   },
 
   addRacks: data => async (dispatch, getState) => {

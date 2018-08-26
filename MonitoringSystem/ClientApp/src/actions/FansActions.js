@@ -1,4 +1,6 @@
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 export const requestFansType = "REQUEST_FANS";
 export const receiveFansType = "RECEIVE_FANS";
@@ -64,9 +66,16 @@ function shouldFetchFans(state) {
 // isLoading: false, fans});     return; }
 
 export function fetchFansIfNeeded() {
-  return (dispatch, getState) => {
-    if (shouldFetchFans(getState())) {
-      return dispatch(fetchFans());
-    }
-  };
+  //check if user dont log in
+  if (!authService.isUserAuthenticated()) {
+    return dispatch => {
+      dispatch(push("/"));
+    };
+  } else {
+    return (dispatch, getState) => {
+      if (shouldFetchFans(getState())) {
+        return dispatch(fetchFans());
+      }
+    };
+  }
 }

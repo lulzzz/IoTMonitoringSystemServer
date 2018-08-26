@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MonitoringSystem.Models;
 using MonitoringSystem.Persistences.IRepositories;
 using MonitoringSystem.Resources;
+using PMS.Hubs;
 using System;
 using System.Threading.Tasks;
 
@@ -18,14 +20,16 @@ namespace MonitoringSystem.Controllers
         private IMapper mapper;
         private IUnitOfWork unitOfWork;
         private ISensorRepository sensorRepository;
+        private IHubContext<MonitoringSystemHub> hubContext;
 
         public StatusController(IStatusRepository statusRepository, IMapper mapper, IUnitOfWork unitOfWork,
-        ISensorRepository sensorRepository)
+        ISensorRepository sensorRepository, IHubContext<MonitoringSystemHub> hubContext)
         {
             this.statusRepository = statusRepository;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.sensorRepository = sensorRepository;
+            this.hubContext = hubContext;
         }
         // GET: api/statuses/getall
         [HttpGet]
@@ -105,6 +109,8 @@ namespace MonitoringSystem.Controllers
             statusRepository.AddStatusLog(status);
 
             await unitOfWork.Complete();
+
+            await hubContext.Clients.All.SendAsync("LoadData");
 
             //get status for converting to json result
             status = await statusRepository.GetStatus(status.StatusId);

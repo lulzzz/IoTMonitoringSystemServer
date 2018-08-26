@@ -12,11 +12,11 @@ import {
 import PropTypes from "prop-types";
 import Sidebar from "react-sidebar";
 import Logo from "../assets/img/logo_vntt.png";
-import * as authService from "./../services/Authentication";  
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as authService from "./../services/Authentication";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const sidebarStyle = {
-  padding: '2em 1em'
+  padding: "2em 1em"
 };
 
 class NavMenu extends React.Component {
@@ -37,33 +37,29 @@ class NavMenu extends React.Component {
     return (
       <Sidebar
         sidebar={
-          
           <Nav className="ml-auto" navbar>
-              <NavItem className='sidebar-logo'>
-                <p>
-                  MENU
-                </p>
+            <NavItem className="sidebar-logo">
+              <p>MENU</p>
+            </NavItem>
+            <div className="sidebar-item">
+              <NavItem>
+                <NavLink href="/dashboard">Dashboard</NavLink>
               </NavItem>
-              <div className="sidebar-item">
+              <NavItem>
+                <NavLink href="/map">Map</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/fans/">Fan</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/admin/">Admin</NavLink>
+              </NavItem>
+              {role == "Admin" && (
                 <NavItem>
-                  <NavLink href="/dashboard">Dashboard</NavLink>
+                  <NavLink href="/account/">Account</NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink href="/map">Map</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/fans/">Fan</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/admin/">Admin</NavLink>
-                </NavItem>
-                {role == "Admin" && (
-                  <NavItem>
-                    <NavLink href="/account/">Account</NavLink>
-                  </NavItem>
-                )}
-              </div>
-              
+              )}
+            </div>
           </Nav>
         }
         open={this.state.sidebarOpen}
@@ -74,13 +70,11 @@ class NavMenu extends React.Component {
           <Button color="link" onClick={() => this.onSetSidebarOpen(true)}>
             <FontAwesomeIcon icon="bars" />
           </Button>
-          <NavbarBrand href="/"><a>
+          <NavbarBrand href="/">
             <img src={Logo} />
-          </a></NavbarBrand>
-
+          </NavbarBrand>
         </Navbar>
       </Sidebar>
-
     );
   }
 }

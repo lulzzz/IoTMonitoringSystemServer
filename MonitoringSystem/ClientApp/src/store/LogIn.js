@@ -1,5 +1,6 @@
-import { push } from "react-router-redux";
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 const requestLogInType = "REQUEST_LOGIN";
 const receiveLogInType = "RECEIVE_LOGIN";
@@ -10,17 +11,22 @@ const initialState = {
 
 export const actionCreators = {
   requestLogIn: isLoaded => async (dispatch, getState) => {
-    if (isLoaded === getState().login.isLoaded) {
-      // Don't issue a duplicate request (we already have or are loading the requested
-      // data)
-      return;
-    }
+    //check if user logged in
+    if (authService.isUserAuthenticated()) {
+      dispatch(push("/dashboard"));
+    } else {
+      if (isLoaded === getState().login.isLoaded) {
+        // Don't issue a duplicate request (we already have or are loading the requested
+        // data)
+        return;
+      }
 
-    dispatch({
-      type: requestLogInType,
-      isLoaded
-    });
-    loadData(dispatch, isLoaded);
+      dispatch({
+        type: requestLogInType,
+        isLoaded
+      });
+      loadData(dispatch, isLoaded);
+    }
   },
 
   logIn: (email, password) => async (dispatch, getState) => {

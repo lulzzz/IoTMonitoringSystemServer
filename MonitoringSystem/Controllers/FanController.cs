@@ -159,7 +159,7 @@ namespace MonitoringSystem.Controllers
             await unitOfWork.Complete();
 
             await hubContext.Clients.All.SendAsync("LoadData");
-            await hubContext.Clients.All.SendAsync("UpdateFan");
+            await hubContext.Clients.All.SendAsync("UpdateFan", fan.FanCode, fan.IsOn);
 
             // converting fan object to json result
             var result = mapper.Map<Fan, FanResource>(fan);

@@ -1,4 +1,6 @@
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 const requestMapsType = "REQUEST_SENSORS";
 const receiveMapsType = "RECEIVE_SENSORS";
@@ -11,18 +13,23 @@ const initialState = {
 
 export const actionCreators = {
   requestMaps: isLoaded => async (dispatch, getState) => {
-    if (isLoaded === getState().admin.isLoaded) {
-      // Don't issue a duplicate request (we already have or are loading the requested
-      // data)
-      return;
+    //check if user dont log in
+    if (!authService.isUserAuthenticated()) {
+      dispatch(push("/"));
+    } else {
+      if (isLoaded === getState().admin.isLoaded) {
+        // Don't issue a duplicate request (we already have or are loading the requested
+        // data)
+        return;
+      }
+
+      dispatch({
+        type: requestMapsType,
+        isLoaded
+      });
+
+      loadData(dispatch, isLoaded);
     }
-
-    dispatch({
-      type: requestMapsType,
-      isLoaded
-    });
-
-    loadData(dispatch, isLoaded);
   }
 };
 
@@ -38,7 +45,7 @@ export const loadData = async (dispatch, isLoaded) => {
 
       popovers.push({
         key: rack.location,
-        sensorId: sensor.sensorId ? sensor.sensorId : "", 
+        sensorId: sensor.sensorId ? sensor.sensorId : "",
         placement: sensor.latestStatus ? sensor.latestStatus.placement : "top",
         text: sensor.latestStatus
           ? sensor.latestStatus.text

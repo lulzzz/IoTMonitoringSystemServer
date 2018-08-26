@@ -58,7 +58,10 @@ class PopoverItem extends React.Component {
           <PopoverBody>
             <div>{"Temperature: " + this.props.item.temperature}</div>
             <div>{"Humidity: " + this.props.item.humidity}</div>
-            <a className="btn btn-primary" href={`/sensor/` + this.props.item.sensorId}>
+            <a
+              className="btn btn-primary"
+              href={`/sensor/` + this.props.item.sensorId}
+            >
               Detail
             </a>
           </PopoverBody>
@@ -120,8 +123,7 @@ class PopoverExampleMulti extends React.Component {
                 },
                 font: {
                   family: "Roboto, sans-serif"
-                },
-
+                }
               }}
             />
           </Col>
@@ -146,7 +148,7 @@ class PopoverExampleMulti extends React.Component {
                 },
                 font: {
                   family: "Roboto, sans-serif"
-                },
+                }
               }}
             />
           </Col>

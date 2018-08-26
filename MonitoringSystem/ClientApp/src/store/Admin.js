@@ -1,5 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 const requestAdminType = "REQUEST_ADMINS";
 const receiveAdminType = "RECEIVE_ADMINS";
@@ -15,41 +17,46 @@ const initialState = {
 
 export const actionCreators = {
   requestAdmin: isLoaded => async (dispatch, getState) => {
-    if (isLoaded === getState().admin.isLoaded) {
-      // Don't issue a duplicate request (we already have or are loading the requested
-      // data)
-      return;
-    }
+    //check if user dont log in
+    if (!authService.isUserAuthenticated()) {
+      dispatch(push("/"));
+    } else {
+      if (isLoaded === getState().admin.isLoaded) {
+        // Don't issue a duplicate request (we already have or are loading the requested
+        // data)
+        return;
+      }
 
-    var trueFalseFormatter = [
-      { id: true, formatter: "On" },
-      { id: false, formatter: "Off" }
-    ];
+      var trueFalseFormatter = [
+        { id: true, formatter: "On" },
+        { id: false, formatter: "Off" }
+      ];
 
-    var hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("/hub")
-      .build();
+      var hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/hub")
+        .build();
 
-    hubConnection.on("LoadData", () => {
-      loadData(dispatch, isLoaded);
-    });
-
-    hubConnection
-      .start()
-      .then(() => {
-        console.log("Hub connection started");
-      })
-      .catch(err => {
-        console.log("Error while establishing connection");
+      hubConnection.on("LoadData", () => {
+        loadData(dispatch, isLoaded);
       });
 
-    dispatch({
-      type: requestAdminType,
-      isLoaded,
-      hubConnection,
-      trueFalseFormatter
-    });
-    loadData(dispatch, isLoaded);
+      hubConnection
+        .start()
+        .then(() => {
+          console.log("Hub connection started");
+        })
+        .catch(err => {
+          console.log("Error while establishing connection");
+        });
+
+      dispatch({
+        type: requestAdminType,
+        isLoaded,
+        hubConnection,
+        trueFalseFormatter
+      });
+      loadData(dispatch, isLoaded);
+    }
   },
 
   addRacks: data => async (dispatch, getState) => {

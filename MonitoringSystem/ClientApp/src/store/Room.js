@@ -1,5 +1,7 @@
 import * as signalR from "@aspnet/signalr";
 import * as dataService from "../services/DataService";
+import * as authService from "../services/Authentication";
+import { push } from "react-router-redux";
 
 const requestRoomType = "REQUEST_ROOMS";
 const receiveRoomType = "RECEIVE_ROOMS";
@@ -13,37 +15,42 @@ const initialState = {
 
 export const actionCreators = {
   requestRoom: (isLoaded, roomId) => async (dispatch, getState) => {
-    if (isLoaded === getState().room.isLoaded) {
-      // Don't issue a duplicate request (we already have or are loading the requested
-      // data)
-      return;
-    }
+    //check if user dont log in
+    if (!authService.isUserAuthenticated()) {
+      dispatch(push("/"));
+    } else {
+      if (isLoaded === getState().room.isLoaded) {
+        // Don't issue a duplicate request (we already have or are loading the requested
+        // data)
+        return;
+      }
 
-    var hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("/hub")
-      .build();
+      var hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/hub")
+        .build();
 
-    hubConnection.on("LoadData", () => {
-      loadData(dispatch, roomId, isLoaded);
-    });
-
-    hubConnection
-      .start()
-      .then(() => {
-        console.log("Hub connection started");
-      })
-      .catch(err => {
-        console.log("Error while establishing connection");
+      hubConnection.on("LoadData", () => {
+        loadData(dispatch, roomId, isLoaded);
       });
 
-    dispatch({
-      type: requestRoomType,
-      isLoaded,
-      hubConnection,
-      roomId
-    });
+      hubConnection
+        .start()
+        .then(() => {
+          console.log("Hub connection started");
+        })
+        .catch(err => {
+          console.log("Error while establishing connection");
+        });
 
-    loadData(dispatch, roomId, isLoaded);
+      dispatch({
+        type: requestRoomType,
+        isLoaded,
+        hubConnection,
+        roomId
+      });
+
+      loadData(dispatch, roomId, isLoaded);
+    }
   },
 
   addRacks: data => async (dispatch, getState) => {
