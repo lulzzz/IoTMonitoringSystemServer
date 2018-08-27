@@ -72,6 +72,10 @@ namespace MonitoringSystem.Persistences.Repositories
             {
                 query = query.Where(q => q.Sensor.Racks.Any(r => r.RackId == queryObj.RackId));
             }
+            if (queryObj.StartDate.HasValue && queryObj.EndDate.HasValue)
+            {
+                query = query.Where(q => q.DateTime >= queryObj.StartDate && q.DateTime <= queryObj.EndDate);
+            }
             //sort
             var columnsMap = new Dictionary<string, Expression<Func<Status, object>>>()
             {

@@ -3,8 +3,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store/Sensor";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { Row } from "reactstrap";
+import { Row, ButtonGroup } from "reactstrap";
 import RangeFilter from "./RangeFilter";
+import GetDataByDateRange from "./GetDataByDateRange";
 
 function getCustomFilter(filterHandler, customFilterParameters) {
   console.log(filterHandler);
@@ -68,7 +69,8 @@ class Sensor extends Component {
       paginationPosition: "bottom", // default is bottom, top and both is all available
       hideSizePerPage: true,
       onPageChange: this.onSensorPageChange,
-      onSizePerPageList: this.onSizePerPageList
+      onSizePerPageList: this.onSizePerPageList,
+      btnGroup: this.createCustomButtonGroup
     };
     const fetchInfo = {
       dataTotalSize: this.props.statuses.totalItems
@@ -101,11 +103,11 @@ class Sensor extends Component {
           </TableHeaderColumn>
           <TableHeaderColumn
             dataField="dateTime"
-            filter={{
-              type: "CustomFilter",
-              getElement: getCustomFilter,
-              customFilterParameters: {}
-            }}
+            // filter={{
+            //   type: "CustomFilter",
+            //   getElement: getCustomFilter,
+            //   customFilterParameters: {}
+            // }}
           >
             DateTime
           </TableHeaderColumn>
@@ -309,6 +311,26 @@ class Sensor extends Component {
   };
   onRackCellEdit = (row, fieldName, value) => {
     this.props.updateRacks(row, fieldName, value);
+  };
+
+  onClear = () => {
+    this.props.clear();
+  };
+
+  createCustomButtonGroup = props => {
+    return (
+      <ButtonGroup className="my-custom-class">
+        {props.exportCSVBtn}
+        <GetDataByDateRange />
+        <button
+          type="button"
+          className={`btn btn-warning`}
+          onClick={this.onClear}
+        >
+          Clear Date Filter
+        </button>
+      </ButtonGroup>
+    );
   };
 }
 

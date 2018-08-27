@@ -6,6 +6,7 @@ import { push } from "react-router-redux";
 const requestSensorType = "REQUEST_SENSORS";
 const receiveSensorType = "RECEIVE_SENSORS";
 const statusPageChangeType = "STATUS_PAGE_CHANGE";
+const dateRangeFilterChangeType = "DATE_RANGE_FILTER_CHANGE";
 const initialState = {
   sensor: [],
   isLoading: false,
@@ -13,7 +14,9 @@ const initialState = {
   racks: [],
   rooms: [],
   hubConnection: null,
-  currentStatusPage: 1
+  currentStatusPage: 1,
+  startDate: null,
+  endDate: null
 };
 
 export const actionCreators = {
@@ -109,6 +112,29 @@ export const actionCreators = {
       statuses,
       currentStatusPage
     });
+  },
+
+  rangeFilterChange: (startDate, endDate) => async (dispatch, getState) => {
+    var sensorId = getState().sensor.sensorId;
+    const statuses = await dataService.get(
+      `api/statuses/getall?sensorId=${sensorId}&pageSize=10&page=1&sortBy=datetime&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`
+    );
+    console.log(statuses);
+    var currentStatusPage = 1;
+    var isLoaded = getState().sensor.isLoaded;
+
+    dispatch({
+      type: dateRangeFilterChangeType,
+      isLoaded,
+      statuses,
+      currentStatusPage
+    });
+  },
+
+  clear: () => async (dispatch, getState) => {
+    console.log("clear");
+    const sensorId = getState().sensor.sensorId;
+    loadData(dispatch, sensorId);
   }
 };
 
@@ -162,6 +188,16 @@ export const reducer = (state, action) => {
   }
 
   if (action.type === statusPageChangeType) {
+    return {
+      ...state,
+      isLoading: true,
+      isLoaded: action.isLoaded,
+      statuses: action.statuses,
+      currentStatusPage: action.currentStatusPage
+    };
+  }
+
+  if (action.type === dateRangeFilterChangeType) {
     return {
       ...state,
       isLoading: true,
