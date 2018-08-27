@@ -43,7 +43,7 @@ function shouldFetchFans(state) {
   const fans = state.fansReducer.fanList;
   // console.log('should') console.log(state)
   console.log(state);
-  if (fans != undefined) {
+  if (fans !== undefined) {
     return true;
   } else if (fans.isFetching) {
     return false;

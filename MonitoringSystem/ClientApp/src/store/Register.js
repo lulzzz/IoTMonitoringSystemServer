@@ -27,12 +27,12 @@ export const actionCreators = {
 
   register: user => async (dispatch, getState) => {
     var errorMessage = "";
-    if (user.password.localeCompare(user.confirmPassword) != 0) {
+    if (user.password.localeCompare(user.confirmPassword) !== 0) {
       errorMessage = "Password does not match the confirm password.";
     } else {
       var res = await dataService.post(`api/accounts/register`, user);
 
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch(push("/login"));
       } else {
         errorMessage = "Could not register. Some error were happen";

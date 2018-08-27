@@ -12,10 +12,9 @@ import LogIn from "../components/Account/LogIn";
 import Register from "../components/Account/Register";
 import Account from "../components/Account/Account";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSquare } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBars)
+library.add(faBars, faSquare)
 export default () => (
   <Layout>
     <Route exact path="/" component={LogIn} />

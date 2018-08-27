@@ -106,7 +106,7 @@ export default class Temperatures extends Component {
 
     console.log(this.props);
 
-    if (this.props.temperatures != undefined) {
+    if (this.props.temperatures !== undefined) {
       data = this.props.temperatures.items;
     }
 
@@ -125,12 +125,13 @@ export default class Temperatures extends Component {
 
   render() {
     if (
-      this.props.temperatures != undefined &&
+      this.props.temperatures !== undefined &&
       this.props.temperatures.length !== 0
     ) {
       data = this.props.temperatures;
       Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings);
     }
+    
     return (
       <div>
         <Button

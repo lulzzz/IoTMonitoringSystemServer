@@ -58,7 +58,7 @@ function mapStateToProps(state) {
     items: []
   };
   var fansArray = [];
-  if (fanList.fans != undefined) {
+  if (fanList.fans !== undefined) {
     fansArray = fanList.fans.items;
   }
 

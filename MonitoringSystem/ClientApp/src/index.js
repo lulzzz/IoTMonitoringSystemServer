@@ -1,5 +1,5 @@
 
-import "babel-polyfill";
+import 'raf/polyfill';
 
 // Styles
 // CoreUI Icons Set
@@ -15,13 +15,13 @@ import "font-awesome/css/font-awesome.min.css";
 //import "./scss/style.css";
 
 import React from "react";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import { createBrowserHistory } from "history";
 import configureStore from "./store/configureStore";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
-import ReactDOM from "react-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/switch.css";

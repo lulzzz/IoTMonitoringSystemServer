@@ -2,6 +2,16 @@ body {
   font-family: 'Roboto', sans-serif !important;
   color: #616161;
   margin-top: 4em;
+  background: #e9ebee;
+}
+
+.content {
+  background: white;
+  padding: 1em;
+  border-radius: 10px;
+  -webkit-box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
+-moz-box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
+box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
 }
 
 .body {
@@ -21,6 +31,12 @@ body {
 }
 
 /* Navbar */
+
+.navbar {
+  -webkit-box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
+-moz-box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
+box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
+}
 
 .nav-link {
   color: #616161;
@@ -47,7 +63,7 @@ body {
   background: rgb(67, 224, 172);
 }
 
-.sidebar-item .nav-item:hover a {
-  
+.sidebar-item .nav-item:hover a {  
   color: white !important;
 }
+

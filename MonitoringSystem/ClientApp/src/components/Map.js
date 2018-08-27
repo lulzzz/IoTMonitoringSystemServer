@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -12,7 +13,11 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Card,
+  CardTitle,
+  CardBody,
+  CardText
 } from "reactstrap";
 import { actionCreators } from "../store/Map";
 import Plot from "react-plotly.js";
@@ -32,16 +37,21 @@ class PopoverItem extends React.Component {
   }
 
   render() {
-    return (
+    console.log(this.props.item.temperature)
+    return (      
       <div>
         <Button
           className="censor-btn"
           color={
-            parseFloat(this.props.item.latestTemperature) < 30
-              ? "normal"
-              : parseFloat(this.props.item.latestTemperature) > 50
-                ? "danger"
-                : "normal"
+            this.props.item.temperature === ""
+            ? "stop"
+              : parseFloat(this.props.item.temperature) < 26
+                ? "normal"
+                : parseFloat(this.props.item.temperature) < 35
+                  ? "warning"
+                    : parseFloat(this.props.item.temperature) < 50
+                    ? "high-warning"
+                    : "danger"
           }
           id={"sensor-" + this.props.id}
           onClick={this.toggle}
@@ -86,19 +96,45 @@ class PopoverExampleMulti extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Row className="container">
-          <Col sm="12" md={{ size: 8, offset: 2 }}>
+      <div>
+        <Row>
+          <Col xs="12" xl="8">
             <img className="map" src={map} alt="map" />
             {this.props.popovers &&
               this.props.popovers.map((popover, i) => {
                 return <PopoverItem key={i} item={popover} id={popover.key} />;
               })}
           </Col>
+          <Col xs="12" xl="4">
+          <Card className="map-note">
+            <CardBody>
+              <CardText>
+                <i><FontAwesomeIcon className="normal" icon="square" /></i>
+                Ổn định
+              </CardText>
+              <CardText>
+                <i><FontAwesomeIcon className="warning" icon="square" /></i>                
+                Có nguy cơ
+              </CardText>
+              <CardText>
+                <i><FontAwesomeIcon className="high-warning" icon="square" /></i>                
+                Nguy cơ cao
+              </CardText>
+              <CardText>
+                <i><FontAwesomeIcon className="danger" icon="square" /></i>                
+                Báo động
+              </CardText>
+              <CardText>
+                <i><FontAwesomeIcon className="stop" icon="square" /></i>                
+                Không hoạt động
+              </CardText>
+            </CardBody>
+          </Card>
+          </Col>
         </Row>
 
         <Row>
-          <Col xs="6">
+          <Col xs="12" lg="12" xl="6">
             <Plot
               data={[
                 {
@@ -113,7 +149,7 @@ class PopoverExampleMulti extends React.Component {
                 }
               ]}
               layout={{
-                width: 600,
+                width: 550,
                 height: 500,
                 xaxis: {
                   title: "Sensor"
@@ -128,7 +164,7 @@ class PopoverExampleMulti extends React.Component {
             />
           </Col>
 
-          <Col xs="6">
+          <Col xs="12" lg="12" xl="6">
             <Plot
               data={[
                 {
@@ -138,7 +174,7 @@ class PopoverExampleMulti extends React.Component {
                 }
               ]}
               layout={{
-                width: 600,
+                width: 550,
                 height: 500,
                 xaxis: {
                   title: "Sensor"
@@ -153,7 +189,8 @@ class PopoverExampleMulti extends React.Component {
             />
           </Col>
         </Row>
-      </Container>
+      </div>
+      
     );
   }
 }

@@ -13,23 +13,54 @@
 }
 
 .censor-btn.btn{
-  padding:8px 12px;
+  padding:8px 0;
+  text-align: center;
+  width: 45px;
+  border: 0.5px solid #808080;
+}
+
+
+.container .censor-btn:hover {
+  background: #d4d4d4;
+  color: rgb(37, 37, 37);
 }
 
 .censor-btn.btn-normal {
   background: #4af783;
-  border: 0.5px solid #808080;
 }
 .censor-btn.btn-warning {
-  background: #eba844;
-  border: 0.5px solid #808080;
+  background: #f8de68;
+}
+.censor-btn.btn-high-warning {
+  background: #ff9252;
 }
 .censor-btn.btn-danger {
-  background: #f05b40;
-  border: 0.5px solid #808080;
+  background: #f5483c;
+}
+.censor-btn.btn-stop {
+  background: #6d6d6d;
+  color: white;
 }
 
-/* Style the button and place it in the middle of the container/image */
+/* Note */
+.map-note i{
+  margin-right: 10px
+}
+.map-note .normal path{
+  fill: #4af783;
+}
+.map-note .warning path{
+  fill: #f8de68;
+}
+.map-note .high-warning path{
+  fill: #ff9252;
+}
+.map-note .danger path{
+  fill: #f5483c;
+}
+.map-note .stop path{
+  fill: #6d6d6d;
+}
 
 /*sensor row1 */
 
@@ -310,6 +341,3 @@
   background-color: red;
 }
 
-.container .censor-btn:hover {
-  background-color: black;
-}

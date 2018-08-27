@@ -35,13 +35,13 @@ class Rack extends Component {
         </h1>
         <h2>
           <b>Sensor Code: </b>
-          {this.props.rack.sensor == undefined
+          {this.props.rack.sensor === undefined
             ? ""
             : this.props.rack.sensor.sensorCode}
         </h2>
         <h2>
           <b>Sensor Name: </b>
-          {this.props.rack.sensor == undefined
+          {this.props.rack.sensor === undefined
             ? ""
             : this.props.rack.sensor.sensorName}
         </h2>

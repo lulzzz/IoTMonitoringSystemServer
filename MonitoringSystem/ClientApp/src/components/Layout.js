@@ -8,7 +8,7 @@ export default props => (
       <NavMenu />
     </div>
     <div className="body">
-      <Container>{props.children}</Container>
+      <Container className="content">{props.children}</Container>
     </div>
   </div>
 );

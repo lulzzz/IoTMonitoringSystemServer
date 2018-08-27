@@ -105,7 +105,7 @@ export default class Humidities extends Component {
       }
     });
 
-    if (this.props.humidities != undefined) {
+    if (this.props.humidities !== undefined) {
       data = this.props.humidities.items;
     }
 
@@ -124,9 +124,9 @@ export default class Humidities extends Component {
   }
 
   render() {
-    // console.log(this.props.humidities != undefined)
+    // console.log(this.props.humidities !== undefined)
     if (
-      this.props.humidities != undefined &&
+      this.props.humidities !== undefined &&
       this.props.humidities.length !== 0
     ) {
       data = this.props.humidities;
