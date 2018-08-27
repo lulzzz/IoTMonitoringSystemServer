@@ -33,6 +33,7 @@ namespace MonitoringSystem.Controllers
         }
         // GET: api/statuses/getall
         [HttpGet]
+        [AllowAnonymous]
         [Route("getall")]
         public async Task<QueryResultResource<StatusResource>> Getstatuses(QueryResource queryResource)
         {

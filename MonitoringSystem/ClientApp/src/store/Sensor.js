@@ -5,13 +5,15 @@ import { push } from "react-router-redux";
 
 const requestSensorType = "REQUEST_SENSORS";
 const receiveSensorType = "RECEIVE_SENSORS";
+const statusPageChangeType = "STATUS_PAGE_CHANGE";
 const initialState = {
   sensor: [],
   isLoading: false,
   statuses: [],
   racks: [],
   rooms: [],
-  hubConnection: null
+  hubConnection: null,
+  currentStatusPage: 1
 };
 
 export const actionCreators = {
@@ -26,12 +28,13 @@ export const actionCreators = {
         return;
       }
 
+      var currentStatusPage = getState().sensor.currentStatusPage;
       var hubConnection = new signalR.HubConnectionBuilder()
         .withUrl("/hub")
         .build();
 
       hubConnection.on("LoadData", () => {
-        loadData(dispatch, sensorId, isLoaded);
+        loadData(dispatch, sensorId, isLoaded, currentStatusPage);
       });
 
       hubConnection
@@ -89,14 +92,40 @@ export const actionCreators = {
 
     const sensorId = getState().sensor.sensorId;
     loadData(dispatch, sensorId);
+  },
+
+  statusPageChange: page => async (dispatch, getState) => {
+    var sensorId = getState().sensor.sensorId;
+    const statuses = await dataService.get(
+      `api/statuses/getall?sensorId=${sensorId}&pageSize=10&page=${page}&sortBy=datetime`
+    );
+
+    var currentStatusPage = page;
+    var isLoaded = getState().sensor.isLoaded;
+
+    dispatch({
+      type: statusPageChangeType,
+      isLoaded,
+      statuses,
+      currentStatusPage
+    });
   }
 };
 
-export const loadData = async (dispatch, sensorId, isLoaded) => {
+export const loadData = async (
+  dispatch,
+  sensorId,
+  isLoaded,
+  currentStatusPage
+) => {
   const sensor = await dataService.get(`api/sensors/getsensor/${sensorId}`);
 
+  // const statuses = await dataService.get(
+  //   `api/statuses/getall?sensorId=${sensorId}`
+  // );
+
   const statuses = await dataService.get(
-    `api/statuses/getall?sensorId=${sensorId}`
+    `api/statuses/getall?sensorId=${sensorId}&pageSize=10&page=${currentStatusPage}&sortBy=datetime`
   );
 
   const racks = [];
@@ -129,6 +158,16 @@ export const reducer = (state, action) => {
       isLoaded: action.isLoaded,
       sensorId: action.sensorId,
       hubConnection: action.hubConnection
+    };
+  }
+
+  if (action.type === statusPageChangeType) {
+    return {
+      ...state,
+      isLoading: true,
+      isLoaded: action.isLoaded,
+      statuses: action.statuses,
+      currentStatusPage: action.currentStatusPage
     };
   }
 

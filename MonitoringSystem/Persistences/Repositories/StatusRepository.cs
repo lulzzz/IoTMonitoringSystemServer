@@ -59,9 +59,9 @@ namespace MonitoringSystem.Persistences.Repositories
                     .Include(s => s.Humidity)
                     .Include(s => s.Temperature)
                     .Include(s => s.Sensor)
-                        .ThenInclude(se => se.Logs)
-                    .Include(s => s.Sensor)
-                        .ThenInclude(se => se.Racks)
+                    // .ThenInclude(se => se.Logs)
+                    //.Include(s => s.Sensor)
+                    //.ThenInclude(se => se.Racks)
                     .AsQueryable();
             //filter
             if (queryObj.SensorId.HasValue)

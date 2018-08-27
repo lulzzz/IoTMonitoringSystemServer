@@ -7,6 +7,7 @@ import { Row } from "reactstrap";
 import RangeFilter from "./RangeFilter";
 
 function getCustomFilter(filterHandler, customFilterParameters) {
+  console.log(filterHandler);
   return <RangeFilter filterHandler={filterHandler} />;
 }
 
@@ -55,7 +56,7 @@ class Sensor extends Component {
 
   renderStatusTable(props) {
     const options = {
-      page: 1, // which page you want to show as default
+      page: this.props.currentStatusPage, // which page you want to show as default
       sizePerPage: 10, // which size per page you want to locate as default
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 5, // the pagination bar size.
@@ -65,7 +66,12 @@ class Sensor extends Component {
       lastPage: "Last", // Last page button text
       paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
       paginationPosition: "bottom", // default is bottom, top and both is all available
-      hideSizePerPage: true
+      hideSizePerPage: true,
+      onPageChange: this.onSensorPageChange,
+      onSizePerPageList: this.onSizePerPageList
+    };
+    const fetchInfo = {
+      dataTotalSize: this.props.statuses.totalItems
     };
     return (
       <div className="table">
@@ -76,8 +82,14 @@ class Sensor extends Component {
           condensed
           pagination={true}
           exportCSV
-          //remote={true}
+          remote={true}
           options={options}
+          fetchInfo={{
+            dataTotalSize:
+              this.props.statuses != undefined
+                ? this.props.statuses.totalItems
+                : 10
+          }}
         >
           <TableHeaderColumn
             dataField="statusId"
@@ -280,6 +292,10 @@ class Sensor extends Component {
       </div>
     );
   }
+
+  onSensorPageChange = (page, sizePerPage) => {
+    this.props.statusPageChange(page);
+  };
 
   showRoomName(cell, row) {
     return row.roomName;
