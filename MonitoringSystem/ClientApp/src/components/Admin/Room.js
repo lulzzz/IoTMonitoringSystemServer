@@ -139,7 +139,11 @@ class Room extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
@@ -219,7 +223,11 @@ class Room extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: true
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}

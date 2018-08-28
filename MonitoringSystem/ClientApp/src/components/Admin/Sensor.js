@@ -103,11 +103,11 @@ class Sensor extends Component {
           </TableHeaderColumn>
           <TableHeaderColumn
             dataField="dateTime"
-            // filter={{
-            //   type: "CustomFilter",
-            //   getElement: getCustomFilter,
-            //   customFilterParameters: {}
-            // }}
+          // filter={{
+          //   type: "CustomFilter",
+          //   getElement: getCustomFilter,
+          //   customFilterParameters: {}
+          // }}
           >
             DateTime
           </TableHeaderColumn>
@@ -227,7 +227,11 @@ class Sensor extends Component {
           insertRow
           deleteRow
           exportCSV
-          selectRow={{ mode: "radio" }}
+          selectRow={{
+            mode: "checkbox",
+            columnWidth: "40px",
+            clickToSelect: false
+          }}
           //remote={true}
           cellEdit={cellEditProp}
           options={options}
