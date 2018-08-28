@@ -195,23 +195,23 @@ export const loadData = async (dispatch, isLoaded) => {
 
   const racks = await dataService.get(`api/racks/getall`);
 
-  racks.items.sort(function (rack1, rack2) {
-    if (rack1.roomName > rack2.roomName) {
-      return -1
-    };
-    if (rack1.roomName < rack2.roomName) {
-      return 1;
-    }
+  racks.items.sort(function(rack1, rack2) {
+    // if (rack1.roomName > rack2.roomName) {
+    //   return -1;
+    // }
+    // if (rack1.roomName < rack2.roomName) {
+    //   return 1;
+    // }
 
     if (
       parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) >
-      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+      parseInt(rack2.rackCode.substring(1, rack2.rackCode.length))
     ) {
       return -1;
     }
     if (
       parseInt(rack1.rackCode.substring(1, rack1.rackCode.length)) <
-      parseInt(rack2.rackCode.substring(1, rack1.rackCode.length))
+      parseInt(rack2.rackCode.substring(1, rack2.rackCode.length))
     ) {
       return 1;
     }
