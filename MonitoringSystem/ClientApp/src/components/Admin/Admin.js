@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { actionCreators } from "../../store/Admin";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
-import { Row } from "reactstrap";
-import { } from "../../assets/css/table.css";
+// import { Row } from "reactstrap";
+import {} from "../../assets/css/table.css";
+import {Row, Col} from 'react-materialize'
 
 class Admin extends Component {
   componentWillMount() {

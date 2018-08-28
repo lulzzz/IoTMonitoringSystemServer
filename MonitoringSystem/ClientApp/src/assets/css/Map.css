@@ -13,10 +13,11 @@
 }
 
 .censor-btn.btn{
-  padding:8px 0;
+  padding: 4px 0;
   text-align: center;
-  width: 45px;
-  border: 0.5px solid #808080;
+  width: 43px;
+  height: 30px;
+  border: 0.2px solid #808080;
 }
 
 
@@ -66,12 +67,12 @@
 
 .container .censor-btn#sensor-0 {
   top: 23px;
-  left: 60px;
+  left: 62px;
 }
 
 .container .censor-btn#sensor-1 {
   top: 23px;
-  left: 105px;
+  left: 106px;
 }
 
 .container .censor-btn#sensor-2 {

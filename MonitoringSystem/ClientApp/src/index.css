@@ -1,7 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif !important;
   color: #616161;
-  margin-top: 4em;
   background: #e9ebee;
 }
 
@@ -67,3 +66,11 @@ box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
   color: white !important;
 }
 
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: unset;
+  opacity: unset;
+}
+
+.container .animated .row {
+  padding: 0 10px;
+}

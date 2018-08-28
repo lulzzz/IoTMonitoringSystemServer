@@ -5,6 +5,12 @@ import { fetchFansIfNeeded, updateFanStatus } from "../actions/FansActions";
 import Fans from "../components/Fans";
 import LoadingIcon from "../assets/img/loading-animation2.gif";
 
+function SvgIcon (props) {
+  return (
+    <svg width="30%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-stripe"><defs><pattern ng-attr-id="{{config.patid}}" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="100" id="lds-stripe-patid-bc74de1ad4246"><g transform="translate(9.17415 0)"><g transform="rotate(20 50 50) scale(1.2)"><rect x="-20" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="-10" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="0" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="10" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="20" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="30" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="40" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="50" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="60" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="70" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="80" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="90" y="-10" width="10" height="120" ng-attr-fill="{{config.c2}}" fill="#eeeced"></rect><rect x="100" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect><rect x="110" y="-10" width="10" height="120" ng-attr-fill="{{config.c1}}" fill="#45e7ca"></rect></g><animateTransform attributeName="transform" type="translate" values="0 0;26 0" keyTimes="0;1" ng-attr-dur="{{config.speed}}s" repeatCount="indefinite" dur="1s"></animateTransform></g></pattern></defs><rect ng-attr-rx="{{config.r}}" ng-attr-ry="{{config.r}}" ng-attr-x="{{config.x}}" ng-attr-y="{{config.y}}" ng-attr-stroke="{{config.stroke}}" ng-attr-stroke-width="{{config.strokeWidth}}" ng-attr-width="{{config.width}}" ng-attr-height="{{config.height}}" ng-attr-fill="url(#{{config.patid}})" rx="10" ry="10" x="10" y="40" stroke="#898989" stroke-width="3" width="80" height="20" fill="url(#lds-stripe-patid-bc74de1ad4246)"></rect></svg>
+  );
+}
+
 class AsyncFans extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +41,7 @@ class AsyncFans extends Component {
     // console.log(this.props)
     return (
       <div>
-        {isFetching && <img src={LoadingIcon} alt="loading-icon" />}
+        {isFetching && <SvgIcon />}
         {fansArray !== undefined && (
           <Fans fans={fansArray} onChange={this._handleChange} />
         )}

@@ -7,9 +7,9 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="">
-                <Breadcrumb>
+                {/* <Breadcrumb>
                     <BreadcrumbItem>DASHBOARD</BreadcrumbItem>
-                </Breadcrumb>
+                </Breadcrumb> */}
                 <Row>
                     <Col xs="12" lg="12" xl="6">
                         <Temperatures/>

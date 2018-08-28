@@ -23,7 +23,7 @@ import configureStore from "./store/configureStore";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/switch.css";
 import "./assets/css/fan-animation.css";
 import "./index.css";
