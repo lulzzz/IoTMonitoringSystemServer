@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -37,19 +37,19 @@ class PopoverItem extends React.Component {
   }
 
   render() {
-    console.log(this.props.item.temperature)
-    return (      
+    console.log(this.props.item.temperature);
+    return (
       <div>
         <Button
           className="censor-btn"
           color={
             this.props.item.temperature === ""
-            ? "stop"
+              ? "stop"
               : parseFloat(this.props.item.temperature) < 26
                 ? "normal"
                 : parseFloat(this.props.item.temperature) < 35
                   ? "warning"
-                    : parseFloat(this.props.item.temperature) < 50
+                  : parseFloat(this.props.item.temperature) < 50
                     ? "high-warning"
                     : "danger"
           }
@@ -106,30 +106,40 @@ class PopoverExampleMulti extends React.Component {
               })}
           </Col>
           <Col xs="12" xl="4">
-          <Card className="map-note">
-            <CardBody>
-              <CardText>
-                <i><FontAwesomeIcon className="normal" icon="square" /></i>
-                Ổn định
-              </CardText>
-              <CardText>
-                <i><FontAwesomeIcon className="warning" icon="square" /></i>                
-                Có nguy cơ
-              </CardText>
-              <CardText>
-                <i><FontAwesomeIcon className="high-warning" icon="square" /></i>                
-                Nguy cơ cao
-              </CardText>
-              <CardText>
-                <i><FontAwesomeIcon className="danger" icon="square" /></i>                
-                Báo động
-              </CardText>
-              <CardText>
-                <i><FontAwesomeIcon className="stop" icon="square" /></i>                
-                Không hoạt động
-              </CardText>
-            </CardBody>
-          </Card>
+            <Card className="map-note">
+              <CardBody>
+                <CardText>
+                  <i>
+                    <FontAwesomeIcon className="normal" icon="square" />
+                  </i>
+                  Ổn định (&lt; 25)
+                </CardText>
+                <CardText>
+                  <i>
+                    <FontAwesomeIcon className="warning" icon="square" />
+                  </i>
+                  Có nguy cơ (26 - 35)
+                </CardText>
+                <CardText>
+                  <i>
+                    <FontAwesomeIcon className="high-warning" icon="square" />
+                  </i>
+                  Nguy cơ cao (36 - 50)
+                </CardText>
+                <CardText>
+                  <i>
+                    <FontAwesomeIcon className="danger" icon="square" />
+                  </i>
+                  Báo động (&gt; 50)
+                </CardText>
+                <CardText>
+                  <i>
+                    <FontAwesomeIcon className="stop" icon="square" />
+                  </i>
+                  Không hoạt động
+                </CardText>
+              </CardBody>
+            </Card>
           </Col>
         </Row>
 
@@ -190,7 +200,6 @@ class PopoverExampleMulti extends React.Component {
           </Col>
         </Row>
       </div>
-      
     );
   }
 }

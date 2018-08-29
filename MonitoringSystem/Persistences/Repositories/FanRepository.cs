@@ -71,7 +71,7 @@ namespace MonitoringSystem.Persistences.Repositories
 
         public void RemoveFan(Fan fan)
         {
-            fan.IsDeleted = false;
+            fan.IsDeleted = true;
         }
 
         public void AddFanLog(Fan fan)

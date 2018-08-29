@@ -1,4 +1,5 @@
 import * as dataService from "../services/DataService";
+import * as signalR from "@aspnet/signalr";
 import * as authService from "../services/Authentication";
 import { push } from "react-router-redux";
 
@@ -8,7 +9,8 @@ const initialState = {
   popovers: [],
   isLoading: false,
   latestHumidity: [],
-  latestTemperature: []
+  latestTemperature: [],
+  hubConnection: null
 };
 
 export const actionCreators = {
@@ -23,9 +25,27 @@ export const actionCreators = {
         return;
       }
 
+      var hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/hub")
+        .build();
+
+      hubConnection.on("LoadData", () => {
+        loadData(dispatch, isLoaded);
+      });
+
+      hubConnection
+        .start()
+        .then(() => {
+          console.log("Hub connection started");
+        })
+        .catch(err => {
+          console.log("Error while establishing connection");
+        });
+
       dispatch({
         type: requestMapsType,
-        isLoaded
+        isLoaded,
+        hubConnection
       });
 
       loadData(dispatch, isLoaded);
@@ -82,7 +102,8 @@ export const reducer = (state, action) => {
     return {
       ...state,
       isLoading: true,
-      isLoaded: action.isLoaded
+      isLoaded: action.isLoaded,
+      hubConnection: action.hubConnection
     };
   }
 

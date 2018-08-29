@@ -182,6 +182,8 @@ export const actionCreators = {
   },
 
   deleteFans: fanId => async (dispatch, getState) => {
+    console.log('delete fan');
+    console.log(fanId);
     await dataService.remove(`api/fans/delete/` + fanId);
 
     loadData(dispatch);

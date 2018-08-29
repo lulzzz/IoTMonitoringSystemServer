@@ -1,53 +1,64 @@
-import {combineReducers} from 'redux'
-import {requestFansType, receiveFansType, updateFanStatusType} from '../actions/FansActions'
+import { combineReducers } from "redux";
+import {
+  requestFansType,
+  receiveFansType,
+  updateFanStatusType
+} from "../actions/FansActions";
 
-function updatedFanStatus(state = 'reactjs', action) {
-    console.log('ahihi')
-    switch (action.type) {
-        case updateFanStatusType:
-            console.log('aaa')
-            return action.fans
-        default:
-            return state
-    }
+function updatedFanStatus(state = "reactjs", action) {
+  console.log("ahihi");
+  switch (action.type) {
+    case updateFanStatusType:
+      console.log("aaa");
+      return action.fans;
+    default:
+      return state;
+  }
 }
 
-function fans(state = {
+function fans(
+  state = {
     isFetching: false,
+    hubConnection: null,
     items: []
-}, action) {
-    // console.log(action)
-    switch (action.type) {
-        case updateFanStatusType:
-            return Object.assign({}, state)
-        case requestFansType:
-            return Object.assign({}, state, {isFetching: true})
-        case receiveFansType:
-            return Object.assign({}, state, {
-                isFetching: false,
-                items: action.fans,
-                lastUpdated: action.receivedAt
-            })
-        default:
-            return state
-    }
+  },
+  action
+) {
+  // console.log(action)
+  switch (action.type) {
+    case updateFanStatusType:
+      return Object.assign({}, state);
+    case requestFansType:
+      return Object.assign({}, state, {
+        isFetching: true,
+        hubConnection: action.hubConnection
+      });
+    case receiveFansType:
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.fans,
+        lastUpdated: action.receivedAt
+      });
+    default:
+      return state;
+  }
 }
 
 function fanList(state = {}, action) {
-    // console.log(action)
-    switch (action.type) {
-        case updateFanStatusType:
-        case receiveFansType:
-        case requestFansType:
-            return {
-                ...state,
-                fans: fans(state, action)
-            }
-        default:
-            return state
-    }
+  // console.log(action)
+  switch (action.type) {
+    case updateFanStatusType:
+    case receiveFansType:
+    case requestFansType:
+      return {
+        ...state,
+        fans: fans(state, action)
+      };
+    default:
+      return state;
+  }
 }
 
-const fansReducer = combineReducers({fanList, updatedFanStatus})
+const fansReducer = combineReducers({ fanList, updatedFanStatus });
 
-export default fansReducer
+export default fansReducer;

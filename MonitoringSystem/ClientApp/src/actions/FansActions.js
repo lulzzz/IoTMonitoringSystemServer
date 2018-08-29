@@ -1,6 +1,7 @@
 import * as dataService from "../services/DataService";
 import * as authService from "../services/Authentication";
 import { push } from "react-router-redux";
+import * as signalR from "@aspnet/signalr";
 
 export const requestFansType = "REQUEST_FANS";
 export const receiveFansType = "RECEIVE_FANS";
@@ -18,7 +19,26 @@ export function updateFanStatus(fan, fans) {
   };
 }
 
-function requestFans() {
+function requestFans(dispatch) {
+  var hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl("/hub")
+    .build();
+
+  hubConnection.on("LoadData", () => {
+    dataService
+      .get(`/api/fans/getall`)
+      .then(json => dispatch(receiveFans(json)));
+  });
+
+  hubConnection
+    .start()
+    .then(() => {
+      console.log("Hub connection started");
+    })
+    .catch(err => {
+      console.log("Error while establishing connection");
+    });
+
   return { type: requestFansType };
 }
 
@@ -32,7 +52,7 @@ function receiveFans(json) {
 
 function fetchFans() {
   return dispatch => {
-    dispatch(requestFans());
+    dispatch(requestFans(dispatch));
     return dataService
       .get(`/api/fans/getall`)
       .then(json => dispatch(receiveFans(json)));

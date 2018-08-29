@@ -24,7 +24,7 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn">
+      <div>
         <Row>{this.renderFansTable(this.props)}</Row>
         <Row>{this.renderSensorsTable(this.props)}</Row>
         <Row>{this.renderRacksTable(this.props)}</Row>
