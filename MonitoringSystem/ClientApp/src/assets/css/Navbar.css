@@ -1,0 +1,52 @@
+/* Menu */
+
+.navbar {
+  padding: 1em;
+}
+
+/* Sidebar */
+.ui.sidebar {
+  width: 300px !important;
+  background: white !important;
+  margin-top: 57px !important;
+}
+.ui.menu {
+  margin: 0;
+}
+.ui.secondary.menu {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidebar .header {
+  padding: 20px 0;
+}
+
+.sidebar button {
+  background: rgb(221, 221, 221) !important;
+  width: 100%;
+  border-radius: unset !important;
+}
+.sidebar a button {
+  color: #616161;
+  text-decoration: none;
+  text-align: left !important;
+  padding: 15px 20px !important;
+}
+
+.sidebar a button:hover {
+  background: red;
+}
+
+.menus {
+  background: #b3b3b3;
+  width: 400px !important;
+}
+.sidebar a button i {
+  margin-right: 20px;
+}
+
+.sidebar a button i img {
+  width: 15px;
+}

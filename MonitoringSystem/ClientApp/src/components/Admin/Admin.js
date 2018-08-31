@@ -7,7 +7,7 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 // import { Row } from "reactstrap";
 import {} from "../../assets/css/table.css";
-import {Row, Col} from 'react-materialize'
+import { Grid, Image } from "semantic-ui-react";
 
 class Admin extends Component {
   componentWillMount() {
@@ -25,10 +25,16 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        <Row>{this.renderFansTable(this.props)}</Row>
+        <Grid columns={1} padded="vertically">
+          <Grid.Column>{this.renderFansTable(this.props)}</Grid.Column>
+          <Grid.Column>{this.renderSensorsTable(this.props)}</Grid.Column>
+          <Grid.Column>{this.renderRacksTable(this.props)}</Grid.Column>
+          <Grid.Column>{this.renderRoomsTable(this.props)}</Grid.Column>
+        </Grid>
+        {/* <Row></Row>
         <Row>{this.renderSensorsTable(this.props)}</Row>
         <Row>{this.renderRacksTable(this.props)}</Row>
-        <Row>{this.renderRoomsTable(this.props)}</Row>
+        <Row>{this.renderRoomsTable(this.props)}</Row> */}
       </div>
     );
   }

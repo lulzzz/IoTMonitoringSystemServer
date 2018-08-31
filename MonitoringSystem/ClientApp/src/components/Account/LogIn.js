@@ -4,19 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { actionCreators } from "../../store/LogIn";
 import "font-awesome/css/font-awesome.min.css";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardGroup,
-  Col,
-  Container,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Row
-} from "reactstrap";
+import { Button, Form, Card, Input, Icon } from "semantic-ui-react";
+
 class LogIn extends Component {
   constructor(props) {
     super(props);
@@ -33,18 +22,21 @@ class LogIn extends Component {
 
   handleChange(e) {
     const { name, value } = e.target;
+    console.log(e.target);
     this.setState({ [name]: value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
     this.setState({ submitted: true });
     const { email, password } = this.state;
     console.log(this.state);
     if (email && password) {
       this.props.logIn(email, password);
     }
+  }
+  hau() {
+    alert(document.getElementById("hau").value());
   }
 
   componentWillMount() {
@@ -62,7 +54,47 @@ class LogIn extends Component {
   render() {
     return (
       <div className="app flex-row align-items-center">
-        <form onSubmit={this.handleSubmit}>
+        <div className="login-card">
+          <Card centered>
+            <Card.Content>
+              <Card.Header content="LOGIN" />
+              <Card.Description>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Field>
+                    <Input
+                      icon={<Icon name="mail" inverted circular link />}
+                      placeholder={"Username..."}
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      type="password"
+                      icon={<Icon name="key" inverted circular link />}
+                      placeholder="Password..."
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Field>
+                  <br />
+                  <div className="ui two buttons">
+                    <Button className="login-button" basic color="green">
+                      Login
+                    </Button>
+                    <Button className="forgot-button" basic color="red">
+                      Forgot Password?
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Description>
+            </Card.Content>
+          </Card>
+        </div>
+
+        {/* <form onSubmit={this.handleSubmit}>
           <Container>
             <Row className="justify-content-center">
               <Col md="8">
@@ -116,33 +148,11 @@ class LogIn extends Component {
                       </Row>
                     </CardBody>
                   </Card>
-                  {/*<Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + "%" }}>
-                    <CardBody className="text-center">
-                      <div>
-                        <h2>Sign up</h2>
-                        <p>
-                          If you do not have an account, please click on the
-                          'Register Now!' button to proceed to register page
-                        </p>
-                        {/* <Button color="primary" className="mt-3" active>
-                          <Link to={`/Register`}>Register Now!</Link>
-                        </Button> */}
-                  {/*<p>
-                          <Link
-                            className="btn btn-primary active"
-                            to={`/register`}
-                          >
-                            Register Now!
-                          </Link>
-                        </p>
-                      </div>
-                    </CardBody>
-                  </Card>*/}
                 </CardGroup>
               </Col>
             </Row>
           </Container>
-        </form>
+        </form> */}
       </div>
     );
   }

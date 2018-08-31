@@ -1,76 +1,57 @@
 body {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   color: #616161;
-  background: #e9ebee;
-}
-
-.content {
-  background: white;
-  padding: 1em;
-  border-radius: 10px;
-  -webkit-box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
--moz-box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
-box-shadow: 9px 9px 11px -4px rgba(0,0,0,0.51);
 }
 
 .body {
-  padding: 2em 0;
+  background: #e9ebee;
+  padding: 1em;
 }
 
-.table {
-  margin-bottom: 4em;
+.body-content {
+  padding: 2em;
+  background: #fff;
+  border-radius: 5px;
+  min-height: 600px;
+  -webkit-box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
+  -moz-box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
+  box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
 }
 
-.navbar {
-  background: rgb(67, 224, 172) !important;
+.navbar.menu {
+  background: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6) !important;
 }
 
-.bg-light {
-  background: unset !important;
+.login-card {
+  margin-top: 50px;
 }
 
-/* Navbar */
-
-.navbar {
-  -webkit-box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
--moz-box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
-box-shadow: -1px 4px 11px 0px rgba(0,0,0,0.36);
+.login-card .card {
+  width: 400px !important;
+  border-radius: 15px;
+  border: 1px solid rgb(204, 204, 204);
+  -webkit-box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
+  -moz-box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
+  box-shadow: 9px 9px 11px -4px rgba(0, 0, 0, 0.51);
 }
 
-.nav-link {
-  color: #616161;
-  text-transform: uppercase
+.login-card input {
+  border-radius: 20px !important;
 }
 
-/* Sidebar */
-.sidebar-logo {
-  padding: .5em;
+.login-card .header {
+  padding-top: 1em;
+  margin-bottom: 2em;
   text-align: center;
-  background: rgb(67, 224, 172);
-  font-size: 30px;
+  font-size: 30px !important;
 }
 
-.sidebar-logo p {
-  margin: unset;
+.login-button {
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
 }
 
-.sidebar-item .nav-item{
-  padding: 5px 1em;
-}
-
-.sidebar-item .nav-item:hover {
-  background: rgb(67, 224, 172);
-}
-
-.sidebar-item .nav-item:hover a {  
-  color: white !important;
-}
-
-[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-  position: unset;
-  opacity: unset;
-}
-
-.container .animated .row {
-  padding: 0 10px;
+.forgot-button {
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
 }
