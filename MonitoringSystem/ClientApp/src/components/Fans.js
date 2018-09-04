@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Card, CardTitle, Row, Col, CardBody } from "reactstrap";
+import { Card, CardTitle, CardBody } from "reactstrap";
 import fanImg from "../assets/img/fanImg.png";
 import { Grid } from "semantic-ui-react";
 
@@ -9,18 +9,20 @@ export default class Fans extends Component {
     const { fans, onChange } = this.props;
     console.log(fans);
     return (
-      <div>
-        <Row>
+      <Grid>
+        <Grid.Row columns={6}>
           {fans.map(fan => (
-            <Col sm="3" key={fan.fanId}>
-              <Card body className="text-center">
-                <img
-                  className={"rotating-" + fan.isOn}
-                  width="100%"
-                  id={fan.fanId}
-                  src={fanImg}
-                  alt="Card cap"
-                />
+            <Grid.Column key={fan.fanId}>
+              <Card className="text-center">
+                <div style={{ padding: 10 }}>
+                  <img
+                    className={"rotating-" + fan.isOn}
+                    width="100%"
+                    id={fan.fanId}
+                    src="http://mygreenhomedesign.com/wp-content/uploads/2016/04/MGH-Fan-Icon.png"
+                    alt="Card cap"
+                  />
+                </div>
                 <CardBody>
                   <CardTitle>{fan.fanName}</CardTitle>
                   <div className="switch-container">
@@ -45,10 +47,10 @@ export default class Fans extends Component {
                   </div>
                 </CardBody>
               </Card>
-            </Col>
+            </Grid.Column>
           ))}
-        </Row>
-      </div>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

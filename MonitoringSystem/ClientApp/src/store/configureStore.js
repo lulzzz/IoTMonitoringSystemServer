@@ -12,8 +12,10 @@ import * as LogIn from "./LogIn";
 import * as Register from "./Register";
 import * as Account from "./Account";
 import fansReducer from "../reducers/FansReducers";
-import temperaturesReducer from "../reducers/TemperaturesReducers";
-import humiditiesReducer from "../reducers/HumiditiesReducers";
+import temperaturesLogsReducer from "../reducers/Dashboard/TemperaturesLogsReducers";
+import humiditiesLogsReducer from "../reducers/Dashboard/HumiditiesLogsReducers";
+import humiditiesRealtimeReducer from "../reducers/Dashboard/HumiditiesRealtimeReducers";
+import temperaturesRealtimeReducer from "../reducers/Dashboard/TemperaturesRealtimeReducers";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -25,8 +27,10 @@ export default function configureStore(history, initialState) {
     room: Room.reducer,
     map: Map.reducer,
     fansReducer,
-    temperaturesReducer,
-    humiditiesReducer,
+    temperaturesLogsReducer,
+    humiditiesLogsReducer,
+    humiditiesRealtimeReducer,
+    temperaturesRealtimeReducer,
     login: LogIn.reducer,
     register: Register.reducer,
     account: Account.reducer

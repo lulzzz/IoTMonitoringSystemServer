@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Temperatures from "./AsyncTemperatures";
-import Humidities from "./AsyncHumidities";
+import Temperatures from "./Dashboard/AsyncTemperaturesLogs";
+import Humidities from "./Dashboard/AsyncHumiditiesLogs";
 // import { Row, Col, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Grid } from "semantic-ui-react";
 

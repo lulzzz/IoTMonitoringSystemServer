@@ -1,5 +1,5 @@
-import * as dataService from "../services/DataService";
-import * as authService from "../services/Authentication";
+import * as dataService from "../../services/DataService";
+import * as authService from "../../services/Authentication";
 import * as signalR from "@aspnet/signalr";
 import { push } from "react-router-redux";
 

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchHumiditiesIfNeeded } from "../actions/HumiditiesActions";
-import Humidities from "../components/Humidities";
-import LoadingIcon from "../assets/img/loading-animation2.gif";
+import { fetchHumiditiesIfNeeded } from "../../actions/Dashboard/HumiditiesRealtimeActions";
+import HumiditiesRealtime from "../../components/Dashboard/HumiditiesRealtime";
+import LoadingIcon from "../../assets/img/loading-animation2.gif";
 
-class AsyncHumidities extends Component {
+class AsyncHumiditiesRealtime extends Component {
   constructor(props) {
     super(props);
   }
@@ -25,17 +25,17 @@ class AsyncHumidities extends Component {
           </div>
         ) : (
           <div>
-            <Humidities humidities={humiditiesArray} />
+            <HumiditiesRealtime humidities={humiditiesArray} />
           </div>
         )}
-        <div id="humidities" />
+        <div id="humiditiesRt" />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { humidityList } = state.humiditiesReducer;
+  const { humidityList } = state.humiditiesRealtimeReducer;
   const {
     isFetching,
     lastUpdated,
@@ -51,11 +51,11 @@ function mapStateToProps(state) {
   return { humiditiesArray, isFetching, lastUpdated };
 }
 
-AsyncHumidities.propTypes = {
+AsyncHumiditiesRealtime.propTypes = {
   //humidities: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(AsyncHumidities);
+export default connect(mapStateToProps)(AsyncHumiditiesRealtime);

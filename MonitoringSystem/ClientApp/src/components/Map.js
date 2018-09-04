@@ -164,30 +164,7 @@ class PopoverExampleMulti extends React.Component {
             />
           </Col>
 
-          <Col xs="12" lg="12" xl="6">
-            <Plot
-              data={[
-                {
-                  type: "scatter",
-                  x: this.props.latestHumidity.x,
-                  y: this.props.latestHumidity.y
-                }
-              ]}
-              layout={{
-                width: 550,
-                height: 500,
-                xaxis: {
-                  title: "Sensor"
-                },
-                yaxis: {
-                  title: "Humidity"
-                },
-                font: {
-                  family: "Roboto, sans-serif"
-                }
-              }}
-            />
-          </Col>
+          <Col xs="12" lg="12" xl="6" />
         </Row>
       </div>
     );

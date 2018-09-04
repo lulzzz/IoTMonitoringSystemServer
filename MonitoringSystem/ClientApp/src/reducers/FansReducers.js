@@ -6,10 +6,8 @@ import {
 } from "../actions/FansActions";
 
 function updatedFanStatus(state = "reactjs", action) {
-  console.log("ahihi");
   switch (action.type) {
     case updateFanStatusType:
-      console.log("aaa");
       return action.fans;
     default:
       return state;

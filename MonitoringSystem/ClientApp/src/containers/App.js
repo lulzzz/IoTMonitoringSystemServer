@@ -3,7 +3,11 @@ import { Route } from "react-router";
 import Layout from "../components/Layout";
 import Admin from "../components/Admin/Admin";
 import AsyncFans from "../containers/AsyncFans";
-import AsyncDashboard from "../containers/AsyncDashboard";
+// import AsyncDashboard from "../containers/AsyncDashboard";
+import AsyncHumiditiesLogs from "./Dashboard/AsyncHumiditiesLogs";
+import AsyncHumiditiesRealtime from "./Dashboard/AsyncHumiditiesRealtime";
+import AsyncTemperaturesLogs from "./Dashboard/AsyncTemperaturesLogs";
+import AsyncTemperaturesRealtime from "./Dashboard/AsyncTemperaturesRealtime";
 import Map from "./../components/Map";
 import Sensor from "./../components/Admin/Sensor";
 import Rack from "./../components/Admin/Rack";
@@ -19,7 +23,11 @@ const App = () => {
   return (
     <Layout>
       <Route exact path="/" component={LogIn} />
-      <Route path="/dashboard" component={AsyncDashboard} />
+      {/* <Route path="/dashboard" component={AsyncDashboard} /> */}
+      <Route path="/templog" component={AsyncTemperaturesLogs} />
+      <Route path="/temprt" component={AsyncTemperaturesRealtime} />
+      <Route path="/humilog" component={AsyncHumiditiesLogs} />
+      <Route path="/humirt" component={AsyncHumiditiesRealtime} />
       <Route path="/map" component={Map} />
       <Route path="/fans" component={AsyncFans} />
       <Route path="/admin" component={Admin} />

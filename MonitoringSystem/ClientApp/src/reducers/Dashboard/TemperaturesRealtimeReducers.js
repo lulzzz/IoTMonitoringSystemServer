@@ -1,13 +1,14 @@
 import { combineReducers } from "redux";
 import {
   requestTemperaturesType,
-  receiveTemperaturesType
-} from "../actions/TemperaturesActions";
+  receiveTemperaturesType,
+  fetchTemperaturesIfNeeded
+} from "../../actions/Dashboard/TemperaturesRealtimeActions";
 
 function temperatures(
   state = {
-    isFetching: false,
     hubConnection: null,
+    isFetching: false,
     items: []
   },
   action
@@ -23,7 +24,7 @@ function temperatures(
       return {
         ...state,
         isFetching: false,
-        items: action.temperatures,
+        items: action,
         lastUpdated: action.receivedAt
       };
     default:

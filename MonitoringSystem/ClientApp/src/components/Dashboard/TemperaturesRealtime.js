@@ -9,7 +9,6 @@ import { format, addDays } from "date-fns";
 import { Button, Collapse } from "reactstrap";
 
 var data = [];
-
 //icon show on dashboard
 var icona = {
   width: 1000,
@@ -33,9 +32,9 @@ var layoutUpdate = {
     title: "Time"
   },
   yaxis: {
-    title: "Humidity"
+    title: "Temperature"
   },
-  title: "Humidity Graph",
+  title: "Temperature Graph",
   font: {
     family: "Roboto, sans-serif"
   }
@@ -60,105 +59,39 @@ var otherSettings = {
   displaylogo: false
 };
 
-function formatStartDateDisplay(date, defaultText) {
-  if (!date) return defaultText;
-  return format(date, "YYYY-MM-DD 00:00");
-}
-
-function formatEndDateDisplay(date, defaultText) {
-  if (!date) return defaultText;
-  return format(date, "YYYY-MM-DD 23:59");
-}
-
-export default class Humidities extends Component {
+export default class TemperaturesRealtime extends Component {
   constructor(props, context) {
     super(props, context);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      collapse: false,
-      xRange: [],
-      plotlyGraph: {
-        data: [],
-        range: []
-      },
-      dateRangePicker: {
-        selection: {
-          startDate: new Date(),
-          endDate: new Date(),
-          key: "selection"
-        }
-      }
-    };
-  }
-
-  toggle() {
-    this.setState({
-      collapse: !this.state.collapse
-    });
-  }
-
-  async handleRangeChange(which, payload) {
-    await this.setState({
-      [which]: {
-        ...this.state[which],
-        ...payload
-      }
-    });
-
-    if (this.props.humidities !== undefined) {
-      data = this.props.humidities.items;
-    }
-
-    var layout = {
-      xaxis: {
-        range: [
-          formatStartDateDisplay(
-            this.state.dateRangePicker.selection.startDate
-          ),
-          formatEndDateDisplay(this.state.dateRangePicker.selection.endDate)
-        ]
-      }
-    };
-
-    Plotly.update("humidities", data, layout);
   }
 
   render() {
-    // console.log(this.props.humidities !== undefined)
+    // console.log(this.props.temperatures !== undefined)
     if (
-      this.props.humidities !== undefined &&
-      this.props.humidities.length !== 0
+      this.props.temperatures !== undefined &&
+      this.props.temperatures.length !== 0
     ) {
-      data = this.props.humidities;
-      Plotly.newPlot("humidities", data, layoutUpdate, otherSettings);
+      var data = [
+        {
+          x: this.props.temperatures.x,
+          y: this.props.temperatures.y,
+          type: "bar",
+          text: this.props.temperatures.y,
+          textposition: "auto",
+          hoverinfo: "none",
+          marker: {
+            color: "rgb(158,202,225)",
+            opacity: 0.6,
+            line: {
+              color: "rbg(8,48,107)",
+              width: 1.5
+            }
+          }
+        }
+      ];
+
+      Plotly.newPlot("temperaturesRt", data, layoutUpdate, otherSettings);
     }
-    return (
-      <div>
-        <Button
-          color="primary"
-          onClick={this.toggle}
-          style={{
-            marginBottom: "1rem"
-          }}
-        >
-          Date Picker
-        </Button>
-        <Collapse isOpen={this.state.collapse}>
-          <DateRangePicker
-            style={{
-              width: "100%"
-            }}
-            onChange={this.handleRangeChange.bind(this, "dateRangePicker")}
-            showSelectionPreview={true}
-            ranges={[this.state.dateRangePicker.selection]}
-            moveRangeOnFirstSelection={false}
-          />
-        </Collapse>
-      </div>
-    );
+
+    return <div />;
   }
 }
-
-Humidities.propTypes = {
-  //humiditiesRes: PropTypes.array.isRequired
-};

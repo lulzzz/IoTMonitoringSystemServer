@@ -13,7 +13,7 @@ export const actionCreators = {
   requestLogIn: isLoaded => async (dispatch, getState) => {
     //check if user logged in
     if (authService.isUserAuthenticated()) {
-      dispatch(push("/dashboard"));
+      dispatch(push("/templog"));
     } else {
       if (isLoaded === getState().login.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested

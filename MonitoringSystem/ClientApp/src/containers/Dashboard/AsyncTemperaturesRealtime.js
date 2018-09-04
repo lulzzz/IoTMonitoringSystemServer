@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchTemperaturesIfNeeded } from "../actions/TemperaturesActions";
-import Temperatures from "../components/Temperatures";
-import LoadingIcon from "../assets/img/loading-animation2.gif";
+import { fetchTemperaturesIfNeeded } from "../../actions/Dashboard/TemperaturesRealtimeActions";
+import TemperaturesRealtime from "../../components/Dashboard/TemperaturesRealtime";
+import LoadingIcon from "../../assets/img/loading-animation2.gif";
 
-class AsyncTemperatures extends Component {
+class AsyncTemperaturesRealtime extends Component {
   constructor(props) {
     super(props);
   }
@@ -25,17 +25,18 @@ class AsyncTemperatures extends Component {
           </div>
         ) : (
           <div>
-            <Temperatures temperatures={temperaturesArray} />
+            <TemperaturesRealtime temperatures={temperaturesArray} />
           </div>
         )}
-        <div id="temperatures" />
+        <div id="temperaturesRt" />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { temperatureList } = state.temperaturesReducer;
+  console.log(state);
+  const { temperatureList } = state.temperaturesRealtimeReducer;
   const {
     isFetching,
     lastUpdated,
@@ -51,11 +52,11 @@ function mapStateToProps(state) {
   return { temperaturesArray, isFetching, lastUpdated };
 }
 
-AsyncTemperatures.propTypes = {
+AsyncTemperaturesRealtime.propTypes = {
   //temperatures: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(AsyncTemperatures);
+export default connect(mapStateToProps)(AsyncTemperaturesRealtime);

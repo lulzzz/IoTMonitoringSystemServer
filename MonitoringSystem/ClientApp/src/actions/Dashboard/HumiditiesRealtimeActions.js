@@ -1,11 +1,10 @@
-import * as dataService from "../services/DataService";
+import * as dataService from "../../services/DataService";
+import * as authService from "../../services/Authentication";
 import * as signalR from "@aspnet/signalr";
-import * as authService from "../services/Authentication";
 import { push } from "react-router-redux";
-import humiditiesReducer from "./../reducers/HumiditiesReducers";
 
-export const requestHumiditiesType = "REQUEST_TEMPERATURES";
-export const receiveHumiditiesType = "RECEIVE_TEMPERATURES";
+export const requestHumiditiesType = "REQUEST_HUMIDITIES";
+export const receiveHumiditiesType = "RECEIVE_HUMIDITIES";
 
 function requestHumidities(dispatch) {
   var hubConnection = new signalR.HubConnectionBuilder()
@@ -14,7 +13,7 @@ function requestHumidities(dispatch) {
 
   hubConnection.on("LoadData", () => {
     dataService
-      .get(`/api/plots/humidity/getall`)
+      .get(`/api/plots/getlatesthumidity`)
       .then(json => dispatch(receiveHumidities(json)));
   });
 
@@ -33,7 +32,8 @@ function requestHumidities(dispatch) {
 function receiveHumidities(json) {
   return {
     type: receiveHumiditiesType,
-    humidities: json.items,
+    x: json.x,
+    y: json.y,
     receivedAt: Date.now()
   };
 }
@@ -42,7 +42,7 @@ function fetchHumidities() {
   return dispatch => {
     dispatch(requestHumidities(dispatch));
     return dataService
-      .get(`/api/plots/humidity/getall`)
+      .get(`/api/plots/getlatesthumidity`)
       .then(json => dispatch(receiveHumidities(json)));
   };
 }

@@ -3,13 +3,13 @@ import {
   requestHumiditiesType,
   receiveHumiditiesType,
   fetchHumiditiesIfNeeded
-} from "../actions/HumiditiesActions";
+} from "../../actions/Dashboard/HumiditiesRealtimeActions";
 
 function humidities(
   state = {
     hubConnection: null,
     isFetching: false,
-    items: []
+    items:[]
   },
   action
 ) {
@@ -24,7 +24,7 @@ function humidities(
       return {
         ...state,
         isFetching: false,
-        items: action.humidities,
+        items: action,
         lastUpdated: action.receivedAt
       };
     default:
