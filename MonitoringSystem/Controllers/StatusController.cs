@@ -124,7 +124,7 @@ namespace MonitoringSystem.Controllers
         [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
-        public async Task<IActionResult> Updatestatus(int id, [FromBody]StatusResource statusResource)
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody]StatusResource statusResource)
         {
             //check model is valid?
             if (!ModelState.IsValid)
@@ -180,7 +180,7 @@ namespace MonitoringSystem.Controllers
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
-        public async Task<IActionResult> Deletestatus(int id)
+        public async Task<IActionResult> DeleteStatus(int id)
         {
             var status = await statusRepository.GetStatus(id, includeRelated: false);
 

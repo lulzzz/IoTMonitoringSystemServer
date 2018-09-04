@@ -94,7 +94,7 @@ namespace MonitoringSystem.Controllers
         [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("update/{id}")]
-        public async Task<IActionResult> Updatetemperature(int id, [FromBody]TemperatureResource temperatureResource)
+        public async Task<IActionResult> UpdateTemperature(int id, [FromBody]TemperatureResource temperatureResource)
         {
             //check model is valid?
             if (!ModelState.IsValid)
@@ -126,7 +126,7 @@ namespace MonitoringSystem.Controllers
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [Route("delete/{id}")]
-        public async Task<IActionResult> Deletetemperature(int id)
+        public async Task<IActionResult> DeleteTemperature(int id)
         {
             var temperature = await temperatureRepository.GetTemperature(id, includeRelated: false);
 

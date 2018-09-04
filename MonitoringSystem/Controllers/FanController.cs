@@ -42,6 +42,7 @@ namespace MonitoringSystem.Controllers
         }
         // GET: api/fans/getall
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("getall")]
         public async Task<QueryResultResource<FanResource>> GetFans(QueryResource queryResource)
         {
@@ -57,6 +58,7 @@ namespace MonitoringSystem.Controllers
 
         // GET: api/fans/getfan/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("getfan/{id}")]
         public async Task<IActionResult> GetFan(int id)
         {

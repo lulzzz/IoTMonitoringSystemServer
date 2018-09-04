@@ -28,6 +28,7 @@ namespace MonitoringSystem.Controllers
         }
         // GET: api/logs/getall
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("getall")]
         public async Task<QueryResultResource<LogResource>> GetLogs(QueryResource queryResource)
         {
@@ -43,6 +44,7 @@ namespace MonitoringSystem.Controllers
 
         // GET: api/logs/getlog/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("getlog/{id}")]
         public async Task<IActionResult> GetLog(int id)
         {

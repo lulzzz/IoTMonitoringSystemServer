@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MonitoringSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("/api/fanStatus")]
     //[ApiController]
     public class FanStatusController : Controller
