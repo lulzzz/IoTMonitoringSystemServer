@@ -1,25 +1,23 @@
 .map {
   left: 310;
+  margin-bottom: 2em;
 }
 
 .censor-btn {
-
   border-radius: 0 !important;
   position: absolute;
   text-align: center;
   color: rgb(68, 68, 68);
   font-size: 10px;
-  
 }
 
-.censor-btn.btn{
+.censor-btn.btn {
   padding: 4px 0;
   text-align: center;
   width: 43px;
   height: 30px;
   border: 0.2px solid #808080;
 }
-
 
 .container .censor-btn:hover {
   background: #d4d4d4;
@@ -44,23 +42,24 @@
 }
 
 /* Note */
-.map-note i{
-  margin-right: 10px
+.map-note i {
+  margin-right: 10px;
+  padding: 5px 14px;
 }
-.map-note .normal path{
-  fill: #4af783;
+.map-note .normal {
+  background: #4af783;
 }
-.map-note .warning path{
-  fill: #f8de68;
+.map-note .warning {
+  background: #f8de68;
 }
-.map-note .high-warning path{
-  fill: #ff9252;
+.map-note .high-warning {
+  background: #ff9252;
 }
-.map-note .danger path{
-  fill: #f5483c;
+.map-note .danger {
+  background: #f5483c;
 }
-.map-note .stop path{
-  fill: #6d6d6d;
+.map-note .stop {
+  background: #6d6d6d;
 }
 
 /*sensor row1 */
@@ -341,4 +340,3 @@
 .container .censor-btn#sensor-danger {
   background-color: red;
 }
-

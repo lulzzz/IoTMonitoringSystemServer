@@ -45,6 +45,7 @@ namespace MonitoringSystem
             services.AddScoped<IFanStatusRepository, FanStatusRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddResponseCompression();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -102,12 +103,12 @@ namespace MonitoringSystem
                     });
                 });
             services.AddSignalR();
-            services.AddResponseCompression();
-            services.AddResponseCompression(options =>
-            {
-                options.EnableForHttps = true;
-                options.Providers.Add<GzipCompressionProvider>();
-            });
+
+            // services.AddResponseCompression(options =>
+            // {
+            //     options.EnableForHttps = true;
+            //     options.Providers.Add<GzipCompressionProvider>();
+            // });
             services.AddAutoMapper();
 
             // In production, the React files will be served from this directory

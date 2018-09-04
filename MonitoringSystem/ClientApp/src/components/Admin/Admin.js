@@ -7,7 +7,7 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 // import { Row } from "reactstrap";
 import {} from "../../assets/css/table.css";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 class Admin extends Component {
   componentWillMount() {
@@ -72,7 +72,8 @@ class Admin extends Component {
           selectRow={{
             mode: "checkbox",
             columnWidth: "40px",
-            clickToSelect: false
+            clickToSelect: false,
+            showOnlySelected: true
           }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -119,6 +120,7 @@ class Admin extends Component {
           </TableHeaderColumn>
 
           <TableHeaderColumn
+            width="88px"
             editable={false}
             dataFormat={this.sensorDetailButton}
           />
@@ -160,7 +162,8 @@ class Admin extends Component {
           selectRow={{
             mode: "checkbox",
             columnWidth: "40px",
-            clickToSelect: true
+            clickToSelect: true,
+            showOnlySelected: true
           }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -224,6 +227,7 @@ class Admin extends Component {
           </TableHeaderColumn>
 
           <TableHeaderColumn
+            width="88px"
             editable={false}
             dataFormat={this.rackDetailButton}
           />
@@ -265,7 +269,8 @@ class Admin extends Component {
           selectRow={{
             mode: "checkbox",
             columnWidth: "40px",
-            clickToSelect: true
+            clickToSelect: true,
+            showOnlySelected: true
           }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -300,6 +305,7 @@ class Admin extends Component {
           </TableHeaderColumn>
 
           <TableHeaderColumn
+            width="88px"
             editable={false}
             dataFormat={this.roomDetailButton}
           />
@@ -341,7 +347,8 @@ class Admin extends Component {
           selectRow={{
             mode: "checkbox",
             columnWidth: "40px",
-            clickToSelect: true
+            clickToSelect: true,
+            showOnlySelected: true
           }}
           //remote={true}
           cellEdit={cellEditProp}
@@ -401,7 +408,7 @@ class Admin extends Component {
               }
             }}
           >
-            Is On
+            Status
           </TableHeaderColumn>
 
           <TableHeaderColumn

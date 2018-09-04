@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../assets/css/Map.css";
 import map from "../assets/img/Map.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -109,33 +109,23 @@ class PopoverExampleMulti extends React.Component {
             <Card className="map-note">
               <CardBody>
                 <CardText>
-                  <i>
-                    <FontAwesomeIcon className="normal" icon="square" />
-                  </i>
+                  <i className="normal" />
                   Ổn định (&lt; 25)
                 </CardText>
                 <CardText>
-                  <i>
-                    <FontAwesomeIcon className="warning" icon="square" />
-                  </i>
+                  <i className="warning" />
                   Có nguy cơ (26 - 35)
                 </CardText>
                 <CardText>
-                  <i>
-                    <FontAwesomeIcon className="high-warning" icon="square" />
-                  </i>
+                  <i className="high-warning" />
                   Nguy cơ cao (36 - 50)
                 </CardText>
                 <CardText>
-                  <i>
-                    <FontAwesomeIcon className="danger" icon="square" />
-                  </i>
+                  <i className="danger" />
                   Báo động (&gt; 50)
                 </CardText>
                 <CardText>
-                  <i>
-                    <FontAwesomeIcon className="stop" icon="square" />
-                  </i>
+                  <i className="stop" />
                   Không hoạt động
                 </CardText>
               </CardBody>

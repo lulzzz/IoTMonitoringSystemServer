@@ -16,7 +16,6 @@ import {
   Input
 } from "semantic-ui-react";
 import "../assets/css/Navbar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Layout extends Component {
   constructor(props, context) {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Card, CardTitle, Row, Col, CardBody } from "reactstrap";
 import fanImg from "../assets/img/fanImg.png";
+import { Grid } from "semantic-ui-react";
 
 export default class Fans extends Component {
   render() {

@@ -28,7 +28,13 @@ import "./assets/css/fan-animation.css";
 import "./index.css";
 
 // Create browser history to use in the Redux store
-const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
+// const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
+var bases = document.getElementsByTagName("base");
+var baseUrl = null;
+
+if (bases.length > 0) {
+  baseUrl = bases[0].href;
+}
 const history = createBrowserHistory({ basename: baseUrl });
 
 // Get the application-wide store instance, prepopulating with state from the server where available.
