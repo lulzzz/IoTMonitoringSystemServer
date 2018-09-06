@@ -55,3 +55,25 @@ body {
   border-top-right-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
 }
+
+.ui.modal {
+  margin: auto;
+}
+
+.ui.modal.datePicker {
+  width: 540px;
+  height: 485px;
+}
+.rdrDateRangePickerWrapper {
+  height: 380px;
+}
+.input-date {
+  margin-left: 2em;
+}
+.input-date button {
+  background: #29ffc6 !important;
+}
+
+.js-plotly-plot .plotly .modebar {
+  z-index: 5 !important;
+}

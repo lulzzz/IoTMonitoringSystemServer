@@ -6,7 +6,10 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { format, addDays } from "date-fns";
-import { Button, Collapse } from "reactstrap";
+import { Collapse } from "reactstrap";
+import { Button, Modal, Input } from "semantic-ui-react";
+
+var data = [];
 
 //icon show on dashboard
 var icona = {
@@ -26,19 +29,6 @@ var iconb = {
   transform: "matrix(1.7 0 0 -1.7 0 850)"
 };
 
-var data = [];
-var layoutUpdate = {
-  xaxis: {
-    title: "Time"
-  },
-  yaxis: {
-    title: "Temperature"
-  },
-  title: "Temperature Graph",
-  font: {
-    family: "Roboto, sans-serif"
-  }
-};
 var otherSettings = {
   modeBarButtonsToAdd: [
     {
@@ -59,6 +49,11 @@ var otherSettings = {
   displaylogo: false
 };
 
+function formatDate(date, defaultText) {
+  if (!date) return defaultText;
+  return format(date, "DD-MM-YYYY");
+}
+
 function formatStartDateDisplay(date, defaultText) {
   if (!date) return defaultText;
   return format(date, "YYYY-MM-DD 00:00");
@@ -72,29 +67,41 @@ function formatEndDateDisplay(date, defaultText) {
 export default class Temperatures extends Component {
   constructor(props, context) {
     super(props, context);
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
     this.state = {
-      collapse: false,
-      xRange: [],
-      plotlyGraph: {
-        data: [],
-        range: []
-      },
+      open: false,
       dateRangePicker: {
         selection: {
           startDate: new Date(),
           endDate: new Date(),
           key: "selection"
         }
-      }
+      },
+      startDate: formatStartDateDisplay(
+        new Date(new Date().setDate(new Date().getDate() - 30))
+      ),
+      endDate: formatEndDateDisplay(new Date())
     };
   }
 
-  toggle() {
+  show = dimmer => () =>
     this.setState({
-      collapse: !this.state.collapse
+      dimmer,
+      open: true,
+      dateRangePicker: {
+        selection: {
+          startDate: this.state.startDate,
+          endDate: this.state.endDate,
+          key: "selection"
+        }
+      }
     });
-  }
+  close = () =>
+    this.setState({
+      open: false,
+      startDate: this.state.dateRangePicker.selection.startDate,
+      endDate: this.state.dateRangePicker.selection.endDate
+    });
 
   async handleRangeChange(which, payload) {
     await this.setState({
@@ -103,8 +110,6 @@ export default class Temperatures extends Component {
         ...payload
       }
     });
-
-    console.log(this.props);
 
     if (this.props.temperatures !== undefined) {
       data = this.props.temperatures.items;
@@ -120,40 +125,84 @@ export default class Temperatures extends Component {
         ]
       }
     };
+
     Plotly.update("temperatures", data, layout);
   }
 
   render() {
+    const { open, dimmer } = this.state;
     if (
       this.props.temperatures !== undefined &&
       this.props.temperatures.length !== 0
     ) {
+      var layoutUpdate = {
+        xaxis: {
+          title: "Time",
+          range: [this.state.startDate, this.state.endDate]
+        },
+        yaxis: {
+          title: "Humidity"
+        },
+        title: "Temperature Graph",
+        font: {
+          family: "Roboto, sans-serif"
+        }
+      };
+      console.log(layoutUpdate);
       data = this.props.temperatures;
       Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings);
     }
-    
     return (
       <div>
         <Button
-          color="primary"
-          onClick={this.toggle}
+          inverted
+          color="blue"
+          onClick={this.show(true)}
           style={{
             marginBottom: "1rem"
           }}
         >
           Date Picker
         </Button>
-        <Collapse isOpen={this.state.collapse}>
-          <DateRangePicker
-            style={{
-              width: "100%"
-            }}
-            onChange={this.handleRangeChange.bind(this, "dateRangePicker")}
-            showSelectionPreview={true}
-            ranges={[this.state.dateRangePicker.selection]}
-            moveRangeOnFirstSelection={false}
-          />
-        </Collapse>
+        <span className="input-date">
+          <Button.Group>
+            <Button
+              style={{
+                opacity: "1 !important;"
+              }}
+            >
+              {formatDate(this.state.dateRangePicker.selection.startDate)}
+            </Button>
+            <Button.Or text="to" />
+            <Button>
+              {formatDate(this.state.dateRangePicker.selection.endDate)}
+            </Button>
+          </Button.Group>
+        </span>
+
+        <Modal
+          dimmer={dimmer}
+          open={open}
+          onClose={this.close}
+          className="datePicker"
+        >
+          <Modal.Content>
+            <DateRangePicker
+              style={{
+                width: "100%"
+              }}
+              onChange={this.handleRangeChange.bind(this, "dateRangePicker")}
+              showSelectionPreview={true}
+              ranges={[this.state.dateRangePicker.selection]}
+              moveRangeOnFirstSelection={false}
+            />
+          </Modal.Content>
+          <Modal.Actions>
+            <Button inverted color="green" onClick={this.close}>
+              Confirm
+            </Button>
+          </Modal.Actions>
+        </Modal>
       </div>
     );
   }

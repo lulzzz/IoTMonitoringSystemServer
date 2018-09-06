@@ -6,7 +6,8 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { format, addDays } from "date-fns";
-import { Button, Collapse } from "reactstrap";
+import { Collapse } from "reactstrap";
+import { Button, Modal, Input } from "semantic-ui-react";
 
 var data = [];
 
@@ -48,6 +49,11 @@ var otherSettings = {
   displaylogo: false
 };
 
+function formatDate(date, defaultText) {
+  if (!date) return defaultText;
+  return format(date, "DD-MM-YYYY");
+}
+
 function formatStartDateDisplay(date, defaultText) {
   if (!date) return defaultText;
   return format(date, "YYYY-MM-DD 00:00");
@@ -61,9 +67,9 @@ function formatEndDateDisplay(date, defaultText) {
 export default class Humidities extends Component {
   constructor(props, context) {
     super(props, context);
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
     this.state = {
-      collapse: false,
+      open: false,
       dateRangePicker: {
         selection: {
           startDate: new Date(),
@@ -77,11 +83,25 @@ export default class Humidities extends Component {
       endDate: formatEndDateDisplay(new Date())
     };
   }
-  toggle() {
+
+  show = dimmer => () =>
     this.setState({
-      collapse: !this.state.collapse
+      dimmer,
+      open: true,
+      dateRangePicker: {
+        selection: {
+          startDate: this.state.startDate,
+          endDate: this.state.endDate,
+          key: "selection"
+        }
+      }
     });
-  }
+  close = () =>
+    this.setState({
+      open: false,
+      startDate: this.state.dateRangePicker.selection.startDate,
+      endDate: this.state.dateRangePicker.selection.endDate
+    });
 
   async handleRangeChange(which, payload) {
     await this.setState({
@@ -110,6 +130,7 @@ export default class Humidities extends Component {
   }
 
   render() {
+    const { open, dimmer } = this.state;
     if (
       this.props.humidities !== undefined &&
       this.props.humidities.length !== 0
@@ -134,15 +155,54 @@ export default class Humidities extends Component {
     return (
       <div>
         <Button
-          color="primary"
-          onClick={this.toggle}
+          inverted
+          color="blue"
+          onClick={this.show(true)}
           style={{
             marginBottom: "1rem"
           }}
         >
           Date Picker
         </Button>
-        <Collapse isOpen={this.state.collapse}>
+        <span className="input-date">
+          <Button.Group>
+            <Button
+              style={{
+                opacity: "1 !important;"
+              }}
+            >
+              {formatDate(this.state.dateRangePicker.selection.startDate)}
+            </Button>
+            <Button.Or text="to" />
+            <Button>
+              {formatDate(this.state.dateRangePicker.selection.endDate)}
+            </Button>
+          </Button.Group>
+        </span>
+        <Modal
+          dimmer={dimmer}
+          open={open}
+          onClose={this.close}
+          className="datePicker"
+        >
+          <Modal.Content>
+            <DateRangePicker
+              style={{
+                width: "100%"
+              }}
+              onChange={this.handleRangeChange.bind(this, "dateRangePicker")}
+              showSelectionPreview={true}
+              ranges={[this.state.dateRangePicker.selection]}
+              moveRangeOnFirstSelection={false}
+            />
+          </Modal.Content>
+          <Modal.Actions>
+            <Button inverted color="green" onClick={this.close}>
+              Confirm
+            </Button>
+          </Modal.Actions>
+        </Modal>
+        {/* <Collapse isOpen={this.state.collapse}>
           <DateRangePicker
             style={{
               width: "100%"
@@ -152,7 +212,7 @@ export default class Humidities extends Component {
             ranges={[this.state.dateRangePicker.selection]}
             moveRangeOnFirstSelection={false}
           />
-        </Collapse>
+        </Collapse> */}
       </div>
     );
   }
