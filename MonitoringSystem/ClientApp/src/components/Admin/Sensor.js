@@ -8,7 +8,6 @@ import RangeFilter from "./RangeFilter";
 import GetDataByDateRange from "./GetDataByDateRange";
 
 function getCustomFilter(filterHandler, customFilterParameters) {
-  console.log(filterHandler);
   return <RangeFilter filterHandler={filterHandler} />;
 }
 
@@ -103,11 +102,11 @@ class Sensor extends Component {
           </TableHeaderColumn>
           <TableHeaderColumn
             dataField="dateTime"
-          // filter={{
-          //   type: "CustomFilter",
-          //   getElement: getCustomFilter,
-          //   customFilterParameters: {}
-          // }}
+            // filter={{
+            //   type: "CustomFilter",
+            //   getElement: getCustomFilter,
+            //   customFilterParameters: {}
+            // }}
           >
             DateTime
           </TableHeaderColumn>

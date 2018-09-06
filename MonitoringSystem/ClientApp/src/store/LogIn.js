@@ -1,5 +1,6 @@
 import * as dataService from "../services/DataService";
 import * as authService from "../services/Authentication";
+import * as constant from "../services/Constant";
 import { push } from "react-router-redux";
 
 const requestLogInType = "REQUEST_LOGIN";
@@ -20,7 +21,6 @@ export const actionCreators = {
         // data)
         return;
       }
-
       dispatch({
         type: requestLogInType,
         isLoaded
@@ -40,9 +40,9 @@ export const actionCreators = {
     const jsonRespone = await res.json();
 
     if (jsonRespone && jsonRespone.access_token) {
-      localStorage.removeItem("CURRENT_USER");
-      localStorage.setItem("CURRENT_USER", JSON.stringify(jsonRespone));
-      dispatch(push("/dashboard"));
+      localStorage.removeItem(constant.CURRENT_USER);
+      localStorage.setItem(constant.CURRENT_USER, JSON.stringify(jsonRespone));
+      dispatch(push("/templog"));
     } else {
       const isLoaded = getState().login.isLoaded;
       const errorMessage = "You have entered an invalid username or password";

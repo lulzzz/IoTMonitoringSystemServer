@@ -196,7 +196,6 @@ class AsyncFans extends Component {
   }
 
   _handleChange(fan, fans) {
-    console.log(fans);
     fan.isOn = !fan.isOn;
     this.props.dispatch(updateFanStatus(fan, fans));
     // this.props.dispatch(fetchFansIfNeeded());
@@ -204,7 +203,6 @@ class AsyncFans extends Component {
 
   render() {
     const { fansArray, isFetching } = this.props;
-    // console.log(this.props)
     return (
       <div>
         {isFetching && (
@@ -227,7 +225,6 @@ AsyncFans.propTypes = {
 };
 
 function mapStateToProps(state) {
-  // console.log
   const { fanList } = state.fansReducer;
   const { isFetching, lastUpdated, items: fans } = fanList.fans || {
     isFetching: true,

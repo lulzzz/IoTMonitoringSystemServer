@@ -16,8 +16,11 @@ const initialState = {
 export const actionCreators = {
   requestRack: (isLoaded, rackId) => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().rack.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested

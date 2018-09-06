@@ -26,7 +26,6 @@ class Rack extends Component {
   }
 
   render() {
-    console.log(this.props.rack);
     return (
       <div>
         <h1>

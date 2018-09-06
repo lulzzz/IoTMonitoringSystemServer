@@ -12,7 +12,6 @@ export const invalidateUpdateFanType = "INVALIDATE_UPDATE_FAN";
 // FETCH_PRODUCTS_FAILURE   } from './productActions';
 
 export function updateFanStatus(fan, fans) {
-  console.log("updateAction");
   return dispatch => {
     const url = "api/fans/update/" + fan.fanId;
     return dataService.put(url, fan).then(() => dispatch(fetchFans()));
@@ -61,33 +60,19 @@ function fetchFans() {
 
 function shouldFetchFans(state) {
   const fans = state.fansReducer.fanList;
-  // console.log('should') console.log(state)
-  console.log(state);
   if (fans !== undefined) {
     return true;
   } else if (fans.isFetching) {
     return false;
   } else {
-    console.log("sss");
     return fans.didInvalidate;
   }
 }
 
-// export function updateFans (state, fan) {     if (isLoaded ===
-// getState().fans.isLoaded) {         // Don't issue a duplicate request (we
-// already have or are loading the requested         // data)         return;  }
-//     dispatch({type: requestFansType, isLoaded, isLoading: true}); const url =
-// `api/fans/update/` + fan.fanId;     const response = await fetch(url, {
-// method: "PUT",         headers: {             Accept: "application/json",
-//   "Content-Type": "application/json"         },         body:
-// JSON.stringify(fan)     });     console.log(response)     const url2 =
-// `api/fans/getall`;     const response2 = await fetch(url2);     const fans =
-// await response2.json();     dispatch({type: receiveFansType, isLoaded,
-// isLoading: false, fans});     return; }
-
 export function fetchFansIfNeeded() {
   //check if user dont log in
-  if (!authService.isUserAuthenticated()) {
+  if (!authService.isUserAuthenticated() || authService.isExpired()) {
+    authService.clearLocalStorage();
     return dispatch => {
       dispatch(push("/"));
     };

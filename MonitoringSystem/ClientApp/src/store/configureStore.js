@@ -1,8 +1,6 @@
 ﻿import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { routerReducer, routerMiddleware } from "react-router-redux";
-import * as Counter from "./Counter";
-import * as WeatherForecasts from "./WeatherForecasts";
 import * as Admin from "./Admin";
 import * as Sensor from "./Sensor";
 import * as Rack from "./Rack";
@@ -19,8 +17,6 @@ import temperaturesRealtimeReducer from "../reducers/Dashboard/TemperaturesRealt
 
 export default function configureStore(history, initialState) {
   const reducers = {
-    counter: Counter.reducer,
-    weatherForecasts: WeatherForecasts.reducer,
     admin: Admin.reducer,
     sensor: Sensor.reducer,
     rack: Rack.reducer,

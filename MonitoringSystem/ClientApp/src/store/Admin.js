@@ -18,8 +18,11 @@ const initialState = {
 export const actionCreators = {
   requestAdmin: isLoaded => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().admin.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested
@@ -182,7 +185,7 @@ export const actionCreators = {
   },
 
   deleteFans: fanId => async (dispatch, getState) => {
-    console.log('delete fan');
+    console.log("delete fan");
     console.log(fanId);
     await dataService.remove(`api/fans/delete/` + fanId);
 

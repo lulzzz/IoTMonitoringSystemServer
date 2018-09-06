@@ -16,8 +16,11 @@ const initialState = {
 export const actionCreators = {
   requestRoom: (isLoaded, roomId) => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().room.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested
@@ -54,7 +57,6 @@ export const actionCreators = {
   },
 
   addRacks: data => async (dispatch, getState) => {
-    console.log("addRacks");
     const roomId = getState().room.roomId;
     data.roomId = roomId;
     delete data.rackId;
@@ -64,7 +66,6 @@ export const actionCreators = {
   },
 
   updateRacks: (data, fieldName, value) => async (dispatch, getState) => {
-    console.log("updateRacks");
     const roomId = getState().room.roomId;
     var rackId = data.rackId;
     data[fieldName] = value;
@@ -83,7 +84,6 @@ export const actionCreators = {
   },
 
   deleteRacks: rackId => async (dispatch, getState) => {
-    console.log("deleteRacks");
     await dataService.remove(`api/racks/delete/` + rackId);
 
     const roomId = getState().room.roomId;
@@ -91,7 +91,6 @@ export const actionCreators = {
   },
 
   addSensors: data => async (dispatch, getState) => {
-    console.log("addSensors");
     const roomId = getState().room.roomId;
     data.roomId = roomId;
     delete data.sensorId;
@@ -101,7 +100,6 @@ export const actionCreators = {
   },
 
   updateSensors: (data, fieldName, value) => async (dispatch, getState) => {
-    console.log("updateSensors");
     const roomId = getState().room.roomId;
     var sensorId = data.sensorId;
     data[fieldName] = value;

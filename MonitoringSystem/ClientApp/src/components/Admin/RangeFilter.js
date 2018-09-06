@@ -20,7 +20,6 @@ class RangeFilter extends Component {
 
   filter() {
     if (this.state.startDate === "" && this.state.endDate === "") {
-      console.log("nothing");
       this.props.filterHandler();
     } else {
       this.props.filterHandler({ callback: this.isFiltered });
@@ -35,15 +34,11 @@ class RangeFilter extends Component {
   }
 
   handleEvent(event, picker) {
-    console.log("handleEvent");
     this.setState({
       startDate: picker.startDate._d,
       endDate: picker.endDate._d
     });
-    // this.state.startDate = picker.startDate._d;
-    // this.state.endDate = picker.endDate._d;
-    console.log(this.state.startDate);
-    console.log(this.state.endDate);
+
     this.filter();
   }
   render() {

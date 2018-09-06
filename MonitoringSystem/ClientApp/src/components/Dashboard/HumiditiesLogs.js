@@ -148,7 +148,6 @@ export default class Humidities extends Component {
           family: "Roboto, sans-serif"
         }
       };
-      console.log(layoutUpdate);
       data = this.props.humidities;
       Plotly.newPlot("humidities", data, layoutUpdate, otherSettings);
     }

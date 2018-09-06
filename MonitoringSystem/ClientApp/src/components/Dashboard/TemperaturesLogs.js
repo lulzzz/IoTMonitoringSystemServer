@@ -152,6 +152,7 @@ export default class Temperatures extends Component {
       data = this.props.temperatures;
       Plotly.newPlot("temperatures", data, layoutUpdate, otherSettings);
     }
+
     return (
       <div>
         <Button

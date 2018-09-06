@@ -99,16 +99,18 @@ namespace MonitoringSystem.Controllers
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+                        var expires = DateTime.Now.AddDays(7);
                         var token = new JwtSecurityToken(_config["Tokens:Issuer"],
                           _config["Tokens:Issuer"],
                           claims,
-                          expires: DateTime.Now.AddDays(1),
+                          expires: expires,
                           signingCredentials: creds);
 
                         return Ok(
                             new
                             {
                                 access_token = new JwtSecurityTokenHandler().WriteToken(token),
+                                expires = expires.ToString("s"),
                                 userName = user.UserName,
                                 email = user.Email,
                                 role = _userManager.GetRolesAsync(user).Result[0]

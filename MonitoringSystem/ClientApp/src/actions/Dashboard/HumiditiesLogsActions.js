@@ -60,7 +60,8 @@ function shouldFetchHumidities(state) {
 
 export function fetchHumiditiesIfNeeded() {
   //check if user dont log in
-  if (!authService.isUserAuthenticated()) {
+  if (!authService.isUserAuthenticated() || authService.isExpired()) {
+    authService.clearLocalStorage();
     return dispatch => {
       dispatch(push("/"));
     };

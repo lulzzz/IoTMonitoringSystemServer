@@ -26,7 +26,6 @@ class Room extends Component {
   }
 
   render() {
-    console.log(this.props.racks);
     return (
       <div>
         <h1>

@@ -22,7 +22,6 @@ function fans(
   },
   action
 ) {
-  // console.log(action)
   switch (action.type) {
     case updateFanStatusType:
       return Object.assign({}, state);
@@ -43,7 +42,6 @@ function fans(
 }
 
 function fanList(state = {}, action) {
-  // console.log(action)
   switch (action.type) {
     case updateFanStatusType:
     case receiveFansType:

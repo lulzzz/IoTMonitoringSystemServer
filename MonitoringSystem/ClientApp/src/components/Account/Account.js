@@ -20,7 +20,6 @@ class Account extends Component {
   }
 
   render() {
-    console.log(this.props.accounts);
     return (
       <div className="animated fadeIn">
         <Row>{this.renderAccountsTable(this.props)}</Row>

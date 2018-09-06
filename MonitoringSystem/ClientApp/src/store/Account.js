@@ -14,8 +14,11 @@ const initialState = {
 export const actionCreators = {
   requestAccount: isLoaded => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().account.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested
@@ -50,7 +53,6 @@ export const actionCreators = {
   },
 
   addAccount: data => async (dispatch, getState) => {
-    console.log("addAccount");
     delete data.id;
     delete data.createdOn;
     delete data.updatedOn;
@@ -61,8 +63,6 @@ export const actionCreators = {
   },
 
   updateAccount: (data, fieldName, value) => async (dispatch, getState) => {
-    console.log("updateRacks");
-
     data[fieldName] = value;
 
     data = {
@@ -70,15 +70,12 @@ export const actionCreators = {
       phoneNumber: data.phoneNumber,
       fullName: data.fullName
     };
-    console.log(data);
     const isLoaded = getState().account.isLoaded;
     var res = await dataService.put(`api/accounts/update/` + data.email, data);
-    console.log(res);
     loadData(dispatch, isLoaded);
   },
 
   deleteAccount: email => async (dispatch, getState) => {
-    console.log("deleteAccount");
     await dataService.remove(`api/accounts/delete/` + email);
     const isLoaded = getState().account.isLoaded;
     loadData(dispatch, isLoaded);

@@ -65,7 +65,6 @@ export default class HumiditiesRealtime extends Component {
   }
 
   render() {
-    // console.log(this.props.humidities !== undefined)
     if (
       this.props.humidities !== undefined &&
       this.props.humidities.length !== 0

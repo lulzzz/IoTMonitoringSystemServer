@@ -133,7 +133,7 @@ class PopoverExampleMulti extends React.Component {
           </Col>
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col xs="12" lg="12" xl="6">
             <Plot
               data={[
@@ -165,7 +165,7 @@ class PopoverExampleMulti extends React.Component {
           </Col>
 
           <Col xs="12" lg="12" xl="6" />
-        </Row>
+        </Row> */}
       </div>
     );
   }

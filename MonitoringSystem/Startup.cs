@@ -96,7 +96,6 @@ namespace MonitoringSystem
                     options.AddPolicy("CorsPolicy", builder =>
                     {
                         builder.AllowAnyHeader()
-                        .WithOrigins("https://localhost:5001")
                             .AllowAnyOrigin()
                             .AllowCredentials()
                             .AllowAnyMethod();

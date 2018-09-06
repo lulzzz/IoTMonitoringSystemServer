@@ -1,8 +1,26 @@
+import * as constant from "./Constant";
+
 export const isUserAuthenticated = () => {
-  const user = localStorage.getItem("CURRENT_USER");
+  const user = localStorage.getItem(constant.CURRENT_USER);
   if (user !== null) {
     return true;
   } else return false;
+};
+
+export const isExpired = () => {
+  const user = getLoggedInUser();
+
+  if (user === null) {
+    return true;
+  } else if (new Date(user.expires) > new Date()) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const clearLocalStorage = () => {
+  localStorage.removeItem(constant.CURRENT_USER);
 };
 
 export const getLoggedInUser = () => {
@@ -10,15 +28,17 @@ export const getLoggedInUser = () => {
     access_token: "",
     email: "",
     role: "",
-    userName: ""
+    userName: "",
+    expires: ""
   };
   if (isUserAuthenticated()) {
-    var userData = JSON.parse(localStorage.getItem("CURRENT_USER"));
+    var userData = JSON.parse(localStorage.getItem(constant.CURRENT_USER));
     user = {
       access_token: userData.access_token,
       email: userData.email,
       role: userData.role,
-      userName: userData.userName
+      userName: userData.userName,
+      expires: userData.expires
     };
   }
   return user;

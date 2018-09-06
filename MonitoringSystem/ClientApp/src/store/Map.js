@@ -8,16 +8,17 @@ const receiveMapsType = "RECEIVE_SENSORS";
 const initialState = {
   popovers: [],
   isLoading: false,
-  latestHumidity: [],
-  latestTemperature: [],
   hubConnection: null
 };
 
 export const actionCreators = {
   requestMaps: isLoaded => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().admin.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested
@@ -80,18 +81,10 @@ export const loadData = async (dispatch, isLoaded) => {
   }
   popovers = popovers.reverse();
 
-  const latestHumidity = await dataService.get(`api/plots/getlatesthumidity`);
-
-  const latestTemperature = await dataService.get(
-    `api/plots/getlatesttemperature`
-  );
-
   dispatch({
     type: receiveMapsType,
     isLoaded,
-    popovers,
-    latestHumidity,
-    latestTemperature
+    popovers
   });
 };
 
@@ -112,9 +105,7 @@ export const reducer = (state, action) => {
       ...state,
       popovers: action.popovers,
       isLoading: false,
-      isLoaded: action.isLoaded,
-      latestHumidity: action.latestHumidity,
-      latestTemperature: action.latestTemperature
+      isLoaded: action.isLoaded
     };
   }
 

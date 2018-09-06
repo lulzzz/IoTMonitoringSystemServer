@@ -16,14 +16,6 @@ class GetDataByDateRange extends Component {
   }
 
   handleEvent(event, picker) {
-    console.log("handleEvent");
-    console.log(this.props);
-    // this.setState({
-    //   startDate: picker.startDate._d,
-    //   endDate: picker.endDate._d
-    // });
-    // console.log(picker.startDate._d);
-    // console.log(picker.endDate._d);
     this.props.rangeFilterChange(picker.startDate._d, picker.endDate._d);
   }
   render() {

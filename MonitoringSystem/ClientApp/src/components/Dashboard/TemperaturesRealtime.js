@@ -65,7 +65,6 @@ export default class TemperaturesRealtime extends Component {
   }
 
   render() {
-    // console.log(this.props.temperatures !== undefined)
     if (
       this.props.temperatures !== undefined &&
       this.props.temperatures.length !== 0

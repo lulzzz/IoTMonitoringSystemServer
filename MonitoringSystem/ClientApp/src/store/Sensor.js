@@ -22,8 +22,11 @@ const initialState = {
 export const actionCreators = {
   requestSensor: (isLoaded, sensorId) => async (dispatch, getState) => {
     //check if user dont log in
-    if (!authService.isUserAuthenticated()) {
-      dispatch(push("/"));
+    if (!authService.isUserAuthenticated() || authService.isExpired()) {
+      authService.clearLocalStorage();
+      return dispatch => {
+        dispatch(push("/"));
+      };
     } else {
       if (isLoaded === getState().sensor.isLoaded) {
         // Don't issue a duplicate request (we already have or are loading the requested
@@ -61,7 +64,6 @@ export const actionCreators = {
   },
 
   addRacks: data => async (dispatch, getState) => {
-    console.log("addRacks");
     const sensorId = getState().sensor.sensorId;
     data.sensorId = sensorId;
     delete data.rackId;
@@ -71,7 +73,6 @@ export const actionCreators = {
   },
 
   updateRacks: (data, fieldName, value) => async (dispatch, getState) => {
-    console.log("updateRacks");
     const sensorId = getState().sensor.sensorId;
     var rackId = data.rackId;
     data[fieldName] = value;
@@ -90,7 +91,6 @@ export const actionCreators = {
   },
 
   deleteRacks: rackId => async (dispatch, getState) => {
-    console.log("deleteRacks");
     await dataService.remove(`api/racks/delete/` + rackId);
 
     const sensorId = getState().sensor.sensorId;
@@ -119,7 +119,7 @@ export const actionCreators = {
     const statuses = await dataService.get(
       `api/statuses/getall?sensorId=${sensorId}&pageSize=10&page=1&sortBy=datetime&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`
     );
-    console.log(statuses);
+
     var currentStatusPage = 1;
     var isLoaded = getState().sensor.isLoaded;
 
@@ -132,7 +132,6 @@ export const actionCreators = {
   },
 
   clear: () => async (dispatch, getState) => {
-    console.log("clear");
     const sensorId = getState().sensor.sensorId;
     loadData(dispatch, sensorId);
   }

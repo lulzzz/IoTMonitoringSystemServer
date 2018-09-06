@@ -38,7 +38,7 @@ export const actionCreators = {
         errorMessage = "Could not register. Some error were happen";
       }
     }
-    console.log(errorMessage);
+
     const isLoaded = getState().login.isLoaded;
     loadData(dispatch, isLoaded, errorMessage);
   }

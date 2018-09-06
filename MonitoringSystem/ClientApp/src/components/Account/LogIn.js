@@ -22,7 +22,7 @@ class LogIn extends Component {
 
   handleChange(e) {
     const { name, value } = e.target;
-    console.log(e.target);
+
     this.setState({ [name]: value });
   }
 
@@ -30,7 +30,7 @@ class LogIn extends Component {
     e.preventDefault();
     this.setState({ submitted: true });
     const { email, password } = this.state;
-    console.log(this.state);
+
     if (email && password) {
       this.props.logIn(email, password);
     }
