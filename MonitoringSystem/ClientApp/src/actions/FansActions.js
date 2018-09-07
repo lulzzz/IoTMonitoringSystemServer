@@ -53,7 +53,7 @@ function fetchFans() {
   return dispatch => {
     dispatch(requestFans(dispatch));
     return dataService
-      .get(`/api/fans/getall`)
+      .get(`api/fans/getall`)
       .then(json => dispatch(receiveFans(json)));
   };
 }

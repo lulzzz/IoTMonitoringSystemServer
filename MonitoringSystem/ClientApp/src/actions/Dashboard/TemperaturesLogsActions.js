@@ -41,7 +41,7 @@ function fetchTemperatures() {
   return dispatch => {
     dispatch(requestTemperatures(dispatch));
     return dataService
-      .get(`/api/plots/temperature/getall`)
+      .get(`api/plots/temperature/getall`)
       .then(json => dispatch(receiveTemperatures(json)));
   };
 }

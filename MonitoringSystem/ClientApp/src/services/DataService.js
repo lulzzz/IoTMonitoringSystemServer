@@ -1,4 +1,5 @@
 import * as authService from "./Authentication";
+import * as constant from "./Constant";
 
 function getHeader() {
   var header = {
@@ -28,7 +29,7 @@ function getHeaderWithoutBearer() {
 // };
 
 export const login = async data => {
-  return await fetch("api/accounts/generatetoken", {
+  return await fetch(constant.BASE_URL + "api/accounts/generatetoken", {
     method: "POST",
     headers: getHeaderWithoutBearer(),
     body: JSON.stringify(data)
@@ -36,7 +37,8 @@ export const login = async data => {
 };
 
 export const get = async url => {
-  return await fetch(url, {
+  console.log(constant.BASE_URL + url);
+  return await fetch(constant.BASE_URL + url, {
     method: "GET",
     headers: getHeader()
   }).then(function(response) {
@@ -45,7 +47,7 @@ export const get = async url => {
 };
 
 export const post = async (url, data) => {
-  return await fetch(url, {
+  return await fetch(constant.BASE_URL + url, {
     method: "POST",
     headers: getHeader(),
     body: JSON.stringify(data)
@@ -55,7 +57,7 @@ export const post = async (url, data) => {
 };
 
 export const put = async (url, data) => {
-  return await fetch(url, {
+  return await fetch(constant.BASE_URL + url, {
     method: "PUT",
     headers: getHeader(),
     body: JSON.stringify(data)
@@ -65,7 +67,7 @@ export const put = async (url, data) => {
 };
 
 export const remove = async url => {
-  return await fetch(url, {
+  return await fetch(constant.BASE_URL + url, {
     method: "DELETE",
     headers: getHeader()
   }).then(function(response) {

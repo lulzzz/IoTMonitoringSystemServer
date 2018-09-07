@@ -42,7 +42,7 @@ function fetchHumidities() {
   return dispatch => {
     dispatch(requestHumidities(dispatch));
     return dataService
-      .get(`/api/plots/getlatesthumidity`)
+      .get(`api/plots/getlatesthumidity`)
       .then(json => dispatch(receiveHumidities(json)));
   };
 }
