@@ -23,6 +23,10 @@ export const clearLocalStorage = () => {
   localStorage.removeItem(constant.CURRENT_USER);
 };
 
+export const logOut = () => {
+  clearLocalStorage();
+};
+
 export const getLoggedInUser = () => {
   var user = {
     access_token: "",

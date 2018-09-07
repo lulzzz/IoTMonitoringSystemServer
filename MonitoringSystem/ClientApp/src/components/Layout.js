@@ -6,6 +6,8 @@ import Logo from "../assets/img/logo.png";
 
 import { Menu, Dropdown } from "semantic-ui-react";
 import "../assets/css/Navbar.css";
+import * as authService from "../services/Authentication";
+import { isUserAuthenticated } from "./../services/Authentication";
 
 export default class Layout extends Component {
   constructor(props, context) {
@@ -50,6 +52,10 @@ export default class Layout extends Component {
             active={activeItem === "Account"}
             href="/Account"
           />
+          {authService.isUserAuthenticated() && (
+            <Menu.Item name="Log Out" onClick={authService.logOut} href="/" />
+          )}
+
           <Menu.Menu position="right">
             <Menu.Item>
               {/* <Input icon="search" placeholder="Search..." /> */}
