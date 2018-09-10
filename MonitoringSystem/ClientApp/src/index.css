@@ -77,3 +77,7 @@ body {
 .js-plotly-plot .plotly .modebar {
   z-index: 5 !important;
 }
+
+.ui.dropdown .menu .menu {
+  margin-left: 1px !important;
+}

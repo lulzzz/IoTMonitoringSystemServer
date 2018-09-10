@@ -34,10 +34,24 @@ export default class Layout extends Component {
           /> */}
           <Dropdown item text="Dashboard">
             <Dropdown.Menu>
-              <Dropdown.Item href="/templog">Temperature Logs</Dropdown.Item>
-              <Dropdown.Item href="/temprt">Temperature Realtime</Dropdown.Item>
-              <Dropdown.Item href="/humilog">Humidity Logs</Dropdown.Item>
-              <Dropdown.Item href="/humirt">Humidity Realtime</Dropdown.Item>
+              <Dropdown item text="Logs">
+                <Dropdown.Menu className="sub-menu">
+                  <Dropdown.Item href="/templog">
+                    Temperature Logs
+                  </Dropdown.Item>
+                  <Dropdown.Item href="/humilog">Humidity Logs</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown item text="Realtime">
+                <Dropdown.Menu className="sub-menu">
+                  <Dropdown.Item href="/temprt">
+                    Temperature Realtime
+                  </Dropdown.Item>
+                  <Dropdown.Item href="/humirt">
+                    Humidity Realtime
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item name="Map" active={activeItem === "Map"} href="/Map" />

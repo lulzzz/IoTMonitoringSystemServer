@@ -72,7 +72,7 @@ export default class Temperatures extends Component {
       open: false,
       dateRangePicker: {
         selection: {
-          startDate: new Date(),
+          startDate: new Date(new Date().setDate(new Date().getDate() - 30)),
           endDate: new Date(),
           key: "selection"
         }
@@ -141,7 +141,7 @@ export default class Temperatures extends Component {
           range: [this.state.startDate, this.state.endDate]
         },
         yaxis: {
-          title: "Humidity"
+          title: "Temperature (C)"
         },
         title: "Temperature Graph",
         font: {
@@ -163,7 +163,7 @@ export default class Temperatures extends Component {
             marginBottom: "1rem"
           }}
         >
-          Date Picker
+          Date Range
         </Button>
         <span className="input-date">
           <Button.Group>

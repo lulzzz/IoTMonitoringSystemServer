@@ -72,7 +72,7 @@ export default class Humidities extends Component {
       open: false,
       dateRangePicker: {
         selection: {
-          startDate: new Date(),
+          startDate: new Date(new Date().setDate(new Date().getDate() - 30)),
           endDate: new Date(),
           key: "selection"
         }
@@ -122,7 +122,8 @@ export default class Humidities extends Component {
             this.state.dateRangePicker.selection.startDate
           ),
           formatEndDateDisplay(this.state.dateRangePicker.selection.endDate)
-        ]
+        ],
+        mode: "lines+markers"
       }
     };
 
@@ -161,7 +162,7 @@ export default class Humidities extends Component {
             marginBottom: "1rem"
           }}
         >
-          Date Picker
+          Date Range
         </Button>
         <span className="input-date">
           <Button.Group>
