@@ -83,12 +83,12 @@ namespace MonitoringSystem.Controllers
             var status = mapper.Map<StatusResource, Status>(statusResource);
 
             //add sensor for status
-            status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId);
+            status.Sensor = await sensorRepository.GetSensor(statusResource.SensorId,false);
 
             //if sensor id is undefined in son which post to server
             if (!String.IsNullOrEmpty(statusResource.SensorCode))
             {
-                status.Sensor = await sensorRepository.GetSensorBySensorCode(statusResource.SensorCode);
+                status.Sensor = await sensorRepository.GetSensorBySensorCode(statusResource.SensorCode,false);
             }
 
             //case sensor is not defined
@@ -114,10 +114,11 @@ namespace MonitoringSystem.Controllers
             await hubContext.Clients.All.SendAsync("LoadData");
 
             //get status for converting to json result
-            status = await statusRepository.GetStatus(status.StatusId);
-            var result = mapper.Map<Status, StatusResource>(status);
+            // status = await statusRepository.GetStatus(status.StatusId);
+            // var result = mapper.Map<Status, StatusResource>(status);
 
-            return Ok(result);
+            //return Ok(result);
+            return Ok();
         }
 
         // PUT: api/statuss/update/5
